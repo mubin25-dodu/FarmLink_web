@@ -1,0 +1,282 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+:root{
+ --darkgreen: #1E2B27;
+ --orange: #E57400;
+ --purple:#6952A2;
+ --lightgreen:#D0E3D5;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--darkgreen);
+}
+#searchbar{
+  position: relative;
+  left: 10px;
+  border-radius: 30px;
+  border-color: #D0E3D5 ;
+  outline: none;
+  font-size: 16px;
+  padding: 5px 1px 5px 15px;
+  width: 100px;
+  transition: all 0.3s ease;
+}
+
+#searchbar:focus{
+  width: 200px;
+  box-shadow: 0 0 8px #1E2B27;
+}
+#notif{
+    position: fixed;
+    top: 80px;
+    right: -150px;
+    /* background-color: #afe9d7; */
+    color: #1E2B27;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    /* display: none; */
+    transition: all 1.5s ease;
+    z-index: 1000; 
+}
+ 
+nav {
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    z-index: 1111;
+}
+.sec_title {
+    font-size: 28px;
+    color: #025027;
+    text-align: center;
+    margin-bottom: 50px;
+}
+/* product section and cards */
+.sections {
+    margin: 5% 10%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.075);
+
+    #products_container{
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     justify-items: center;
+    .products{
+        display: inline-flex;
+        background-color: #D0E3D5;
+        margin: 20px;
+        padding: 15px;
+        border-radius: 15px;
+        }
+        img{
+            margin: -5px -5px 5px -5px ;
+            border-radius: 15px;
+            width: 200px;
+        }
+        img:hover {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 1.3s ease;
+            transform: rotateY(180deg);
+            visibility: hidden;
+
+        }
+        .product_details{
+            font-size: 14px;
+            color: var(--darkgreen);
+            margin: 10px 0;
+            height: 40px;
+            width: 170px;
+            justify-content: start;
+            padding: 2px;
+            overflow: hidden;
+        }
+        #counter_btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; 
+            background-color: transparent;
+            border-radius: 30px;
+            border: 1px solid var(--darkgreen);
+            padding: 2px;
+            color: white;
+            box-shadow: 0px 0px 2px orange;
+            margin: -35px 0 10px 100px;
+            .counter_btns{
+                background-color: transparent;
+                border: none;
+                color: var(--darkgreen);
+                font-weight: bolder;
+                font-size: 18px;
+                cursor: pointer;
+            }
+        }
+        .card_btn{
+           width: 48.8%;
+           padding: 2px;
+           background-color: transparent;
+           border-radius: 15px;
+           border: none;
+           cursor: pointer;
+
+        }
+        .card_btn:hover{
+            scale: 1.02;
+            transition: all 0.3s ease;
+        }
+        #buy_btn{
+            background-color: var(--orange);
+            color: #ffffff;
+            font-weight: bold;
+        }
+        #basket{
+            background-color: var(--purple);
+            color: #ffffff;
+            font-weight: bold;
+        }
+         }
+
+}
+#products_container2{
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     justify-items: center;
+     gap: 40px;
+    .p_details2{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #D0E3D5;
+        padding: 15px; ; 
+        border-radius: 15px;
+        gap: 10px;
+        max-width: 400px;
+        max-height: 530px;
+        padding-bottom: 20px;
+        }
+        img{
+        width: 100%;
+        height: 250px;
+        margin-top: 10px;
+        border-radius: 15px;
+        }
+        .card_btn{
+            
+            position: relative;
+            border:none;
+            padding: 3px;
+            border-radius: 15px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--darkgreen);
+        }
+        
+        .card_btn::before{
+            content: "";            
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0%;
+            height: 100%;
+            background-color: var(--darkgreen);
+            border-radius: 15px;
+            transition: all .3s ease;
+            z-index: -1;
+        }
+        .card_btn:hover::before{
+            width: 100%;
+        }
+         .card_btn:hover{
+          z-index: 1111;
+          transition: all .3s ease;
+          color: #ffffff;
+        }
+       
+    
+}
+
+.product_details{
+  font-size: 14px;
+  color: var(--darkgreen);
+   margin: 10px 0;
+   min-height: 80px;
+   max-height: 80px;
+   width: 350px;
+}
+
+#navbtn{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
+}
+.logo {
+    width: 210px;   
+    height: auto;
+}
+nav img {
+    margin-bottom: 5px;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a{
+    text-decoration: none;
+    margin-left: 20px;
+    color: var(--darkgreen);
+    font-weight: bold;
+    font-size: 22px;
+}
+nav ul li a:hover {
+    color: var(--orange);
+}
+.orange_color{
+    color: var(--orange);
+    font-size: 13px;
+    margin-bottom: -10px;
+    text-decoration: none;
+}
+.orange_color:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+#basket_icon{
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 50%;
+    box-shadow: #025027 0px 0px 10px;
+
+}
+#basket_icon:hover{
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
