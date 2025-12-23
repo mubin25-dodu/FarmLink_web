@@ -1,7 +1,6 @@
 <?php
 session_start();
-// print_r($_POST);
- header('location: ../views/buyers/home.php');
+print_r($_POST);
 
 if(isset($_POST['submit']))
     {
@@ -13,12 +12,30 @@ if(isset($_POST['submit']))
         $role= $_REQUEST['role'];
         $address= $_REQUEST['address'];
         $city= $_REQUEST['city'];
+  
 
-    // if($uname==null|| $num==null|| $email==null|| $pass==null || $cpass== null|| $role==null|| $address== null|| $city==null){
-    // }
-    // else{
-    //     header('location: buyers/home.php');
-    // }
+    if($uname==null|| $num==null|| $email==null|| $pass==null || $cpass== null|| $role==null|| $address== null|| $city==null){
     }
-   
+    else{
+        $data= [ 
+            'status'=> 'success',
+            'name'=> $uname,
+            'num'=> $num,
+            'email'=> $email,
+            'pass'=> $pass,
+            'cpass'=> $cpass,
+            'role'=> $role,
+            'address'=> $address,
+            'city'=> $city
+        ];
+      $_SESSION['userdata']= $data; 
+      // Debug: View session data
+echo '<pre>';
+print_r($_SESSION['userdata']);
+echo '</pre>';
+    
+    }
+    }    
+    
+    
 ?>

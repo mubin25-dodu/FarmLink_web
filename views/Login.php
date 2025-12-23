@@ -12,7 +12,7 @@
 <script type="text/javascript">
    (function(){
       emailjs.init({
-        publicKey: "LhdG6Wko_lHnMBJ6n",
+        // publicKey: "LhdG6Wko_lHnMBJ6n",
       });
    })();
 </script>
@@ -41,7 +41,7 @@
             <div id="otp"> 
               Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <br><button type="button" id="otpbtn" class="btn1" > Sign up</button> 
+            <br><button type="submit" name="submit" id="otpbtn" class="btn1" > Sign up</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
