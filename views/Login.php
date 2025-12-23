@@ -30,34 +30,34 @@
 <div id="notif"></div>
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
-        <form action="">
+        <form action="../controllers/signupcheck.php" method="post" >
             <!-- signup form-->
             <h3 class="inputreg">Enter your details</h3>
-            <label class="inputreg" for="name">Full name:</label> <br><input type="text" class="inputreg" id="name"><br>
-            <label class="inputreg" for="number">Phone number:</label> <br><input type="number"class="inputreg" id="number"><br>
-            <label class="inputreg" for="email">Email:</label> <br><input type="email"class="inputreg" id="email"><br>
-            <label class="inputreg" for="pass">Enter password:</label> <br><input type="password"class="inputreg" id="pass"><br>
-            <label class="inputreg" for="cpass">Confirm password:</label> <br><input type="password"class="inputreg"id="cpass"><br>
+            <label class="inputreg" for="name">Full name:</label> <br><input type="text" name="name" class="inputreg" id="name"><br>
+            <label class="inputreg" for="number">Phone number:</label> <br><input type="number" name="num" class="inputreg" id="number"><br>
+            <label class="inputreg" for="email">Email:</label> <br><input type="email"class="inputreg" name="email"id="email"><br>
+            <label class="inputreg" for="pass">Enter password:</label> <br><input type="password"class="inputreg" name="pass"id="pass"><br>
+            <label class="inputreg" for="cpass">Confirm password:</label> <br><input type="password"class="inputreg"id="cpass" name="cpass"><br>
             <div id="otp"> 
               Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
             <br><button type="button" id="otpbtn" class="btn1" > Sign up</button> 
             </div>
-            <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="" id="role">
+            <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
                 <option class="inputreg" value="Buyer">Buyer</option>
                 <option class="inputreg" value="Seller">Seller</option>
                 <option class="inputreg" value="Agent">Agent</option>
             </select>
             <br> 
-            <label class="inputreg" for="address">Full address:</label> <br><input type="text"class="inputreg" id="address"><br>
-            <label class="inputreg" for="city">City:</label></label> <select class="inputreg" name="" id="city">
+            <label class="inputreg" for="address">Full address:</label> <br><input type="text"class="inputreg" name="address" id="address"><br>
+            <label class="inputreg" for="city">City:</label></label> <select class="inputreg" name="city" id="city">
                 <option class="inputreg" value="">Select a city</option>
                 <option class="inputreg" value="Buyer">Buyer</option>
                 <option class="inputreg" value="Seller">Seller</option>
                 <option class="inputreg" value="Agent">Agent</option>
             </select>
-            <br><button type="button" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="submit" id="sibtn" class="btn1" > Sign up</button> 
             
         </form>
     </div>
