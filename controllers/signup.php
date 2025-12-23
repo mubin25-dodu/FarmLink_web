@@ -28,14 +28,8 @@ if(isset($_POST['submit']))
             'address'=> $address,
             'city'=> $city
         ];
-      $_SESSION['userdata']= $data; 
-      // Debug: View session data
-echo '<pre>';
-print_r($_SESSION['userdata']);
-echo '</pre>';
-    
+      $_SESSION['userdata']= $data;     
     }
     }    
-    
     
 ?>

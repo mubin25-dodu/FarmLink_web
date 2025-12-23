@@ -1,6 +1,10 @@
+console.log(window.DATA);
 let slider_btn = document.getElementById('signupbtn');
 let regbtn = document.getElementById('sibtn');
 let otpbtn = document.getElementById('otpbtn');
+let loginbtn =document.getElementById('loginbtn');
+if(loginbtn){ loginbtn.addEventListener('click',login(window.DATA))}
+
 let otp_num;
 
 if(regbtn){ regbtn.addEventListener('click',regestration)}
@@ -213,4 +217,16 @@ function otp(){
         // document.getElementById('notif').style.transform='translateX(0px)';
         // document.getElementById('notif').innerHTML='';
 
+    }
+
+
+    // login
+
+    function login(a){
+      if (a=="Wrong Email Or Phone Number"){
+        notifyUser('Wrong Email Or Phone Number','red');
+      }
+      else if(a== "Wrong Password"){
+        notifyUser('Wrong Password','red');
+      }
     }

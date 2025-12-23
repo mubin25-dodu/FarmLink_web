@@ -30,7 +30,7 @@
 <div id="notif"></div>
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
-        <form action="../controllers/signupcheck.php" method="post" >
+        <form action="../controllers/signup.php" method="post" >
             <!-- signup form-->
             <h3 class="inputreg">Enter your details</h3>
             <label class="inputreg" for="name">Full name:</label> <br><input type="text" name="name" class="inputreg" id="name"><br>
@@ -57,17 +57,17 @@
                 <option class="inputreg" value="Seller">Seller</option>
                 <option class="inputreg" value="Agent">Agent</option>
             </select>
-            <br><button type="submit" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="button" id="sibtn" class="btn1" > Sign up</button> 
             
         </form>
     </div>
             <!-- login form-->
         <div id="login"> 
-        <form action="">
+        <form action="../controllers/login.php" method="post">
             <h3>Enter credentials</h3>
-            Email or Phone: <br><input type="text" ><br>
-            Password: <br><input type="text"><br>
-            <button class="btn1"> Login</button>
+            Email or Phone: <br><input type="text" name="email_or_phone"><br>
+            Password: <br><input type="password" name="password"><br>
+            <button class="btn1" type="button" name="submit" id="loginbtn"> Login</button>
         </form>
     </div>
             <!-- slider-->
