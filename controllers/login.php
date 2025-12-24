@@ -23,8 +23,6 @@ if(isset($_POST['submit'])){
     else{
         $_SESSION['msg']= "No user registered. Please sign up first.";
     }
-    
-   
 }
 
 header('location: ../views/Login.php');

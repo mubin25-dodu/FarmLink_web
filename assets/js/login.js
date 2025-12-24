@@ -148,7 +148,7 @@ function regestration(){
                     
                 }
                 }
-            }
+             }
             }
         }
              
@@ -183,19 +183,27 @@ function otp(){
         notifyUser('Please enter the OTP','red');
     }
     else if(otp_input == otp_num){
-         notifyUser('Registration successful!','green');
+            notifyUser('Registration successful!','green');
             let sl = document.getElementById('slider');
             sl.style.transform='translateX(0px)';
             slider_btn.innerHTML='Signup'
             document.getElementById('reg_P').innerHTML="Don't Have an account!!";
             sl.style.borderRadius='10px 100px 0px 10px';
             document.getElementById('reg_log').style.boxShadow=' 5px 5px 10px rgba(30, 43, 39, 0.397)';
+            document.getElementById('reg_form').submit();
     }
     else{
         notifyUser('Invalid OTP. Please try again.','red');
     }
     
 }
+// function reg(){
+//   let btn = document.getElementById('otpbtn');
+//   btn.addEventListener('click' , () =>{
+//     console.log("submited");
+//     btn.type="submit";
+//   } );
+// }
 
     function notifyUser(message,color){   
         if(color==='red'){

@@ -39,7 +39,7 @@ if(isset($_SESSION['msg'])){
 <div id="notif"></div>
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
-        <form action="../controllers/signup.php" method="post" >
+        <form action="../controllers/signup.php" method="post" id="reg_form">
             <!-- signup form-->
             <h3 class="inputreg">Enter your details</h3>
             <label class="inputreg" for="name">Full name:</label> <br><input type="text" name="name" class="inputreg" id="name"><br>
@@ -50,7 +50,7 @@ if(isset($_SESSION['msg'])){
             <div id="otp"> 
               Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <br><button type="submit" name="submit" id="otpbtn" class="btn1" > Sign up</button> 
+            <button type="button"  id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
