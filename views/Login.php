@@ -1,3 +1,12 @@
+<?php
+session_start();
+$msg = null;
+if(isset($_SESSION['msg'])){
+    $msg = $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +76,7 @@
             <h3>Enter credentials</h3>
             Email or Phone: <br><input type="text" name="email_or_phone"><br>
             Password: <br><input type="password" name="password"><br>
-            <button class="btn1" type="button" name="submit" id="loginbtn"> Login</button>
+            <button class="btn1" type="submit" name="submit" id="loginbtn"> Login</button>
         </form>
     </div>
             <!-- slider-->
@@ -78,6 +87,8 @@
     <button id="signupbtn">Signup</button>
 </div>
     </div> </div>
+
+<script>window.DATA =<?php echo json_encode($msg); ?></script>
 <script src="../assets/js/login.js"></script>
 </body>
 </html>

@@ -2,8 +2,7 @@ console.log(window.DATA);
 let slider_btn = document.getElementById('signupbtn');
 let regbtn = document.getElementById('sibtn');
 let otpbtn = document.getElementById('otpbtn');
-let loginbtn =document.getElementById('loginbtn');
-if(loginbtn){ loginbtn.addEventListener('click',login(window.DATA))}
+if(window.DATA!=""){login(window.DATA)}
 
 let otp_num;
 
@@ -172,7 +171,7 @@ function regestration(){
                     console.log("Sending email...");
                     console.log(otp_num);
                     emailjs.send("service_1u2e3a9","template_r96wljl",params);
-            notifyUser('OTP sent to your email/phone. Please verify.','green');
+                    notifyUser('OTP sent to your email/phone. Please verify.','green');
 
         }      
         

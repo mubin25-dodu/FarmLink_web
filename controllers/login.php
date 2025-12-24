@@ -1,23 +1,33 @@
 <?php
 session_start();
+// $msg=["nothing"];
+// $message="nothing";
 
-$message="dfsd";
 if(isset($_POST['submit'])){
 
-    if(($_SESSION['userdata']['email']==$_POST['email_or_phone'] || $_SESSION['userdata']['num']==$_POST['email_or_phone']) && $_SESSION['userdata']['pass']==$_POST['password']) {
-        // header('location: ../views/buyers/home.php');
-        // $message= "";
+    if(isset($_SESSION['userdata'])){
+
+        if(($_SESSION['userdata']['email']==$_POST['email_or_phone'] || $_SESSION['userdata']['num']==$_POST['email_or_phone']) && $_SESSION['userdata']['pass']==$_POST['password']) {
+
+            header('location: ../views/buyers/home.php');
+            exit();
+            
+        }
+        else if($_SESSION['userdata']['email']==$_POST['email_or_phone'] || $_SESSION['userdata']['num']==$_POST['email_or_phone']){
+           $_SESSION['msg']= "Wrong Password";
+        }
+        else{
+            $_SESSION['msg']= "Wrong Email Or Phone Number";
+        }
     }
-    else if($_SESSION['userdata']['email']==$_POST['email_or_phone'] || $_SESSION['userdata']['num']==$_POST['email_or_phone']){
-        $message= "Wrong Email Or Phone Number";
-        
+    else{
+        $_SESSION['msg']= "No user registered. Please sign up first.";
     }
-    else if(($_SESSION['userdata']['email']==$_POST['email_or_phone'] || $_SESSION['userdata']['num']==$_POST['email_or_phone']) && $_SESSION['userdata']['pass']!=$_POST['password']){
-        $message= "Wrong Password";
-        
-    }
+    
+    header('location: ../views/Login.php');
+    exit();
 }
 
+header('location: ../views/Login.php');
+exit();
 ?>
-<script>window.DATA =<?php echo json_encode($message); ?></script>
-<script src="../assets/js/login.js"></script>
