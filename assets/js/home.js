@@ -1,3 +1,67 @@
+for(let i = 1; i < 50; i++){
+    let temp = document.getElementById('products2');
+    let container = document.getElementById('products_container2');
+
+    let product_card = temp.cloneNode(true);
+    product_card.id = 'product_' + i;
+
+     // all buttons inside this card
+    let btns = product_card.getElementsByClassName('card_btn');
+    btns[0].id = 'buy_' + i;      // Buy
+    btns[1].id = 'basket_' + i;   // Basket
+    btns[2].id = 'details_' + i;  // Details
+
+    product_card.style.display = 'inline-flex';
+    container.appendChild(product_card);
+    console.log(product_card.id);
+    
+}
+
+
+
+function details(){
+    
+}
+
+// products display 
+
+for(let i = 1; i < 4; i++){
+    let temp = document.getElementById('products');
+    let container = document.getElementById('products_container');
+
+    let product_card = temp.cloneNode(true);
+    product_card.id = 'product' + i;
+    let btns = product_card.getElementsByClassName('card_btn');
+    btns[0].id = 'details' + i;      // details
+    product_card.style.display = 'inline-flex';
+    container.appendChild(product_card);
+}
+
+// detecting button pressed
+
+let card_btns = document.getElementsByClassName('card_btn');
+
+for(let i = 0; i < card_btns.length; i++){
+    card_btns[i].addEventListener('click', function(){
+        console.log('button id:', this.id);
+        if(this.id.includes('buy')){
+            buy();
+        }
+        if(this.id.includes('basket')){
+        }
+        if(this.id.includes('details')){
+             let product_id = this.id.replace('details_', '');
+             window.location.href = 'product_details.php?id=' + product_id;
+        }
+    });
+}
+
+function buy(){
+
+}
+
+// banners
+
 setInterval(() => bannerChange("left"), 10000);
 let lft_btn = document.getElementById('left_btn');
 let rgt_btn = document.getElementById('right_btn');
@@ -93,29 +157,4 @@ function bannerChange(direction) {
 
 if(document.getElementById('ad0')){
     document.getElementById('ad0').style.zIndex = '3';
-}
-
-// products display 
-
-for(let i = 1; i < 4; i++){
-    let temp = document.getElementById('products');
-    let container = document.getElementById('products_container');
-
-    let product_card = temp.cloneNode(true);
-    product_card.id = 'product_' + i;
-    product_card.style.display = 'inline-flex';
-    container.appendChild(product_card);
-    
-}
-
-
-for(let i = 1; i < 50; i++){
-    let temp = document.getElementById('products2');
-    let container = document.getElementById('products_container2');
-
-    let product_card = temp.cloneNode(true);
-    product_card.id = 'product_' + i;
-    product_card.style.display = 'inline-flex';
-    container.appendChild(product_card);
-    
 }

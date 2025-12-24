@@ -2,8 +2,7 @@ console.log(window.DATA);
 let slider_btn = document.getElementById('signupbtn');
 let regbtn = document.getElementById('sibtn');
 let otpbtn = document.getElementById('otpbtn');
-if(window.DATA!=""){login(window.DATA)}
-
+if(window.DATA!=null){login(window.DATA)}
 let otp_num;
 
 if(regbtn){ regbtn.addEventListener('click',regestration)}
@@ -168,7 +167,7 @@ function regestration(){
                         passcode: "Your OTP is " + otp_num
                     };
                     console.log(params);
-                    console.log("Sending email...");
+                    console.log("send emai");
                     console.log(otp_num);
                     emailjs.send("service_1u2e3a9","template_r96wljl",params);
                     notifyUser('OTP sent to your email/phone. Please verify.','green');
@@ -222,10 +221,20 @@ function otp(){
     // login
 
     function login(a){
-      if (a=="Wrong Email Or Phone Number"){
+    //   if (a!=null)
+    //     {
+        if (a=="Wrong Email Or Phone Number"){
         notifyUser('Wrong Email Or Phone Number','red');
       }
       else if(a== "Wrong Password"){
         notifyUser('Wrong Password','red');
       }
+      else if(a== "No user registered. Please sign up first."){
+        notifyUser('No user registered. Please sign up first.','red');
+      }
+    //   else{
+    //     // window.location.href='/buyers/home.php?'
+    //   }
+    // }
+
     }

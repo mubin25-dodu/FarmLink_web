@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
     if(isset($_SESSION['userdata'])){
 
         if(($_SESSION['userdata']['email']==$_POST['email_or_phone'] || $_SESSION['userdata']['num']==$_POST['email_or_phone']) && $_SESSION['userdata']['pass']==$_POST['password']) {
-
+            // $_SESSION['msg']= $_POST['email_or_phone'];
             header('location: ../views/buyers/home.php');
             exit();
             
@@ -24,8 +24,7 @@ if(isset($_POST['submit'])){
         $_SESSION['msg']= "No user registered. Please sign up first.";
     }
     
-    header('location: ../views/Login.php');
-    exit();
+   
 }
 
 header('location: ../views/Login.php');

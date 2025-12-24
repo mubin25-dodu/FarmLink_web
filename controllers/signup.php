@@ -1,6 +1,5 @@
 <?php
 session_start();
-print_r($_POST);
 
 if(isset($_POST['submit']))
     {
@@ -13,10 +12,6 @@ if(isset($_POST['submit']))
         $address= $_REQUEST['address'];
         $city= $_REQUEST['city'];
   
-
-    if($uname==null|| $num==null|| $email==null|| $pass==null || $cpass== null|| $role==null|| $address== null|| $city==null){
-    }
-    else{
         $data= [ 
             'status'=> 'success',
             'name'=> $uname,
@@ -28,8 +23,10 @@ if(isset($_POST['submit']))
             'address'=> $address,
             'city'=> $city
         ];
-      $_SESSION['userdata']= $data;     
-    }
+      $_SESSION['userdata']= $data;
+      header('location: ../views/Login.php');
+      exit();
     }    
+    
     
 ?>

@@ -35,9 +35,7 @@
         <img src="../../assets/img/Grow. Link. Thrive..png" alt="Product img">
         <h3>Product 1</h3>
         <p> Price $10.00</p>
-        <div id="counter_btn"> <button type="button" class="counter_btns" id="increment_btn">+</button> <span id="value"> 0 </span><button type="button"  class="counter_btns" id="decrement_btn">-</button></div>
-        <button class="card_btn" id="buy_btn">Buy</button> 
-        <button class="card_btn" id="basket"> Basket</button> 
+        <button class="card_btn"> Details</button> 
         </div>
         </div> 
        </div>
@@ -54,9 +52,11 @@
         <h3>Product 1</h3>
         <div class="product_details"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam veritatis aspernatur iusto dolores nostrum voluptatum aut. Illum dolorum natus quaerat dolores eos doloribus praesentium, placeat nemo voluptatum rerum, explicabo non?</div>
         <p> Price $10.00</p>
-        <button class="card_btn" id="buy_btn2">Buy</button>
-        <button class="card_btn" id="basket2"> Basket</button> 
-        <a href="product_details.php">link</a>
+        <div>
+        <button class="card_btn" >Buy</button>
+        <button class="card_btn" > Basket</button> 
+        <button class="card_btn"> Details</button> 
+         </div>
         </div>
         </div> 
        </div>
