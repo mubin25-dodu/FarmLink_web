@@ -1,0 +1,124 @@
+* { box-sizing: border-box; }
+
+body {
+    color: black;
+    background: #ffffff;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 12px 48px; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+    align-items: center;
+}
+
+.page-wrap {
+    width: 75%; 
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.left-form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px; 
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; 
+}
+
+label {
+    font-size: 14px;
+}
+
+.govt-price-note {
+    color: red;
+    margin-bottom: 6px;
+}
+
+input, select, textarea {
+    padding: 5px; 
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    max-width: 80%; 
+}
+
+textarea {
+    height: 80px; 
+    resize: none;
+}
+
+.image-box {
+    width: 150px; 
+    height: 150px;
+    border: 2px dashed #ccc;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-wrap {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn {
+    padding: 6px 20px; 
+    background: #0a7c2f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.preview {
+    width: 420px; 
+    background: #e6e6e6;
+    border-radius: 10px;
+    position: relative;
+    min-height: 460px;
+}
+
+.preview .tag {
+    position: absolute;
+    top: 18%;
+    left: 65%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 6px 28px;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    font-size: 13px;
+    text-align: center;
+}
+
+.top-left-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.tick-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
