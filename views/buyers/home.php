@@ -1,3 +1,8 @@
+<?php
+// require('../../controllers/auth.php');
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +22,13 @@
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
-     <a class="orange_color" href="../Login.php">Get Started</a>
+
+    <?php if(isset($_SESSION['status']) && $_SESSION['status'] === 'buyer'): ?>
+    <a class="orange_color" href="../../controllers/logout.php">Logout</a>
+    <?php else: ?>
+    <a class="orange_color" href="../Login.php">Login</a>
+    <?php endif; ?>
+    
     </div>
 </nav>
  <!-- ad  section-->

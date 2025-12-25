@@ -63,8 +63,8 @@ textarea {
 }
 
 .image-box {
-    width: 150px; 
-    height: 150px;
+    width: 350px; 
+    height: 228px;
     border: 2px dashed #ccc;
     background: #f2f2f2;
     display: flex;

@@ -36,7 +36,7 @@ if(isset($_SESSION['msg'])){
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
 </nav> 
-<div id="notif"></div>
+<div id="notif">rgdsfgfdg dfgdfgdfg dfg dfg dfg dfg </div>
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
         <form action="../controllers/signup.php" method="post" id="reg_form">

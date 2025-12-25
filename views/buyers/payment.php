@@ -1,3 +1,6 @@
+<?php
+require('../../controllers/auth.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -9,7 +9,7 @@ $con = mysqli_connect($server , $username , $password,$db);
     die("could'nt connect".mysqli_connect_error());
  }
  else{
-    echo "connected";
+   //  echo "connected";
  }
 
  function write ($a){

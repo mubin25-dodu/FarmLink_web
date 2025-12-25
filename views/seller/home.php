@@ -1,3 +1,12 @@
+<?php
+require_once('../../controllers/auth.php');
+
+// Check if user is a seller
+if($_SESSION['userdata']['role'] !== 'Seller'){
+    header("Location: ../Login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,19 +21,14 @@
     <img class="logo" src="../../assets/img/farmlink_logo.jpg" >
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
-        <li><a class="nav-link" href="#Basket">Basket</a></li>
+        <li><a class="nav-link" href="My_Products.php">My products</a></li>
         <li><a class="nav-link" href="#Orders">Orders</a></li>
         <li><a class="nav-link" href="../about.php">About Us</a></li>
-        <li><a class="orange_color" href="../Login.php">Get Started</a></li>
+        <li><a class="orange_color" href="../../controllers/logout.php">logout</a></li>
     </ul>
     
 </nav>
-<div  id="ad">
-    <div id="ad_banner"> </div>
-    <button type="button" id="left_btn"><</button>
-    <button type="button" id="right_btn">></button>
-</div>
-<div></div>
+
 <script src="../../assets/js/home.js"></script>
 </body>
 </html>
