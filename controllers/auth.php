@@ -1,8 +1,12 @@
 <?php
 session_start();
-setcookie('status',true,time()+43200 , '/');
-if(!isset($_SESSION['userdata']) || $_SESSION['userdata']['status'] !== "active"){
-    header("Location: ../Login.php");
-    exit();
+
+if(!isset($_SESSION['user_data'])){
+   header("Location: home.php");
 }
+elseif($_SESSION['user_data']['role'] != 'Buyer'){
+   header("Location: home.php");
+   exit();
+}
+
 ?>

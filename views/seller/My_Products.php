@@ -1,9 +1,6 @@
 <?php
 session_start();
-if(isset( $_SESSION['status']) && $_SESSION['status'] !== 'seller'){
-    header("Location: ../Login.php");
-    exit();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,15 +15,18 @@ if(isset( $_SESSION['status']) && $_SESSION['status'] !== 'seller'){
 <body>
 
 <nav>
-    <img class="logo" src="../../assets/img/farmlink_logo.jpg">
+    <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg"></a>
+    <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="#products">My products</a></li>
         <li><a class="nav-link" href="#orders">Orders</a></li>
-        <li><a class="nav-link" href="#payment">Payment</a></li>
-        <li><a class="nav-link" href="#agent">Agent</a></li>
-        <li><a class="orange_color" href="../../controllers/logout.php">Logout</a></li>
+        <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
+    <input type="text" placeholder="Search..." id="searchbar" >
+    <a class="orange_color" href="../../controllers/logout.php">Logout</a>
+    
+    </div>
 </nav>
 
 

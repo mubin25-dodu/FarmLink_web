@@ -1,6 +1,6 @@
 <?php
 // require('../../controllers/auth.php');
-session_start();
+require('../../db/db.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,11 @@ session_start();
     <link rel="stylesheet" href="../../assets/css/buyer/home.css">
 
 </head>
+
+
 <body style="color: black;">
 <nav >
-    <img class="logo" src="../../assets/img/farmlink_logo.jpg" >
+    <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
@@ -23,9 +25,9 @@ session_start();
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
 
-    <?php if(isset($_SESSION['status']) && $_SESSION['status'] === 'buyer'): ?>
+    <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'): ?>
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
-    <?php else: ?>
+    <?php else:  ?>
     <a class="orange_color" href="../Login.php">Login</a>
     <?php endif; ?>
     
@@ -56,20 +58,25 @@ session_start();
      
     <div class="sections">
     <h2 class="sec_title">Products For You</h2>
-    <div id="products_container2">
-       <div id="products2" class ="products"> 
+             <div id="products_container2">
+   <?php  $products=[];
+       $products=read('select * from product');
+    //    print_r($products);
+        foreach($products as $a){?> 
+
+        <div id="" class ="products"> 
         <div class="p_details2">
-        <img src="../../assets/img/Grow. Link. Thrive..png" alt="Product img">
-        <h3>Product 1</h3>
-        <div class="product_details"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam veritatis aspernatur iusto dolores nostrum voluptatum aut. Illum dolorum natus quaerat dolores eos doloribus praesentium, placeat nemo voluptatum rerum, explicabo non?</div>
-        <p> Price $10.00</p>
+        <img src="<?= $a['image']?>" alt="Product img">
+        <h3><?=   $a['name']?></h3>
+        <div class="product_details"><?=$a['description']?></div>
+        <p>Price:<?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
         <div>
-        <button class="card_btn" >Buy</button>
-        <button class="card_btn" > Basket</button> 
+        <button type="submit" name="basket" class="card_btn" > Basket</button> 
         <button class="card_btn"> Details</button> 
          </div>
-        </div>
+        </div>      
         </div> 
+   <?php }?>
        </div>
     </div>
 <script src="../../assets/js/home.js"></script>

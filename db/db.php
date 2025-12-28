@@ -15,17 +15,26 @@ $con = mysqli_connect($server , $username , $password,$db);
  function write ($a){
     global $con;
     mysqli_query($con,$a);
- 
 }
 
-// $a = "SELECT COUNT(*) FROM user_data";
 
-function getcount($a){
+function getcount($b){
     global $con;
-   $result=mysqli_query($con,$a);
+   $result=mysqli_query($con,$b);
    $count= mysqli_num_rows($result);
-
     return $count;
 }
+
+function read($c){
+   global $con;
+   $result=mysqli_query($con,$c); 
+   $data=[];
+   while($row = mysqli_fetch_assoc($result)){
+    array_push($data,$row);
+   }
+  //  print_r($data[0]['product_id']);
+   return $data;
+}
+// read("select * from product ");
 // $con->close();
 ?>

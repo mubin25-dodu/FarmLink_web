@@ -3,6 +3,15 @@ let slider_btn = document.getElementById('signupbtn');
 let regbtn = document.getElementById('sibtn');
 let otpbtn = document.getElementById('otpbtn');
 if(window.DATA!=null){login(window.DATA)}
+
+// let note = document.getElementById('notif');
+// if(note){ 
+//     note.addEventListener('change', function(){
+//         document.getElementById('notif').style.backgroundColor='#fdfdfd23';
+//         document.getElementById('notif').style.transform='translateX(-155px)';
+//         setTimeout(stopNotify,10000);
+//     });
+// }
 let otp_num;
 
 if(regbtn){ regbtn.addEventListener('click',regestration)}
@@ -62,7 +71,7 @@ function regestration(){
             let char = name[j];
             if(!((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z') || char === ' ')){
                 isValid = false;
-                break;
+                break; 
             }
             }
             

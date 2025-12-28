@@ -14,22 +14,22 @@ if($_SERVER['REQUEST_METHOD']==='POST')
         $address= $_REQUEST['address'];
         $city= $_REQUEST['city'];
         $count = getcount("SELECT COUNT(*) FROM user_data");
-        $id="asd";
+
         // if(getcount("SELECT COUNT(*) FROM user_data where email='$email'")>0 || getcount("SELECT COUNT(*) FROM user_data where phone='$num'")>0 ){
         //     $_SESSION['msg']= "Exists";
         //     // print_r(' checking');
         //     // exit();
         // }
         // else{
-        // if($role=="Buyer"){
-        //     $id="bu".$count;
-        // }
-        // else if($role=="Seller"){
-        //     $id="se".$count;
-        // }
-        // else if($role=="Agent"){
-        // $id="ag".$count;
-        // } 
+        if($role=="Buyer"){
+            $id="bu-".$count;
+        }
+        else if($role=="Seller"){
+            $id="se-".$count;
+        }
+        else if($role=="Agent"){
+        $id="ag-".$count;
+        } 
         write("INSERT INTO user_data VALUES('$uname' , '$email', '$num' , '$pass' , '$role' , '$address' ,'$city' ,'active' ,'$id')");
         header('location: ../views/Login.php');
         exit();

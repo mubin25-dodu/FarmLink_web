@@ -9,13 +9,18 @@
 </head>
 <body>
     <nav >
-    <img class="logo" src="../assets/img/farmlink_logo.jpg" >
+    <a href="buyers/home.php"><img class="logo" src="../assets/img/farmlink_logo.jpg" ></a>
+    <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="buyers/home.php">Home</a></li>
-        <li><a class="nav-link" href="#Basket">Basket</a></li>
+        <li><a class="nav-link" href="buyers/basket.php">Basket</a></li>
         <li><a class="nav-link" href="#Orders">Orders</a></li>
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
+    <input type="text" placeholder="Search..." id="searchbar" >
+    <a class="orange_color" href="Login.php">Login</a>
+    
+    </div>
 </nav> 
 <div id="about-section"> 
     <img style="border-radius: 15px;" src="../assets/img/Grow. Link. Thrive..png" alt=""> <section id="info"> <p>

@@ -1,10 +1,6 @@
 <?php
 session_start();
-$msg = null;
-if(isset($_SESSION['msg'])){
-    $msg = $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +32,12 @@ if(isset($_SESSION['msg'])){
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
 </nav> 
-<div id="notif">rgdsfgfdg dfgdfgdfg dfg dfg dfg dfg </div>
+<div id="notif"><?php if(isset($_SESSION['msg'])){
+    echo $_SESSION['msg'];
+} 
+else{
+    $_SESSION['msg']==null;
+}?></div>
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
         <form action="../controllers/signup.php" method="post" id="reg_form">

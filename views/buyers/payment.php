@@ -13,7 +13,7 @@ require('../../controllers/auth.php');
 </head>
 <body style="color: black;">
 <nav >
-    <img class="logo" src="../../assets/img/farmlink_logo.jpg" >
+    <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="home.php">Home</a></li>
@@ -22,7 +22,8 @@ require('../../controllers/auth.php');
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
-     <a class="orange_color" href="../Login.php">Get Started</a>
+    <a class="orange_color" href="../../controllers/logout.php">Logout</a>
+    
     </div>
 </nav>
 
