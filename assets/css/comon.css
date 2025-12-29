@@ -176,7 +176,7 @@ nav {
         padding: 15px; ; 
         border-radius: 15px;
         gap: 10px;
-        max-width: 400px;
+        width: 400px;
         max-height: 530px;
         padding-bottom: 20px;
         }

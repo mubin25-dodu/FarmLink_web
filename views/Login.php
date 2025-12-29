@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +28,19 @@
     </ul>
 </nav> 
 <div id="notif"></div>
+
+<?php session_start();
+if(isset($_SESSION['msg'])){
+?>
+<div id="notif2"><input type="submit" value="<?php echo $_SESSION['msg']; ?>"></div>
+<?php 
+} else {
+?>
+    <div id="notif2"><input type="submit" value="<?php echo "nothing"; ?>"></div>
+<?php
+}
+?>
+
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
         <form action="../controllers/signup.php" method="post" id="reg_form">
@@ -42,7 +54,7 @@
             <div id="otp"> 
               Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="button"  id="otpbtn" class="btn1" > Done</button> 
+            <button type="submit" name="submit"  id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>

@@ -19,10 +19,10 @@ $con = mysqli_connect($server , $username , $password,$db);
 
 
 function getcount($b){
-    global $con;
-   $result=mysqli_query($con,$b);
-   $count= mysqli_num_rows($result);
-    return $count;
+   global $con;
+   $result = mysqli_query($con, $b);
+   $row = mysqli_fetch_array($result);
+   return $row[0];
 }
 
 function read($c){
@@ -32,9 +32,9 @@ function read($c){
    while($row = mysqli_fetch_assoc($result)){
     array_push($data,$row);
    }
-  //  print_r($data[0]['product_id']);
+   // print_r($data);
    return $data;
 }
-// read("select * from product ");
+read("SELECT * from product where product_id = 'PROD001'");
 // $con->close();
 ?>

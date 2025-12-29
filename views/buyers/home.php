@@ -1,6 +1,8 @@
 <?php
 // require('../../controllers/auth.php');
 require('../../db/db.php');
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +75,7 @@ require('../../db/db.php');
         <div>
         <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a> 
         <a href="../../controllers/addtobasket.php?id=<?= $a['product_id']?>"><button class="card_btn" >Basket </button></a> 
-        <button class="card_btn"> Details</button> 
+        <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a> 
          </div>
         </div>      
         </div> 

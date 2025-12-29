@@ -1,9 +1,9 @@
 <?php
 require_once('../db/db.php');
 session_start();
-// print_r($_POST['submit']);
+print_r($_POST['submit']);
 
-if($_SERVER['REQUEST_METHOD']==='POST')
+if(isset($_POST['submit']))
     {
         $uname= $_REQUEST['name'];
         $num= $_REQUEST['num'];
@@ -15,12 +15,13 @@ if($_SERVER['REQUEST_METHOD']==='POST')
         $city= $_REQUEST['city'];
         $count = getcount("SELECT COUNT(*) FROM user_data");
 
-        // if(getcount("SELECT COUNT(*) FROM user_data where email='$email'")>0 || getcount("SELECT COUNT(*) FROM user_data where phone='$num'")>0 ){
-        //     $_SESSION['msg']= "Exists";
-        //     // print_r(' checking');
-        //     // exit();
-        // }
-        // else{
+        if(getcount("SELECT COUNT(*) FROM user_data where email='$email'")>0 || getcount("SELECT COUNT(*) FROM user_data where phone='$num'")>0 ){
+            $_SESSION['msg']= "Exists";
+            // print_r(' checking');
+            header('location: ../views/Login.php');
+            exit();
+        }
+        else{
         if($role=="Buyer"){
             $id="bu-".$count;
         }
@@ -30,10 +31,11 @@ if($_SERVER['REQUEST_METHOD']==='POST')
         else if($role=="Agent"){
         $id="ag-".$count;
         } 
+        
         write("INSERT INTO user_data VALUES('$uname' , '$email', '$num' , '$pass' , '$role' , '$address' ,'$city' ,'active' ,'$id')");
         header('location: ../views/Login.php');
         exit();
-        // }
+        }
     }    
     
     

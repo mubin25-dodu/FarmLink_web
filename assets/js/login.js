@@ -199,7 +199,6 @@ function otp(){
             document.getElementById('reg_P').innerHTML="Don't Have an account!!";
             sl.style.borderRadius='10px 100px 0px 10px';
             document.getElementById('reg_log').style.boxShadow=' 5px 5px 10px rgba(30, 43, 39, 0.397)';
-            document.getElementById('reg_form').submit();
     }
     else{
         notifyUser('Invalid OTP. Please try again.','red');
