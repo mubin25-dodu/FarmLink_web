@@ -1,7 +1,3 @@
-<?php
-session_start();
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,12 +28,7 @@ session_start();
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
 </nav> 
-<div id="notif"><?php if(isset($_SESSION['msg'])){
-    echo $_SESSION['msg'];
-} 
-else{
-    $_SESSION['msg']==null;
-}?></div>
+<div id="notif"></div>
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
         <form action="../controllers/signup.php" method="post" id="reg_form">
@@ -89,7 +80,7 @@ else{
 </div>
     </div> </div>
 
-<script>window.DATA =<?php echo json_encode($msg); ?></script>
+<!-- <script>window.DATA =<?php echo json_encode($msg); ?></script> -->
 <script src="../assets/js/login.js"></script>
 </body>
 </html>
