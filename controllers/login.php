@@ -1,8 +1,8 @@
 <?php
-require_once('../db/db.php');
+require_once('../models/db.php');
 session_start();
 
-if(isset($_POST['submit'])){
+if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD']=='POST'){
     $email_or_phone = $_POST['email_or_phone'];
     $password = $_POST['password'];
     

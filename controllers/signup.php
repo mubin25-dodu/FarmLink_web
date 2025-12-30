@@ -1,5 +1,5 @@
 <?php
-require_once('../db/db.php');
+require_once('../models/db.php');
 session_start();
 print_r($_POST['submit']);
 
@@ -13,15 +13,15 @@ if(isset($_POST['submit']))
         $role= $_REQUEST['role'];
         $address= $_REQUEST['address'];
         $city= $_REQUEST['city'];
-        $count = getcount("SELECT COUNT(*) FROM user_data");
+        $count = readone("SELECT COUNT(*) FROM user_data");
 
-        if(getcount("SELECT COUNT(*) FROM user_data where email='$email'")>0 || getcount("SELECT COUNT(*) FROM user_data where phone='$num'")>0 ){
-            $_SESSION['msg']= "Exists";
+    if(readone("SELECT COUNT(*) FROM user_data where email='$email' or phone='$num'")>0 ){
+            $_SESSION['msg']= "alert('user already exists')";
             // print_r(' checking');
             header('location: ../views/Login.php');
             exit();
         }
-        else{
+    else{
         if($role=="Buyer"){
             $id="bu-".$count;
         }
@@ -37,6 +37,4 @@ if(isset($_POST['submit']))
         exit();
         }
     }    
-    
-    
 ?>

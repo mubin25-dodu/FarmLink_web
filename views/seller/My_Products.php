@@ -29,8 +29,6 @@ session_start();
     </div>
 </nav>
 
-
-
 <div class="page-wrap">
 
     <form class="left-form">

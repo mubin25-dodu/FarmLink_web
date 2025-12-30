@@ -1,6 +1,6 @@
 <?php
 require_once('../../controllers/auth.php');
-require('../../db/db.php');
+require('../../models/db.php');
 ?>
 <!DOCTYPE html>
 <html>

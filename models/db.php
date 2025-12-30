@@ -18,7 +18,7 @@ $con = mysqli_connect($server , $username , $password,$db);
 }
 
 
-function getcount($b){
+function readone($b){
    global $con;
    $result = mysqli_query($con, $b);
    $row = mysqli_fetch_array($result);
@@ -35,6 +35,6 @@ function read($c){
    // print_r($data);
    return $data;
 }
-read("SELECT * from product where product_id = 'PROD001'");
+// read("SELECT * from product where product_id = 'PROD001'");
 // $con->close();
 ?>

@@ -1,8 +1,7 @@
 <?php
 // require('../../controllers/auth.php');
-require('../../db/db.php');
-session_start();
-
+require('../../models/db.php');
+require('../../controllers/notifi.php');
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +12,7 @@ session_start();
     <link rel="stylesheet" href="../../assets/css/buyer/home.css">
 
 </head>
-
-
-<body style="color: black;">
+<body>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -26,15 +23,15 @@ session_start();
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
-
-    <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'): ?>
+    <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
-    <?php else:  ?>
+    <?php } else {  ?>
     <a class="orange_color" href="../Login.php">Login</a>
-    <?php endif; ?>
-    
+    <?php } ?>
     </div>
 </nav>
+
+ <!-- <div id="notification"><input id="notification_input" type="text" value="<?php if(isset($_SESSION['notif']['msg'])) {echo $_SESSION['notif']['msg']; } ?>"></div> -->
  <!-- ad  section-->
 <div  id="ad">
     <div id="ad_banner"> </div>
@@ -82,7 +79,9 @@ session_start();
    <?php }?>
        </div>
     </div>
-<script src="../../assets/js/home.js"></script>
+
 <img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+<script src="../../assets/js/home.js"></script>
+<script src="../../assets/js/notification.js"></script>
 </body>
 </html>

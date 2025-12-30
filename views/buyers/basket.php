@@ -1,6 +1,7 @@
 <?php
 require_once('../../controllers/auth.php');
-require_once('../../db/db.php');
+require_once('../../models/db.php');
+require_once('../../controllers/notifi.php');
 ?>
 <!DOCTYPE html>
 <html>

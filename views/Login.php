@@ -1,3 +1,6 @@
+<?php
+require('../controllers/notifi.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,17 +32,6 @@
 </nav> 
 <div id="notif"></div>
 
-<?php session_start();
-if(isset($_SESSION['msg'])){
-?>
-<div id="notif2"><input type="submit" value="<?php echo $_SESSION['msg']; ?>"></div>
-<?php 
-} else {
-?>
-    <div id="notif2"><input type="submit" value="<?php echo "nothing"; ?>"></div>
-<?php
-}
-?>
 
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
@@ -52,9 +44,9 @@ if(isset($_SESSION['msg'])){
             <label class="inputreg" for="pass">Enter password:</label> <br><input type="password"class="inputreg" name="pass"id="pass"><br>
             <label class="inputreg" for="cpass">Confirm password:</label> <br><input type="password"class="inputreg"id="cpass" name="cpass"><br>
             <div id="otp"> 
-              Enter OTP sent to you
+             Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="submit" name="submit"  id="otpbtn" class="btn1" > Done</button> 
+            <button type="button"   id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
@@ -66,11 +58,16 @@ if(isset($_SESSION['msg'])){
             <label class="inputreg" for="address">Full address:</label> <br><input type="text"class="inputreg" name="address" id="address"><br>
             <label class="inputreg" for="city">City:</label></label> <select class="inputreg" name="city" id="city">
                 <option class="inputreg" value="">Select a city</option>
-                <option class="inputreg" value="Buyer">Buyer</option>
-                <option class="inputreg" value="Seller">Seller</option>
-                <option class="inputreg" value="Agent">Agent</option>
+                <option class="inputreg" value="Dhaka">Dhaka</option>
+                <option class="inputreg" value="Chattogram">Chattogram</option>
+                <option class="inputreg" value="Khulna">Khulna</option>
+                <option class="inputreg" value="Rajshahi">Rajshahi</option>
+                <option class="inputreg" value="Barishal">Barishal</option>
+                <option class="inputreg" value="Sylhet">Sylhet</option>
+                <option class="inputreg" value="Rangpur">Rangpur</option>
+                <option class="inputreg" value="Mymensingh">Mymensingh</option>
             </select>
-            <br><button type="button" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="submit" name="submit" id="sibtn" class="btn1" > Sign up</button> 
             
         </form>
     </div>
@@ -92,7 +89,6 @@ if(isset($_SESSION['msg'])){
 </div>
     </div> </div>
 
-<!-- <script>window.DATA =<?php echo json_encode($msg); ?></script> -->
 <script src="../assets/js/login.js"></script>
 </body>
 </html>
