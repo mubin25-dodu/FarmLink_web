@@ -1,3 +1,7 @@
+<?php
+require_once('../../controllers/auth.php');
+require('../../db/db.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,16 +29,24 @@
 </nav>
     <!-- product details -->
      <div id="details_container"> 
-     <img src="../../assets/img/Grow. Link. Thrive..png" alt="Product img">
+        <?php
+        if(isset($_GET['id'])){
+           $data =[];
+           $data = read("Select * from product where product_id='{$_GET['id']}'");
+        //    print_r($data[0]['unit_price']);
+        ?>
+     <img src="<?= $data[0]['image'] ?>" alt="Product img">
      <div class="details"> 
-     <h2>Product name</h2>
-     <b>Price</b>
-     <div  id="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quia vero pariatur neque sequi quo necessitatibus possimus distinctio ipsum laudantium nobis ipsa, magni, autem voluptas ea laborum repellat ducimus a?</div>
+     <h2><?= $data[0]['name'] ?></h2>
+     <b>Price: <?= $data[0]['unit_price']?> TK / <?= $data[0]['unit'] ?></b>
+     <div  id="description"> <?= $data[0]['description'] ?></div>
      <div class="delivery_details"> Delivery details here  <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam earum ratione possimus veniam? Temporibus exercitationem ea nemo facilis, qui ut architecto animi magni vel quaerat sit quo eveniet, voluptas culpa.</div>
         <div id="counter_btn"> <button type="button" class="counter_btns" id="increment_btn">+</button> <span id="value"> 0 </span><button type="button"  class="counter_btns" id="decrement_btn">-</button></div>
         <div class="btndiv"> <button class="card_btn" id="buy_btn">Buy</button> 
         <button class="card_btn" id="basket"> Basket</button> </div> 
     </div>
+    <?php
+     }?>
 </div>
     
 <div class="sections"> <h3>Related products</h3>

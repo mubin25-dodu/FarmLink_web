@@ -1,6 +1,8 @@
 <?php
 // require('../../controllers/auth.php');
 require('../../db/db.php');
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -69,10 +71,11 @@ require('../../db/db.php');
         <img src="<?= $a['image']?>" alt="Product img">
         <h3><?=   $a['name']?></h3>
         <div class="product_details"><?=$a['description']?></div>
-        <p>Price:<?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
+        <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
         <div>
-        <button type="submit" name="basket" class="card_btn" > Basket</button> 
-        <button class="card_btn"> Details</button> 
+        <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a> 
+        <a href="../../controllers/addtobasket.php?id=<?= $a['product_id']?>"><button class="card_btn" >Basket </button></a> 
+        <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a> 
          </div>
         </div>      
         </div> 

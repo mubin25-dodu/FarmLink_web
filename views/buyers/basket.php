@@ -1,5 +1,6 @@
 <?php
 require_once('../../controllers/auth.php');
+require_once('../../db/db.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,30 +33,30 @@ require_once('../../controllers/auth.php');
     </div>
 
  <div id="container">
+     <?php 
+      $data=[];
+      $d=[];
+      $data= read("select * from basket where buyer_id='{$_SESSION['user_data']['uid']}'");
+    //    print_r($data);
+      foreach($data as $u){
+        $d= read("select * from product where product_id='{$u['product_id']}'");
+        foreach($d as $p){
+           
+    ?>
     <div class="products">
-    <img src="../../assets/img/basket.png" alt="">
-    <div><h3>Product Name</h3> 
-    <p>Price</p></div>
+   
+    <img src="<?= $p['image']?>" alt="">
+    <div><h3><?= $p['name']?></h3> 
+    <p>Price: <?= $p['unit_price']?>TK/<?= $p['unit']?></p></div>
     <div>
     <div id="counter_btn"> <button type="button" class="counter_btns" id="increment_btn">+</button> <span id="value"> 0 </span><button type="button"  class="counter_btns" id="decrement_btn">-</button></div>
     <div>Total Price: $0.00</div></div> 
     <div>
     <button class="basketbtn">Remove</button>
     <input type="checkbox" name="checkbox" class="basket_ck" >
-    </div>
-</div> 
-
-    <div class="products">
-    <img src="../../assets/img/basket.png" alt="">
-    <div><h3>Product Name</h3> 
-    <p>Price</p></div>
-    <div>
-    <div id="counter_btn"> <button type="button" class="counter_btns" id="increment_btn">+</button> <span id="value"> 0 </span><button type="button"  class="counter_btns" id="decrement_btn">-</button></div>
-    <div>Total Price: $0.00</div></div> 
-    <div>
-    <button class="basketbtn">Remove</button>
-    <input type="checkbox" name="checkbox" class="basket_ck" >
-    </div>
+    </div>   
+    </div> 
+   <?php }}?>
 </div>
 </div>
 <button class="checkoutbtn" id="checkoutbtn">Checkout</button>

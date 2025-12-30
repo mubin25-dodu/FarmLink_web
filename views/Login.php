@@ -1,8 +1,3 @@
-<?php
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,12 +27,20 @@ session_start();
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
 </nav> 
-<div id="notif"><?php if(isset($_SESSION['msg'])){
-    echo $_SESSION['msg'];
-} 
-else{
-    $_SESSION['msg']==null;
-}?></div>
+<div id="notif"></div>
+
+<?php session_start();
+if(isset($_SESSION['msg'])){
+?>
+<div id="notif2"><input type="submit" value="<?php echo $_SESSION['msg']; ?>"></div>
+<?php 
+} else {
+?>
+    <div id="notif2"><input type="submit" value="<?php echo "nothing"; ?>"></div>
+<?php
+}
+?>
+
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
         <form action="../controllers/signup.php" method="post" id="reg_form">
@@ -51,7 +54,7 @@ else{
             <div id="otp"> 
               Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="button"  id="otpbtn" class="btn1" > Done</button> 
+            <button type="submit" name="submit"  id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
@@ -89,7 +92,7 @@ else{
 </div>
     </div> </div>
 
-<script>window.DATA =<?php echo json_encode($msg); ?></script>
+<!-- <script>window.DATA =<?php echo json_encode($msg); ?></script> -->
 <script src="../assets/js/login.js"></script>
 </body>
 </html>
