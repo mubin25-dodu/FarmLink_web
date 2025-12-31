@@ -1,3 +1,6 @@
+<?php
+require('../controllers/notifi.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,17 +32,6 @@
 </nav> 
 <div id="notif"></div>
 
-<?php session_start();
-if(isset($_SESSION['msg'])){
-?>
-<div id="notif2"><input type="submit" value="<?php echo $_SESSION['msg']; ?>"></div>
-<?php 
-} else {
-?>
-    <div id="notif2"><input type="submit" value="<?php echo "nothing"; ?>"></div>
-<?php
-}
-?>
 
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
@@ -52,9 +44,9 @@ if(isset($_SESSION['msg'])){
             <label class="inputreg" for="pass">Enter password:</label> <br><input type="password"class="inputreg" name="pass"id="pass"><br>
             <label class="inputreg" for="cpass">Confirm password:</label> <br><input type="password"class="inputreg"id="cpass" name="cpass"><br>
             <div id="otp"> 
-              Enter OTP sent to you
+             Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="submit" name="submit"  id="otpbtn" class="btn1" > Done</button> 
+            <button type="button"   id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
@@ -66,11 +58,16 @@ if(isset($_SESSION['msg'])){
             <label class="inputreg" for="address">Full address:</label> <br><input type="text"class="inputreg" name="address" id="address"><br>
             <label class="inputreg" for="city">City:</label></label> <select class="inputreg" name="city" id="city">
                 <option class="inputreg" value="">Select a city</option>
-                <option class="inputreg" value="Buyer">Buyer</option>
-                <option class="inputreg" value="Seller">Seller</option>
-                <option class="inputreg" value="Agent">Agent</option>
+                <option class="inputreg" value="Dhaka">Dhaka</option>
+                <option class="inputreg" value="Chattogram">Chattogram</option>
+                <option class="inputreg" value="Khulna">Khulna</option>
+                <option class="inputreg" value="Rajshahi">Rajshahi</option>
+                <option class="inputreg" value="Barishal">Barishal</option>
+                <option class="inputreg" value="Sylhet">Sylhet</option>
+                <option class="inputreg" value="Rangpur">Rangpur</option>
+                <option class="inputreg" value="Mymensingh">Mymensingh</option>
             </select>
-            <br><button type="button" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="submit" name="submit" id="sibtn" class="btn1" > Sign up</button> 
             
         </form>
     </div>
@@ -92,7 +89,56 @@ if(isset($_SESSION['msg'])){
 </div>
     </div> </div>
 
-<!-- <script>window.DATA =<?php echo json_encode($msg); ?></script> -->
 <script src="../assets/js/login.js"></script>
 </body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>FarmLink</h3>
+                <p>Connecting farmers & consumers — Fresh, Fair, Fast.</p>
+                <div class="footer-socials">
+                    <a href="https://facebook.com"><img src="../../assets/img/facebook.png" alt="Facebook"></a>
+                    <a href="https://instagram.com"><img src="../../assets/img/instagram.png" alt="Instagram"></a>
+                    <a href="https://youtube.com"><img src="../../assets/img/youtube.png" alt="YouTube"></a>
+                    <a href="https://twitter.com"><img src="../../assets/img/twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Become a Seller</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-support">
+                <h4>Customer Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay in the Loop</h4>
+                <p>Get the latest farm-fresh updates & exclusive offers.</p>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                <div class="footer-badges">
+                    <button>Fresh & Local</button>
+                    <button>Secure Payments</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 FarmLink. All rights reserved.</span>
+            <span class="footer-made">Made with <span style="color: red;">♥</span> in Bangladesh</span>
+        </div>
+    </div>
+</footer>
 </html>

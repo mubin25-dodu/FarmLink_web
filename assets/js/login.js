@@ -2,7 +2,7 @@ console.log(window.DATA);
 let slider_btn = document.getElementById('signupbtn');
 let regbtn = document.getElementById('sibtn');
 let otpbtn = document.getElementById('otpbtn');
-if(window.DATA!=null){login(window.DATA)}
+// if(window.DATA!=null){login(window.DATA)}
 
 // let note = document.getElementById('notif');
 // if(note){ 
@@ -215,7 +215,7 @@ function otp(){
 
     function notifyUser(message,color){   
         if(color==='red'){
-        document.getElementById('notif').innerHTML=message;
+        document.getElementById('notification').innerHTML=message;
         document.getElementById('notif').style.transform='translateX(-155px)';
         document.getElementById('notif').style.backgroundColor='rgba(255, 0, 0, 0.25)';
         }
@@ -254,3 +254,4 @@ function otp(){
     // }
 
     }
+    // export { notifyUser };
