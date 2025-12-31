@@ -23,17 +23,17 @@ require_once('../../controllers/notifi.php');
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
-    
     </div>
 </nav>
-
+<div id="notif"></div>
  <div class="sections"><h3>Your Basket</h3>
     <div class="datas">
     <h5>Selected product:0</h5> 
-    <h5>Total Price: $0.00</h5>
+    <h5 id="total">Total Price: 0 TK</h5>
     </div>
 
- <div id="container">
+ <!-- <form action="buy.php" method="post" id="basket_form"> -->
+    <div id="container">
      <?php 
       $data=[];
       $d=[];
@@ -45,22 +45,26 @@ require_once('../../controllers/notifi.php');
            
     ?>
     <div class="products">
-   
     <img src="<?= $p['image']?>" alt="">
     <div><h3><?= $p['name']?></h3> 
-    <p>Price: <?= $p['unit_price']?>TK/<?= $p['unit']?></p></div>
+    <p>Price: <span class="unit_price"><?= $p['unit_price']?></span>TK/<?= $p['unit']?></p>
+    <p>Available:<span class="available"><?= $p['available_unit']?></span></p></div>
     <div>
-    <div id="counter_btn"> <button type="button" class="counter_btns" id="increment_btn">+</button> <span id="value"> 0 </span><button type="button"  class="counter_btns" id="decrement_btn">-</button></div>
-    <div>Total Price: $0.00</div></div> 
+    <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span class="value">0</span><button type="button"  class="decrement_btn" id="decrement_btn">-</button></div>
+    <div><span>Total Price: </span><span class="total_price"></span></div></div> 
     <div>
-    <button class="basketbtn">Remove</button>
+    <a href="../../models/remove.php?id=<?= $u['basket_id'] ?>" class="basketbtn" name="<?php echo $u['basket_id'] ?>">Remove</a>
     <input type="checkbox" name="checkbox" class="basket_ck" >
     </div>   
     </div> 
    <?php }}?>
 </div>
+<button type="button" class="checkoutbtn" id="checkoutbtn">Checkout</button>
+<!-- </form> -->
 </div>
-<button class="checkoutbtn" id="checkoutbtn">Checkout</button>
-</body>
 <img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+</body>
+<script src="../../assets/js/basket&payment.js"></script>
+<script> 
+</script>
 </html>

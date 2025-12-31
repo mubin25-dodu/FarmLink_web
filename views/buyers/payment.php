@@ -36,9 +36,9 @@ require('../../controllers/auth.php');
         <p class="uline"></p>
         <div class="cards">
             <div>
-            <div class="card1"> 
+            <div id="card1" class="card1"> 
                 <h4>Order Information</h4>
-                  <div class="products">
+                  <div id="products_payment" class="products_payment">
                     <img src="../../assets/img/basket.png" alt="">
                     <div><h3>Product Name</h3> 
                     <p>Price</p></div>
@@ -47,6 +47,7 @@ require('../../controllers/auth.php');
                     <div>
                     <button class="basketbtn">Remove</button>
                     </div>
+
             </div>
          </div> 
 
@@ -93,4 +94,6 @@ require('../../controllers/auth.php');
     </div>
 </div>
 </body>
+<script src="../../assets/js/basket&payment.js"></script>
+
 </html>
