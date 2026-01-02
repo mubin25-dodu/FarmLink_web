@@ -15,5 +15,6 @@ $payment_method = $data[count($data)-1]['userdata']['payment_method'];
         write("DELETE FROM basket WHERE product_id = '{$data[$i]['id']}'");
         write("INSERT INTO orders (odr_id , user_id, product_id, quantity, total_price, name, phone, address, payment_method, status) VALUES ('{$OID}', 
         '{$_SESSION['user_data']['uid']}', '{$data[$i]['id']}', '{$data[$i]['quantity']}', '{$total_price}', '{$name}', '{$phone}', '{$address}', '{$payment_method}', 'Pending')");
+         write("UPDATE product SET available_unit = available_unit - '{$data[$i]['quantity']}' WHERE product_id = '{$data[$i]['id']}'");
     }
 ?>

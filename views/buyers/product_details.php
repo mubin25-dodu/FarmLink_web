@@ -19,7 +19,9 @@ require('../../models/db.php');
     <ul>
         <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="basket.php">Basket</a></li>
-        <li><a class="nav-link" href="#Orders">Orders</a></li>
+           <li><a class="nav-link" href="order.php">Orders</a></li>
+           <li><a class="nav-link" href="order.php">Orders</a></li>
+           <li><a class="nav-link" href="order.php">Orders</a></li>
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
