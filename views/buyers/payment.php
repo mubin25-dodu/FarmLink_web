@@ -38,12 +38,12 @@ require('../../controllers/auth.php');
             <div>
             <div id="card1" class="card1"> 
                 <h4>Order Information</h4>
-                  <div id="products_payment" class="products_payment">
-                    <img src="../../assets/img/basket.png" alt="">
-                    <div><h3>Product Name</h3> 
-                    <p>Price</p></div>
+                  <div style="display:none" id="products_payment" class="products_payment">
+                    <img class="img" src="../../assets/img/basket.png" alt="">
+                    <div><h3 class="name">Product Name</h3> 
+                    <p class="price">Price</p></div>
                     <div>
-                    <div>Total Price: $0.00</div></div> 
+                    <div class="total">Total Price: $0.00</div></div> 
                     <div>
                     <button class="basketbtn">Remove</button>
                     </div>
@@ -63,11 +63,11 @@ require('../../controllers/auth.php');
                 <h4>Payment Information</h4><br><br>
                 <div class="info"> 
                     Name: <br>
-                    <input type="text" placeholder="Abdullah Al Mubin"><br>
+                    <input id="name" type="text" placeholder="Abdullah Al Mubin"><br>
                     Phone: <br>
-                    <input type="text" placeholder="+8801XXXXXXXXX"><br>
+                    <input id="phone" type="text" placeholder="+8801XXXXXXXXX"><br>
                     Address: <br>
-                    <input type="text" placeholder="House No, Street, City"><br>
+                    <input id="address" type="text" placeholder="House No, Street, City"><br>
                     Payment Method: <br>
                     <select name="payment" id="payment">
                         <option value="bkash">bKash</option>
@@ -87,17 +87,23 @@ require('../../controllers/auth.php');
                         <option value="rangpur">Rangpur</option>
                         <option value="mymensingh">Mymensingh</option>
                     </select>
-                    <button class="paybtn">Pay</button>
+                    <button id="paybtn" class="paybtn">Pay</button>
 
                 </div>
             </div>
     </div>
 </div>
+</div>
+<div class="order_confirm_container">
+    <div class="order_confirm">
+        <h2>Order Confirmed!</h2>
+        <p>Thank you for your purchase. Your order has been successfully placed.</p>
+        <button id="continue_shopping" class="continue_shopping">Continue Shopping</button>
+    </div>
+</div>
 </body>
-<<<<<<< Updated upstream
 <script src="../../assets/js/basket&payment.js"></script>
 
-=======
 <footer>
     <div class="footer-container">
         <div class="footer-top">
@@ -148,5 +154,4 @@ require('../../controllers/auth.php');
         </div>
     </div>
 </footer>
->>>>>>> Stashed changes
 </html>
