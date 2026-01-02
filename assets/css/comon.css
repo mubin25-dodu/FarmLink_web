@@ -292,28 +292,6 @@ nav ul li a:hover {
     transform: scale(1.2);
     transition: all 0.3s ease;
 }
-<<<<<<< Updated upstream
-#notification{
-    display: block;
-    position: fixed;
-    right: 0;
-    background-color: #f0f0f04d;
-    padding: 20px;
-    z-index: 111;
-    border-radius: 15px 0 0 15px ;
-    margin-top: 10px;
-    /* margin-right: -400px; */
-    box-shadow: 0px 0px 10px #1E2B27;
-    transition: all 1.0s ease-in-out;
-    input{
-        background-color: transparent;
-        border:none;
-        font-size: 16px;
-        font-weight: bold;
-        color: var(--darkgreen);
-        /* types: none; */
-    }
-=======
 .footer-container{
     display: flex;
     flex-direction: column;
@@ -367,6 +345,9 @@ nav ul li a:hover {
             background-color: #15462b;
         }
 
->>>>>>> Stashed changes
 
+}
+footer{
+    position: relative;
+    bottom: 0;
 }
