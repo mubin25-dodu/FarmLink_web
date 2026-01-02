@@ -1,6 +1,3 @@
-<?php
-require('../controllers/notifi.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +64,7 @@ require('../controllers/notifi.php');
                 <option class="inputreg" value="Rangpur">Rangpur</option>
                 <option class="inputreg" value="Mymensingh">Mymensingh</option>
             </select>
-            <br><button type="submit" name="submit" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="" name="" id="sibtn" class="btn1" > Sign up</button> 
             
         </form>
     </div>

@@ -39,6 +39,20 @@ function slider(){
     }
 }
 function regestration(){
+    // let phone = document.getElementById('number').value;
+    // let email = document.getElementById('email').value;
+    // userdata = {
+    //         phone: phone,
+    //         email: email,
+    //     };
+    //     console.log(userdata);
+    //      fetch("../../models/signup.php", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body:JSON.stringify(userdata)
+    //         });
     
     // let name = document.getElementById('name').value;
     // let number = document.getElementById('number').value;
