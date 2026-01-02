@@ -53,7 +53,7 @@ for(let i=0; i<inc.length; i++){
             products.push({ 
             img: document.querySelectorAll(".product_img")[i].src,
             name: document.querySelectorAll(".name")[i].innerText,
-            id: document.querySelectorAll(".basketbtn")[i].getAttribute("product_id"),
+            id: document.querySelectorAll(".basketbtn")[i].id,
             quantity: val, 
             unit_price: price});
             updateTotal();}
