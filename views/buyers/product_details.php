@@ -1,6 +1,8 @@
 <?php
 require_once('../../controllers/auth.php');
 require('../../models/db.php');
+// require_once('../../controllers/notifi.php');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,22 +38,25 @@ require('../../models/db.php');
            $data =[];
            $data = read("Select * from product where product_id='{$_GET['id']}'");
         //    print_r($data[0]['unit_price']);
+        $id=$_GET['id'];
         ?>
-     <img src="<?= $data[0]['image'] ?>" alt="Product img">
+     <img id="image" src="<?= $data[0]['image'] ?>" alt="Product img">
      <div class="details"> 
-     <h2><?= $data[0]['name'] ?></h2>
-     <b>Price: <?= $data[0]['unit_price']?> TK / <?= $data[0]['unit'] ?></b>
+     <h2 id="name"><?= $data[0]['name'] ?></h2>
+     <b>Price: <span id="price" > <?= $data[0]['unit_price']?></span> TK / <?= $data[0]['unit'] ?></b>
      <div  id="description"> <?= $data[0]['description'] ?></div>
      <div class="delivery_details"> Delivery details here  <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam earum ratione possimus veniam? Temporibus exercitationem ea nemo facilis, qui ut architecto animi magni vel quaerat sit quo eveniet, voluptas culpa.</div>
-        <div id="counter_btn"> <button type="button" class="counter_btns" id="increment_btn">+</button> <span id="value"> 0 </span><button type="button"  class="counter_btns" id="decrement_btn">-</button></div>
-        <div class="btndiv"> <button class="card_btn" id="buy_btn">Buy</button> 
-        <button class="card_btn" id="basket"> Basket</button> </div> 
+      <span style="font-weight: bold;" id="totalprice"></span>
+        <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span id="value">0</span> <button type="button" class="decrement_btn" id="decrement_btn">-</button> </div><div > Available: <span id="available_unit"><?= $data[0]['available_unit'] ?></span></div>
+        <div class="btndiv"> <a class="card_btn" id="buy_btn">Buy</a>
+        <label id="pid" style="display: none;"><?= $id ?></label> 
+        <a href="" class="card_btn" id="basket"> Basket</a> </div> 
     </div>
     <?php
      }?>
 </div>
     
-<div class="sections"> <h3>Related products</h3>
+<!-- <div class="sections"> <h3>Related products</h3>
      <div id="products_container">
        <div id="products" class ="products"> 
         <div class="p_details">
@@ -62,7 +67,7 @@ require('../../models/db.php');
         <button class="card_btn" id="basket"> Basket</button> 
         </div>
         </div> 
-       </div>
+       </div> -->
 
 </div>
 <img  id="basket_icon" src="../../assets/img/basket.png" alt="">
@@ -117,4 +122,5 @@ require('../../models/db.php');
         </div>
     </div>
 </footer>
+<script src="../../assets/js/product_details.js"></script>
 </html>

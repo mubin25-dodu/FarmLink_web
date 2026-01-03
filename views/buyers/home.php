@@ -2,6 +2,7 @@
 // require('../../controllers/auth.php');
 require('../../models/db.php');
 require('../../controllers/notifi.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +71,7 @@ require('../../controllers/notifi.php');
         <div class="product_details"><?=$a['description']?></div>
         <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
         <div>
-        <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a> 
+        <!-- <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a>  -->
         <a href="../../controllers/addtobasket.php?id=<?= $a['product_id']?>"><button class="card_btn" >Basket </button></a> 
         <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a> 
          </div>

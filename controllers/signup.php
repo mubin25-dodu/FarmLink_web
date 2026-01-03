@@ -33,6 +33,8 @@ if(isset($_POST['submit']))
         } 
         
         write("INSERT INTO user_data VALUES('$uname' , '$email', '$num' , '$pass' , '$role' , '$address' ,'$city' ,'active' ,'$id')");
+        sleep(2);
+        
         header('location: ../views/Login.php');
         exit();
         }
