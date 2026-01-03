@@ -19,7 +19,7 @@ require('../../controllers/notifi.php');
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
         <li><a class="nav-link" href="basket.php">Basket</a></li>
-        <li><a class="nav-link" href="#Orders">Orders</a></li>
+        <li><a class="nav-link" href="order.php">Orders</a></li>
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
@@ -60,7 +60,7 @@ require('../../controllers/notifi.php');
              <div id="products_container2">
    <?php  $products=[];
        $products=read('select * from product');
-    //    print_r($products);
+       print_r($products);
         foreach($products as $a){?> 
 
         <div id="" class ="products"> 

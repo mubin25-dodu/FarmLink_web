@@ -1,5 +1,6 @@
 <?php
 require('../../controllers/auth.php');
+require('../../models/db.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,9 @@ require('../../controllers/auth.php');
 <title>FarmLink - Checkout</title>
     <link rel="stylesheet" href="../../assets/css/comon.css">
     <link rel="stylesheet" href="../../assets/css/buyer/pyment.css">
-    <link rel="stylesheet" href="../../assets/css/buyer/basket.css">   
+    <link rel="stylesheet" href="../../assets/css/buyer/basket.css">  
+    <link rel="stylesheet" href="../../assets/css/buyer/order.css">   
+
 
 
 </head>
@@ -23,87 +26,79 @@ require('../../controllers/auth.php');
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
-    
     </div>
 </nav>
 
-<!-- products -->
 <div class="sections">
-    <div class="container"> 
-        <div class="bar"> <p class="p1">Order Information</p>
-        <p class="p2">Payment</p>
-        <P class="p3">Confirmation</P></div>
-        <p class="uline"></p>
-        <div class="cards">
-            <div>
-            <div id="card1" class="card1"> 
-                <h4>Order Information</h4>
-                  <div style="display:none" id="products_payment" class="products_payment">
-                    <img class="img" src="../../assets/img/basket.png" alt="">
-                    <div><h3 class="name">Product Name</h3> 
-                    <p class="price">Price</p></div>
-                    <div>
-                    <div class="total">Total Price: $0.00</div></div> 
-                    <div>
-                    <button class="basketbtn">Remove</button>
-                    </div>
+    <h3>My Orders</h3>
+    <div class="container">
 
-            </div>
-         </div> 
+        <div class="pending">
 
-         <!-- delivery -->
-         <div class="card2">
-            <h4>Delivery Information</h4>
-            </div>
-            </div>
+    <h4 class="title">Pending & Processing Orders</h4>
+    <?php  $products=[];
+       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status = 'pending' or status = 'processing')");
+    // print_r($products);
+    if($products==null){
+        echo "<p>No pending or processing orders found.</p>";
+    }else{
+        foreach($products as $a){
+            $img = readone("select image from product where product_id='{$a['product_id']}'");
+            $name = readone("select name from product where product_id='{$a['product_id']}'");
+        // echo $a['product_id'];
 
-            <!-- payment info -->
-
-            <div class="card3">
-                <h4>Payment Information</h4><br><br>
-                <div class="info"> 
-                    Name: <br>
-                    <input id="name" type="text" placeholder="Abdullah Al Mubin"><br>
-                    Phone: <br>
-                    <input id="phone" type="text" placeholder="+8801XXXXXXXXX"><br>
-                    Address: <br>
-                    <input id="address" type="text" placeholder="House No, Street, City"><br>
-                    Payment Method: <br>
-                    <select name="payment" id="payment">
-                        <option value="bkash">bKash</option>
-                        <option value="nagad">Nagad</option>
-                        <option value="rocket">Rocket</option>
-                        <option value="cod">Cash on Delivery</option>
-                    </select>
-                    <br>
-                    City: <br>
-                    <select name="city" id="city">
-                        <option value="dhaka">Dhaka</option>
-                        <option value="chattogram">Chattogram</option>
-                        <option value="sylhet">Sylhet</option>
-                        <option value="khulna">Khulna</option>
-                        <option value="barishal">Barishal</option>
-                        <option value="rajshahi">Rajshahi</option>
-                        <option value="rangpur">Rangpur</option>
-                        <option value="mymensingh">Mymensingh</option>
-                    </select>
-                    <button id="paybtn" class="paybtn">Pay</button>
-
+            ?> 
+            <div id="products_payment" class="products_payment" style="position:relative;">
+                <img class="img" src="<?= $img ?>" alt="">
+                <div><h3 class="name"><?= $name?></h3> 
+                <p class="price">Price <span> <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
+                <div>
+                    <div class="total">Total Price: <span><?= $a['total_price'] ?></span></div>
+                </div> 
+                <div>
+                <a class="basketbtn" href="product_details.php?id=<?= $a['product_id'] ?>">View Product</a>
                 </div>
+                <div class="order-status-label order-status-right"><?= ucfirst($a['status']) ?></div>
             </div>
+        <?php }
+    }
+    ?>
     </div>
-</div>
-</div>
-<div class="order_confirm_container">
-    <div class="order_confirm">
-        <h2>Order Confirmed!</h2>
-        <p>Thank you for your purchase. Your order has been successfully placed.</p>
-        <button id="continue_shopping" class="continue_shopping">Continue Shopping</button>
-    </div>
-</div>
-</body>
-<script src="../../assets/js/basket&payment.js"></script>
 
+    <div class="empty"></div>
+    <div class="successful">
+        <h4 class="title">Successful Orders</h4>
+        <?php
+        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful'");
+        if($success_orders==null){
+            echo "<p>No successful orders found.</p>";
+        }else{
+            foreach($success_orders as $a){
+                $img = readone("select image from product where product_id='{$a['product_id']}'");
+                $name = readone("select name from product where product_id='{$a['product_id']}'");
+            // echo $a['product_id'];?>
+            <div id="products_payment" class="products_payment">
+                    <div class="order-status-label"><?= ucfirst($a['status']) ?></div>
+                    <img class="img" src="<?= $img ?>" alt="">
+                    <div><h3 class="name"><?= $name?></h3> 
+                    <p class="price">Price <span> <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
+                    <div>
+                        <div class="total">Total Price: <span><?= $a['total_price'] ?></span></div>
+                    </div> 
+                    <div>
+                    <a class="basketbtn" href="product_details.php?id=<?= $a['product_id'] ?>">View Product</a>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+        ?>
+    </div>
+    </div>
+    
+</div>
+
+</body>
 <footer>
     <div class="footer-container">
         <div class="footer-top">
