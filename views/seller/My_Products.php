@@ -1,6 +1,6 @@
 <?php
-session_start();
-
+require_once('../../controllers/notifi.php');
+require_once('../../controllers/authseller.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

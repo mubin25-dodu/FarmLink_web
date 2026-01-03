@@ -359,6 +359,6 @@ footer {
     position: relative;
     bottom: 0;
     left: 0;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     overflow-x: hidden;
 }

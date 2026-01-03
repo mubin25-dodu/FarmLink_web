@@ -1,7 +1,8 @@
 <?php
 require_once('../models/db.php');
 session_start();
-print_r($_POST['submit']);
+// print_r($_POST['submit']);
+sleep(2);
 
 if(isset($_POST['submit']))
     {

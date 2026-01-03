@@ -19,14 +19,16 @@
 </head>
 <body>
     <nav >
-    <img class="logo" src="../assets/img/farmlink_logo.jpg" >
+    <a href="buyers/home.php"><img class="logo" src="../assets/img/farmlink_logo.jpg" ></a>
+    <div id="navbtn"> 
     <ul>
-        <li><a class="nav-link" href="buyers/home.php">Home</a></li>
-        <li><a class="nav-link" href="#Basket">Basket</a></li>
-        <li><a class="nav-link" href="#Orders">Orders</a></li>
-        <li><a class="nav-link" href="about.php">About Us</a></li>
+        <li><a class="nav-link" href="#Home">Home</a></li>
+        <li><a class="nav-link" href="basket.php">Basket</a></li>
+        <li><a class="nav-link" href="order.php">Orders</a></li>
+        <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
-</nav> 
+    </div>
+</nav>
 <div id="notif"></div>
 
 
@@ -43,7 +45,7 @@
             <div id="otp"> 
              Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="button"   id="otpbtn" class="btn1" > Done</button> 
+            <button type="submit" name="submit"  id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
@@ -64,18 +66,18 @@
                 <option class="inputreg" value="Rangpur">Rangpur</option>
                 <option class="inputreg" value="Mymensingh">Mymensingh</option>
             </select>
-            <br><button type="" name="" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="button"  id="sibtn" class="btn1" > Sign up</button> 
             
         </form>
     </div>
             <!-- login form-->
         <div id="login"> 
-        <form action="../controllers/login.php" method="post">
+        <!-- <form action="../controllers/login.php" method="post"> -->
             <h3>Enter credentials</h3>
-            Email or Phone: <br><input type="text" name="email_or_phone"><br>
-            Password: <br><input type="password" name="password"><br>
+            Email or Phone: <br><input  id="email_or_phone" type="text" class="inputreg" name="email_or_phone"><br>
+            Password: <br><input  id="login_password" type="password" class="inputreg" name="password"><br>
             <button class="btn1" type="submit" name="submit" id="loginbtn"> Login</button>
-        </form>
+        <!-- </form> -->
     </div>
             <!-- slider-->
 
@@ -95,10 +97,10 @@
                 <h3>FarmLink</h3>
                 <p>Connecting farmers & consumers — Fresh, Fair, Fast.</p>
                 <div class="footer-socials">
-                    <a href="https://facebook.com"><img src="../../assets/img/facebook.png" alt="Facebook"></a>
-                    <a href="https://instagram.com"><img src="../../assets/img/instagram.png" alt="Instagram"></a>
-                    <a href="https://youtube.com"><img src="../../assets/img/youtube.png" alt="YouTube"></a>
-                    <a href="https://twitter.com"><img src="../../assets/img/twitter.png" alt="Twitter"></a>
+                    <a href="https://facebook.com"><img src="../assets/img/facebook.png" alt="Facebook"></a>
+                    <a href="https://instagram.com"><img src="../assets/img/instagram.png" alt="Instagram"></a>
+                    <a href="https://youtube.com"><img src="../assets/img/youtube.png" alt="YouTube"></a>
+                    <a href="https://twitter.com"><img src="../assets/img/twitter.png" alt="Twitter"></a>
                 </div>
             </div>
             <div class="footer-links">

@@ -4,7 +4,7 @@
     align-items: center;
     /* background-color: #ccc900; */
     height: calc(100vh - 79px);
-    width: 100vw;
+    width: 100%;
     
 }
 #reg_log{

@@ -61,7 +61,7 @@ session_start();
              <div id="products_container2">
    <?php  $products=[];
        $products=read('select * from product');
-       print_r($products);
+    //    print_r($products);
         foreach($products as $a){?> 
 
         <div id="" class ="products"> 

@@ -1,6 +1,7 @@
 <?php
 require_once('../../controllers/authseller.php');
-
+require('../../controllers/notifi.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@ require_once('../../controllers/authseller.php');
     <link rel="stylesheet" href="../../assets/css/style.css">
 
 </head>
-<body style="color: black;">
+<body>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
