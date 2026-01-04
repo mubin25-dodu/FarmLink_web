@@ -274,7 +274,7 @@ function otp(){
 //   } );
 // }
 
-    function notifyUser(message,color){   
+    export function notifyUser(message,color){   
         if(color==='red'){
         document.getElementById('notif').innerHTML=message;
         document.getElementById('notif').style.transform='translateX(-155px)';

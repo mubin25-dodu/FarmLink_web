@@ -1,6 +1,4 @@
-<?php
-sections_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +10,10 @@ sections_start();
     <div id="test"> <button class="button">press</button> echo data here: <?php echo $_SESSION['test_data']; ?>
         <div id="test"></div>
     </div>
+    <form action="test3.php" method="post" enctype="multipart/form-data">
+    <input id="file" type="file" name="file">
+    <button type="submit">Submit</button>
+    </form>
 </body>
 <script>
     let arr =[
