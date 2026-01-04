@@ -1,20 +1,19 @@
-<?php
-require_once('../../controllers/notifi.php');
+<!-- <?php
+// require_once('../../controllers/notifi.php');
 require_once('../../controllers/authseller.php');
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>FarmLink - Seller Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" href="../../assets/css/comon.css">
     <link rel="stylesheet" href="../../assets/css/seller/style.css">
+    <link rel="stylesheet" href="../../assets/css/comon.css">
 </head>
 
 <body>
-
 <nav>
+    
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg"></a>
     <div id="navbtn"> 
     <ul>
@@ -28,19 +27,18 @@ require_once('../../controllers/authseller.php');
     
     </div>
 </nav>
-
+<div id="notif"></div>
 <div class="page-wrap">
-
-    <form class="left-form">
-
+ <form  id="product_form" action="../../models/addproducts.php" method="post" enctype="multipart/form-data">
+    <div class="left-form">
         <div class="field">
             <label>Product Name</label>
-            <input type="text" placeholder="Example: Mango, Potato, Fish">
+            <input id="product_name" name="name" type="text" placeholder="Example: Mango, Potato, Fish">
         </div>
 
-        <div class="field">
+        <div id="product_type" class="field">
             <label>Product Type / Category</label>
-            <select>
+            <select id ="type_select" name="category">
                 <option value="">-- Select --</option>
                 <option value="Vegetable">Vegetable</option>
                 <option value="Fruit">Fruit</option>
@@ -52,24 +50,24 @@ require_once('../../controllers/authseller.php');
             </select>
         </div>
 
-        <div class="field">
+        <div  class="field">
             <label>Quantity</label>
-            <input type="number">
+            <input id="quantity" name="quantity" type="number">
         </div>
 
-        <div class="field">
+        <div  class="field">
             <label>Unit</label>
-            <input type="text" placeholder="Example: Kg, Liter, Dozen">
+            <input id="unit" name="unit" type="text" placeholder="Example: Kg, Liter, Dozen">
         </div>
 
-        <div class="field">
+        <div  class="field">
             <label>Description</label>
-            <textarea placeholder="Enter product details"></textarea>
+            <textarea id="description" name="description" placeholder="Enter product details"></textarea>
         </div>
 
         <div class="field">
             <label>Price</label>
-            <input type="number" placeholder="Example: 200 Taka">
+            <input id="price" name="price" type="number" placeholder="Example: 200 Taka">
             <small class="govt-price-note">*Price must be within government rate</small>
             <div >
                 <input type="checkbox" id="matchGovtPrice">  Sync with government rate
@@ -81,13 +79,15 @@ require_once('../../controllers/authseller.php');
         <div class="field">
             <label>Upload Image</label>
             <div class="image-box" id="img-box"></div>
-            <input type="file" accept="image/*" id="file">
+            <input  type="file" accept="image/*" name="file" id="file">
         </div>
 
         <div class="submit-wrap">
-            <button class="submit-btn">Submit</button>
+            
+            <button type="button"  id="submit_btn" class="submit-btn">Submit</button>
+            </form>
         </div>
-    </form>
+    </div>
 
     <!-- <div class="preview">
         <div class="top-left-box">View government price here</div>
@@ -96,7 +96,8 @@ require_once('../../controllers/authseller.php');
 
 </div>
 
-<script src="../../assets/js/home.js"></script>
+<script type="module" src="../../assets/js/seller/myproducts.js"></script>
+<script type="module" src="../../assets/js/ajax.js"></script>
 <script> 
     var fileInput = document.getElementById('file');
     var imgBox = document.getElementById('img-box');

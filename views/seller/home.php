@@ -27,7 +27,6 @@ require('../../controllers/notifi.php');
     </div>
 </nav>
 
-<script src="../../assets/js/home.js"></script>
 </body>
 <footer>
     <div class="footer-container">
