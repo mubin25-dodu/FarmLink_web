@@ -1,7 +1,6 @@
 <?php
 require_once('../../controllers/authseller.php');
 require('../../controllers/notifi.php');
-session_start();
 ?>
 <!DOCTYPE html>
 <html>

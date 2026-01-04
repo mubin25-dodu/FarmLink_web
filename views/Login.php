@@ -34,9 +34,9 @@
 
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
-        <form action="../controllers/signup.php" method="post" id="reg_form">
+        <!-- <form action="../controllers/signup.php" method="post" id="reg_form"> -->
             <!-- signup form-->
-            <h3 class="inputreg">Enter your details</h3>
+            <h3 id="enter" class="inputreg">Enter your details</h3>
             <label class="inputreg" for="name">Full name:</label> <br><input type="text" name="name" class="inputreg" id="name"><br>
             <label class="inputreg" for="number">Phone number:</label> <br><input type="number" name="num" class="inputreg" id="number"><br>
             <label class="inputreg" for="email">Email:</label> <br><input type="email"class="inputreg" name="email"id="email"><br>
@@ -45,7 +45,7 @@
             <div id="otp"> 
              Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="submit" name="submit"  id="otpbtn" class="btn1" > Done</button> 
+            <button type="button" name="submit"  id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
@@ -68,7 +68,7 @@
             </select>
             <br><button type="button"  id="sibtn" class="btn1" > Sign up</button> 
             
-        </form>
+        <!-- </form> -->
     </div>
             <!-- login form-->
         <div id="login"> 
@@ -88,7 +88,6 @@
 </div>
     </div> </div>
 
-<script src="../assets/js/login.js"></script>
 </body>
 <footer>
     <div class="footer-container">
@@ -140,4 +139,6 @@
         </div>
     </div>
 </footer>
+<script type="module" src="../assets/js/login.js"></script>
+<script  type="module" src="../assets/js/ajax.js"></script>
 </html>
