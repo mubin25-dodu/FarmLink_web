@@ -15,6 +15,8 @@ session_start();
 </head>
 <body>
 <nav >
+    <!-- <?php print_r($_SESSION['user_data']) ?> -->
+
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
@@ -66,7 +68,7 @@ session_start();
 
         <div id="" class ="products"> 
         <div class="p_details2">
-        <img src="<?= $a['image']?>" alt="Product img">
+        <img class="image" src="<?= $a['image']?>" alt="Product img">
         <h3><?=   $a['name']?></h3>
         <div class="product_details"><?=$a['description']?></div>
         <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>

@@ -1,0 +1,41 @@
+table{
+ border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+thead th {
+    background: #f7f7f7;
+    color: #1E2B27;
+    font-weight: 600;
+    padding: 16px 12px;
+    text-align: left;
+    white-space: nowrap;
+}
+tbody td {
+    padding: 14px 12px;
+    border-top: 1px solid #eee;
+    font-size: 15px;
+    color: #070707;
+}
+
+
+tr:hover td {
+    background: #f0f8f4;
+    transition: all 0.2s;
+}
+}
+#product-search{
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    position: inherit;
+    width: 30%;
+    margin-bottom: -10px;
+    margin-left: 70%;
+}
