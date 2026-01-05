@@ -186,7 +186,7 @@ function regestration(){
                 ifvalid(valid);
                 console.log(data.status);
              }
-            })    
+            });   
     }
     function ifvalid(a){
         let valid=a;

@@ -27,6 +27,9 @@ require('../../controllers/auth.php');
     </div>
 </nav>
 
+<!-- Notification Div -->
+<div id="notif"></div>
+
 <!-- products -->
 <div class="sections">
     <div class="container"> 

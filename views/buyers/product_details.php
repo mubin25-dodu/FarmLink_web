@@ -31,6 +31,8 @@ require('../../models/db.php');
     
     </div>
 </nav>
+    <!-- Notification Div -->
+<div id="notif"></div>
     <!-- product details -->
      <div id="details_container"> 
         <?php
