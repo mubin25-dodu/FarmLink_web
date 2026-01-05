@@ -5,7 +5,10 @@ let search = document.getElementById('product-search');
 let pid;
 //initially calling all products
 setTimeout(function(){
-    let msg ={
+    loadtable();},500);
+
+function loadtable(){
+let msg ={
             status: 'no_search'
             };
 
@@ -14,7 +17,6 @@ fetchSellerProducts( msg , function(data){
     loadproducts(data);
 });
 }
-,500);
 
 search.addEventListener('input', function() {
         console.log(search.value);
@@ -75,6 +77,7 @@ function loadproducts(data){
                 if(data.status == 'deleted'){
                     notifyUser('Product deleted successfully', 'green');
                     // window.location.reload();
+                       loadtable();
                 }else{
                     // window.location.reload();
                     notifyUser('Error deleting product', 'red');
@@ -112,7 +115,7 @@ function loadproducts(data){
         }
        
         if(document.getElementById('update_product')){
-            document.getElementById('update_product').addEventListener('click', function(){
+                document.getElementById('update_product').addEventListener('click', function(){
                 let name = document.getElementById('name').value;
                 let description = document.getElementById('description').value;
                 let price = document.getElementById('price').value;
@@ -124,10 +127,11 @@ function loadproducts(data){
                 validate(datas, '../../models/fetch_seller_products.php', function(data){
                     if(data.status == 'updated'){
                         notifyUser('Product updated successfully', 'green');
-                        search.value =' ';
+                       loadtable();
                         // window.location.reload();
                     }else{
                         // window.location.reload();
+                       loadtable();
                         notifyUser('Error updating product', 'red');
                     }
                 });
