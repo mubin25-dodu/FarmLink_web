@@ -29,6 +29,8 @@ require('../../models/db.php');
     </div>
 </nav>
 
+<div id="notif"></div>
+
 <div class="sections">
     <h3>My Orders</h3>
     <div class="container">

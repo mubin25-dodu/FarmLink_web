@@ -1,7 +1,3 @@
-<!-- <?php
-// require_once('../../controllers/notifi.php');
-require_once('../../controllers/authseller.php');
-?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +23,7 @@ require_once('../../controllers/authseller.php');
     
     </div>
 </nav>
+<!-- Notification Div -->
 <div id="notif"></div>
 <div class="page-wrap">
  <form  id="product_form" action="../../models/addproducts.php" method="post" enctype="multipart/form-data">

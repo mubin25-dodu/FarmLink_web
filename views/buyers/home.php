@@ -14,6 +14,9 @@ session_start();
 
 </head>
 <body>
+<!-- Notification Div -->
+<div id="notif"></div>
+
 <nav >
     <!-- <?php print_r($_SESSION['user_data']) ?> -->
 

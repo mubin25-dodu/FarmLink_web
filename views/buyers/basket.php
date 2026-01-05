@@ -25,8 +25,9 @@ require_once('../../controllers/notifi.php');
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     </div>
 </nav>
+<!-- Notification Div -->
 <div id="notif"></div>
- <div class="sections"><h3>Your Basket</h3>
+<div class="sections"><h3>Your Basket</h3>
     <div class="datas">
     <h5>Selected product:0</h5> 
     <h5 id="total">Total Price: 0 TK</h5>

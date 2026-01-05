@@ -1,12 +1,13 @@
 import { notifyUser } from "../login.js";
-import { fetchSellerProducts } from "../ajax.js";
+import { fetchSellerProducts, validate } from "../ajax.js";
 let search = document.getElementById('product-search');
 
+let pid;
 //initially calling all products
 setTimeout(function(){
     let msg ={
             status: 'no_search'
-             };
+            };
 
 fetchSellerProducts( msg , function(data){
     console.log(data);
@@ -52,14 +53,16 @@ function loadproducts(data){
                 <td>${data[i].name}</td>
                 <td>${data[i].description}</td>
                 <td>${data[i].unit_price}</td>
-                <td>${data[i].unit}</td>
+                <td>${data[i].available_unit}${data[i].unit}</td>
                 <td>${data[i].catagory}</td>
                 <td><div class ="buttons">
                 <button class="dlt" pid="${data[i].product_id}">Delete</button>
-                <button >Edit</button>
+                <button class="edit" pid="${data[i].product_id}">Edit</button>
                 </div></td>
-
             `;
+            if(data[i].available_unit == -1){
+                tr.style.backgroundColor ='#f8d7da';
+            }
             tablebody.appendChild(tr);
         }
     }
@@ -67,10 +70,67 @@ function loadproducts(data){
     let dlt = document.getElementsByClassName('dlt');
     for(let i=0; i<dlt.length; i++){
         dlt[i].addEventListener('click', function(){
-           console.log('delete', this.getAttribute('pid'));
+             pid = this.getAttribute('pid');
+            validate({product_id: pid}, '../../models/fetch_seller_products.php', function(data){
+                if(data.status == 'deleted'){
+                    notifyUser('Product deleted successfully', 'green');
+                    // window.location.reload();
+                }else{
+                    // window.location.reload();
+                    notifyUser('Error deleting product', 'red');
+                }
+            });
+
         });
     }
-    
-}
+    let edit = document.getElementsByClassName('edit');
+    for(let i=0; i<edit.length; i++){
+           edit[i].addEventListener('click', function(){
+            let pid = this.getAttribute('pid');
+            document.querySelector('.edit_card').style.display = 'flex';
 
+            fetchSellerProducts( {edit_product_id: pid} , function(data){
+                // console.log(data);
+                document.getElementById('name').value = data[0].name;
+                document.getElementById('description').value = data[0].description;
+                document.getElementById('price').value = data[0].unit_price;
+                document.getElementById('stock').value = data[0].available_unit;
+                document.getElementById('category').value = data[0].catagory;
+            });
+
+            loadedit(pid);
+        });
+        
+    }
+}
+     function loadedit(pid){
+      if(document.getElementById('cancel_edit')){
+            document.getElementById('cancel_edit').addEventListener('click', function(){
+            document.getElementsByClassName('edit_card')[0].style.display = 'none';
+            console.log('dd');
+            });
+        }
        
+        if(document.getElementById('update_product')){
+            document.getElementById('update_product').addEventListener('click', function(){
+                let name = document.getElementById('name').value;
+                let description = document.getElementById('description').value;
+                let price = document.getElementById('price').value;
+                let stock = document.getElementById('stock').value;
+                let category = document.getElementById('category').value;
+                console.log(pid);
+                let datas={product_id_update: pid, name: name, description: description, price: price, stock: stock, category: category};
+                console.log(datas);
+                validate(datas, '../../models/fetch_seller_products.php', function(data){
+                    if(data.status == 'updated'){
+                        notifyUser('Product updated successfully', 'green');
+                        search.value =' ';
+                        // window.location.reload();
+                    }else{
+                        // window.location.reload();
+                        notifyUser('Error updating product', 'red');
+                    }
+                });
+            });
+        }
+    }

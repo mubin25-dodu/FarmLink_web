@@ -27,6 +27,7 @@ require_once('../../controllers/authseller.php');
     <a class="orange_color" href="../../controllers/logout.php">Logout</a> 
     </div>
 </nav>
+
 <div id="notif"></div>
 
 <div class="sections">
@@ -52,7 +53,31 @@ require_once('../../controllers/authseller.php');
         </div>
     </section>
 </div>
+<div class="edit_card">
+<div  class="sections" id="sections">
+   <h3>Edit Product <span id="pid"></span> </h3>
+    <div class="edit_form">
+        <input type="text" name="" id="name"> 
+        <input type="text" name="" id="description">
+        <input type="number" name="" id="price">
+        <input type="number" name="" id="stock">
+        <select name="category" id="category">
+                <option value="">-- Select --</option>
+                <option value="Vegetable">Vegetable</option>
+                <option value="Fruit">Fruit</option>
+                <option value="Fish">Fish</option>
+                <option value="Meat">Meat</option>
+                <option value="Dairy">Dairy</option>
+                <option value="Egg">Egg</option>
+                <option value="Other">Other</option>
+        </select>
+        <button id="update_product">Update Product</button>
+     <button  type="button" id="cancel_edit">Cancel</button>
 
+       
+    </div>
+</div>
+</div>
 
 <footer>
     <div class="footer-container">

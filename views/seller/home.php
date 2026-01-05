@@ -12,6 +12,8 @@ require('../../controllers/notifi.php');
 
 </head>
 <body>
+<!-- Notification Div -->
+<div id="notif"></div>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 

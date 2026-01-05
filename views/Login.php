@@ -18,6 +18,7 @@
 </script>
 </head>
 <body>
+<div id="notif"></div>
     <nav >
     <a href="buyers/home.php"><img class="logo" src="../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -30,8 +31,6 @@
     </div>
 </nav>
 <div id="notif"></div>
-
-
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
         <!-- <form action="../controllers/signup.php" method="post" id="reg_form"> -->
