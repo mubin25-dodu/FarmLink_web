@@ -12,7 +12,7 @@
 <script type="text/javascript">
    (function(){
       emailjs.init({
-        // publicKey: "LhdG6Wko_lHnMBJ6n",
+        publicKey: "LhdG6Wko_lHnMBJ6n",
       });
    })();
 </script>
@@ -23,10 +23,10 @@
     <a href="buyers/home.php"><img class="logo" src="../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
-        <li><a class="nav-link" href="#Home">Home</a></li>
-        <li><a class="nav-link" href="basket.php">Basket</a></li>
-        <li><a class="nav-link" href="order.php">Orders</a></li>
-        <li><a class="nav-link" href="../about.php">About Us</a></li>
+        <li><a class="nav-link" href="buyers/home.php">Home</a></li>
+        <!-- <li><a class="nav-link" href="basket.php">Basket</a></li> -->
+        <!-- <li><a class="nav-link" href="order.php">Orders</a></li> -->
+        <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
     </div>
 </nav>

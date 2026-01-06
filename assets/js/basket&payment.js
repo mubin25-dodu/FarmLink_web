@@ -1,7 +1,6 @@
 // import { notifyUser } from './login.js';
 
 // basket
-
 let inc = document.querySelectorAll(".increment_btn");
 let dec = document.querySelectorAll(".decrement_btn");
 let value = document.querySelectorAll(".value");
@@ -57,7 +56,7 @@ for(let i=0; i<inc.length; i++){
             quantity: val, 
             unit_price: price});
             updateTotal();}
-        console.log(products);
+            console.log(products);
 
      }else{
         products = products.filter(p => p.id !== document.querySelectorAll(".basketbtn")[i].getAttribute("product_id")[i]);
@@ -211,7 +210,6 @@ paybtn.addEventListener("click", function(){
             // localStorage.removeItem("products");
 
         }
-
     }
 });
 }
