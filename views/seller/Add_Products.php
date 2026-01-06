@@ -1,3 +1,6 @@
+<?php
+require_once('../../controllers/authseller.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
