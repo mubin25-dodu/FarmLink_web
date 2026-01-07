@@ -1,8 +1,6 @@
 <?php
-// require_once('../../controllers/notifi.php');
 require_once('../../controllers/authseller.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,58 +8,37 @@ require_once('../../controllers/authseller.php');
     <title>FarmLink - Seller Dashboard</title>
     <link rel="stylesheet" href="../../assets/css/seller/style.css">
     <link rel="stylesheet" href="../../assets/css/comon.css">
-    <link rel="stylesheet" href="../../assets/css/seller/myproducts.css">
 </head>
 
 <body>
 <nav>
+    
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg"></a>
     <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="Add_Products.php">Add products</a></li>
-        <li><a class="nav-link" href="My_Products.php">My products</a></li>
+        <li><a class="nav-link" href="My_products.php">My Products</a></li>
         <li><a class="nav-link" href="#orders">Orders</a></li>
     </ul>
-    <!-- <input type="text" placeholder="Search..." id="searchbar" > -->
-    <a class="orange_color" href="../../controllers/logout.php">Logout</a> 
+    <input type="text" placeholder="Search..." id="searchbar" >
+    <a class="orange_color" href="../../controllers/logout.php">Logout</a>
+    
     </div>
 </nav>
-
+<!-- Notification Div -->
 <div id="notif"></div>
-
-<div class="sections">
-    <section id="products">
-        <h2>My Products</h2>
-        <input type="text" name="product-search" id="product-search" placeholder="Search products...">
-        <div class="product-list" id="product-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product name</th>
-                        <th>Description</th>
-                        <th>Price (per unit)</th>
-                        <th>Stock</th>
-                        <th>Category</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="table_body">
-                    <!-- //products will be loaded -->
-                </tbody>
-            </table>
+<div class="page-wrap">
+ <form  id="product_form" action="../../models/addproducts.php" method="post" enctype="multipart/form-data">
+    <div class="left-form">
+        <div class="field">
+            <label>Product Name</label>
+            <input id="product_name" name="name" type="text" placeholder="Example: Mango, Potato, Fish">
         </div>
-    </section>
-</div>
-<div class="edit_card">
-<div  class="sections" id="sections">
-   <h3>Edit Product <span id="pid"></span> </h3>
-    <div class="edit_form">
-        <input type="text" name="" id="name"> 
-        <input type="text" name="" id="description">
-        <input type="number" name="" id="price">
-        <input type="number" name="" id="stock">
-        <select name="category" id="category">
+
+        <div id="product_type" class="field">
+            <label>Product Type / Category</label>
+            <select id ="type_select" name="category">
                 <option value="">-- Select --</option>
                 <option value="Vegetable">Vegetable</option>
                 <option value="Fruit">Fruit</option>
@@ -70,15 +47,71 @@ require_once('../../controllers/authseller.php');
                 <option value="Dairy">Dairy</option>
                 <option value="Egg">Egg</option>
                 <option value="Other">Other</option>
-        </select>
-        <button id="update_product">Update Product</button>
-     <button  type="button" id="cancel_edit">Cancel</button>
+            </select>
+        </div>
 
-       
+        <div  class="field">
+            <label>Quantity</label>
+            <input id="quantity" name="quantity" type="number">
+        </div>
+
+        <div  class="field">
+            <label>Unit</label>
+            <input id="unit" name="unit" type="text" placeholder="Example: Kg, Liter, Dozen">
+        </div>
+
+        <div  class="field">
+            <label>Description</label>
+            <textarea id="description" name="description" placeholder="Enter product details"></textarea>
+        </div>
+
+        <div class="field">
+            <label>Price</label>
+            <input id="price" name="price" type="number" placeholder="Example: 200 Taka">
+            <small class="govt-price-note">*Price must be within government rate</small>
+            <div >
+                <input type="checkbox" id="matchGovtPrice">  Sync with government rate
+            </div>
+            <!-- <label>If you want to give less than government price, enter here</label>
+            <input type="text" placeholder="Enter lower price"> -->
+        </div>
+
+        <div class="field">
+            <label>Upload Image</label>
+            <div class="image-box" id="img-box"></div>
+            <input  type="file" accept="image/*" name="file" id="file">
+        </div>
+
+        <div class="submit-wrap">
+            
+            <button type="button"  id="submit_btn" class="submit-btn">Submit</button>
+            </form>
+        </div>
     </div>
-</div>
+
+    <!-- <div class="preview">
+        <div class="top-left-box">View government price here</div>
+        <input type="text" class="tag" placeholder ="Product Name">
+    </div> -->
+
 </div>
 
+<script type="module" src="../../assets/js/seller/addproducts.js"></script>
+<script type="module" src="../../assets/js/ajax.js"></script>
+<script> 
+    var fileInput = document.getElementById('file');
+    var imgBox = document.getElementById('img-box');
+    
+    fileInput.addEventListener('change', function(event) {
+        if (event.target.files && event.target.files[0]) {
+            var imageUrl = URL.createObjectURL(event.target.files[0]);
+            imgBox.style.backgroundImage = "url('" + imageUrl + "')";
+            imgBox.style.backgroundSize = "cover";
+            imgBox.style.backgroundPosition = "center";
+        }
+    });
+</script>
+</body>
 <footer>
     <div class="footer-container">
         <div class="footer-top">
@@ -129,8 +162,4 @@ require_once('../../controllers/authseller.php');
         </div>
     </div>
 </footer>
-<script type="module" src="../../assets/js/seller/addproducts.js"></script>
-<script type="module" src="../../assets/js/ajax.js"></script>
-<script type="module" src="../../assets/js/seller/myproducts.js"></script>
-</body>
 </html>

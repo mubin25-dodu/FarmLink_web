@@ -1,5 +1,5 @@
 <?php
-require_once('../../controllers/auth.php');
+require('../../controllers/auth.php');
 require_once('../../models/db.php');
 require_once('../../controllers/notifi.php');
 ?>
@@ -11,7 +11,7 @@ require_once('../../controllers/notifi.php');
     <link rel="stylesheet" href="../../assets/css/buyer/basket.css">
 
 </head>
-<body style="color: black;">
+<body >
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -25,8 +25,9 @@ require_once('../../controllers/notifi.php');
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     </div>
 </nav>
+<!-- Notification Div -->
 <div id="notif"></div>
- <div class="sections"><h3>Your Basket</h3>
+<div class="sections"><h3>Your Basket</h3>
     <div class="datas">
     <h5>Selected product:0</h5> 
     <h5 id="total">Total Price: 0 TK</h5>
@@ -40,17 +41,18 @@ require_once('../../controllers/notifi.php');
       $data= read("select * from basket where buyer_id='{$_SESSION['user_data']['uid']}'");
     //    print_r($data);
       foreach($data as $u){
+        // print_r($u['quantity']);
         $d= read("select * from product where product_id='{$u['product_id']}'");
         foreach($d as $p){
            
     ?>
     <div class="products">
-    <img class="product_img" src="<?= $p['image']?>" alt="">
+    <img class="product_img" src="../<?= $p['image']?>" alt="">
     <div><h3 class="name"><?= $p['name']?></h3> 
     <p>Price: <span class="unit_price"><?= $p['unit_price']?></span>TK/<?= $p['unit']?></p>
     <p>Available:<span class="available"><?= $p['available_unit']?></span></p></div>
     <div>
-    <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span class="value">0</span><button type="button"  class="decrement_btn" id="decrement_btn">-</button></div>
+    <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span class="value"><?= $u['quantity'] ?></span><button type="button"  class="decrement_btn" id="decrement_btn">-</button></div>
     <div><span>Total Price: </span><span class="total_price"></span></div></div> 
     <div>
     <a href="../../models/remove.php?id=<?= $u['basket_id'] ?>" id="<?= $u['product_id'] ?>" class="basketbtn" name="<?= $u['basket_id'] ?>">Remove</a>

@@ -1,4 +1,5 @@
-console.log(window.DATA);
+import {validate} from './ajax.js';
+
 let slider_btn = document.getElementById('signupbtn');
 let regbtn = document.getElementById('sibtn');
 let otpbtn = document.getElementById('otpbtn');
@@ -39,20 +40,7 @@ function slider(){
     }
 }
 function regestration(){
-    // let phone = document.getElementById('number').value;
-    // let email = document.getElementById('email').value;
-    // userdata = {
-    //         phone: phone,
-    //         email: email,
-    //     };
-    //     console.log(userdata);
-    //      fetch("../../models/signup.php", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body:JSON.stringify(userdata)
-    //         });
+
     
     // let name = document.getElementById('name').value;
     // let number = document.getElementById('number').value;
@@ -64,6 +52,7 @@ function regestration(){
     // let address = document.getElementById('address').value; 
     let arr = ['name','number','email','pass','cpass','role','city','address'];
     let valid = true;
+
     for(let i=0;i<arr.length;i++){
         let id = document.getElementById(arr[i]);
         id.style.border='none';
@@ -118,6 +107,7 @@ function regestration(){
             notifyUser('Please enter a valid email address','red');
             valid=false;
             }
+            
         }
         else if(arr[i]=='pass'){
             if(id.value.length < 8){
@@ -174,9 +164,34 @@ function regestration(){
              }
             }
         }
-             
+               
+    } 
+    let exists=false;
+    let phone = document.getElementById('number').value;
+    let email = document.getElementById('email').value;
+    let userdata = {
+            phone: phone,
+            email: email,
+        };
+        validate(userdata, "../models/usercheck.php" ,  function(data){
+
+             if(data.status === "success"){
+                console.log(data.status);
+                exists=false;
+                ifvalid(valid);
+             } else {
+                notifyUser('User with this email or phone number already exists','red');
+                valid=false;
+                exists=true;
+                ifvalid(valid);
+                console.log(data.status);
+             }
+            });   
     }
-      if(valid){
+    function ifvalid(a){
+        let valid=a;
+
+        if(valid){
         let inputs = document.getElementsByClassName('inputreg');
         for(let i=0; i<inputs.length; i++){
             inputs[i].style.display = 'none';
@@ -189,16 +204,14 @@ function regestration(){
                         email: document.getElementById('email').value,
                         passcode: "Your OTP is " + otp_num
                     };
-                    console.log(params);
+                    // console.log(params);
                     console.log("send emai");
                     console.log(otp_num);
                     emailjs.send("service_1u2e3a9","template_r96wljl",params);
                     notifyUser('OTP sent to your email/phone. Please verify.','green');
 
-        }      
-        
-}
-
+        }  
+    }
 function otp(){
    
     let otp_input = document.getElementById('otp_input').value;
@@ -213,6 +226,40 @@ function otp(){
             document.getElementById('reg_P').innerHTML="Don't Have an account!!";
             sl.style.borderRadius='10px 100px 0px 10px';
             document.getElementById('reg_log').style.boxShadow=' 5px 5px 10px rgba(30, 43, 39, 0.397)';
+        
+            // submit form
+            let name = document.getElementById('name').value;
+            let number = document.getElementById('number').value;
+            let email = document.getElementById('email').value;
+            let pass = document.getElementById('pass').value;
+            let role = document.getElementById('role').value;
+            let city = document.getElementById('city').value;
+            let address = document.getElementById('address').value; 
+
+            let formData = {
+                name: name,
+                number: number,
+                email: email,
+                pass: pass,
+                role: role,
+                city: city,
+                address: address
+            };
+            validate(formData, "../models/signup.php" ,  function(data){
+
+                if(data.status === "success"){
+                    notifyUser('You can now login with your credentials.','green');
+                    let inputs = document.getElementsByClassName('inputreg');
+                    for(let i=0; i<inputs.length; i++){
+                    inputs[i].style.display = 'inline-block';
+                    document.getElementById('otp').style.display='none';
+                    document.getElementById('sibtn').style.display='block';
+                    document.getElementById('enter').style.display='block';
+        }
+                 } else {
+                    notifyUser('Registration failed. Please try again.','red');
+                 }
+            });
     }
     else{
         notifyUser('Invalid OTP. Please try again.','red');
@@ -227,9 +274,9 @@ function otp(){
 //   } );
 // }
 
-    function notifyUser(message,color){   
+    export function notifyUser(message,color){   
         if(color==='red'){
-        document.getElementById('notification').innerHTML=message;
+        document.getElementById('notif').innerHTML=message;
         document.getElementById('notif').style.transform='translateX(-155px)';
         document.getElementById('notif').style.backgroundColor='rgba(255, 0, 0, 0.25)';
         }
@@ -250,22 +297,62 @@ function otp(){
 
     // login
 
-    function login(a){
-    //   if (a!=null)
-    //     {
-        if (a=="Wrong Email Or Phone Number"){
-        notifyUser('Wrong Email Or Phone Number','red');
-      }
-      else if(a== "Wrong Password"){
-        notifyUser('Wrong Password','red');
-      }
-      else if(a== "No user registered. Please sign up first."){
-        notifyUser('No user registered. Please sign up first.','red');
-      }
-    //   else{
-    //     // window.location.href='/buyers/home.php?'
-    //   }
-    // }
 
-    }
-    // export { notifyUser };
+    let loginbtn = document.getElementById('loginbtn');
+    if(loginbtn){
+    loginbtn.addEventListener('click',function(){
+
+    let email_or_phone = document.getElementById('email_or_phone').value;
+    let password = document.getElementById('login_password').value;
+    let userdata = {
+            email_or_phone: email_or_phone,
+            password: password,
+        };
+
+        // async so will call back and i will catch that data
+        validate(userdata, "../models/usercheck.php" ,  function(data){
+        console.log(data);
+
+        if(data.status === "success"){
+                if(data.role==='Buyer'){
+                    window.location.href = "buyers/home.php";
+                }
+                else if(data.role==='Seller'){
+                    window.location.href = "seller/home.php";
+                }
+                // console.log(data.status);
+                exists=false;
+             } else {
+                notifyUser('Wrong credentials','red');
+                // console.log(data.status);
+             }
+        });
+
+
+        //  fetch("../models/usercheck.php", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body:JSON.stringify(userdata)
+        //     })
+        //     .then(response => response.json()) 
+        //     .then(data => {
+        //         console.log(data);
+
+        //      if(data.status === "success"){
+        //         if(data.role==='Buyer'){
+        //             window.location.href = "buyers/home.php";
+        //         }
+        //         else if(data.role==='Seller'){
+        //             window.location.href = "seller/home.php";
+        //         }
+        //         // console.log(data.status);
+        //         exists=false;
+        //      } else {
+        //         notifyUser('Wrong credentials','red');
+        //         // console.log(data.status);
+        //      }
+        //     })   
+    });}
+

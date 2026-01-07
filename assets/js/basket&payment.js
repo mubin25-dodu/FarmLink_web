@@ -1,7 +1,6 @@
 // import { notifyUser } from './login.js';
 
 // basket
-
 let inc = document.querySelectorAll(".increment_btn");
 let dec = document.querySelectorAll(".decrement_btn");
 let value = document.querySelectorAll(".value");
@@ -13,16 +12,18 @@ let totalDisplay = document.getElementById("total");
 let removebtn = document.querySelectorAll(".basketbtn");
 
 let products = [];
-let total_price = 0; 
 
+let total_price = 0; 
 // calculation
 for(let i=0; i<inc.length; i++){
     let av = parseInt(available[i].innerText);
     let price = parseFloat(unit_price[i].innerText);
-    let val = 0;
- 
+    let val = parseInt(value[i].innerText);
+    total_price += val * price;
+    updateTotal();
+
     value[i].innerText = val;
-    total[i].innerText = "0 TK";
+    total[i].innerText =  (val * price) + " TK";
 
     inc[i].addEventListener("click", function(){
         if(val < av){
@@ -57,7 +58,7 @@ for(let i=0; i<inc.length; i++){
             quantity: val, 
             unit_price: price});
             updateTotal();}
-        console.log(products);
+            console.log(products);
 
      }else{
         products = products.filter(p => p.id !== document.querySelectorAll(".basketbtn")[i].getAttribute("product_id")[i]);
@@ -68,9 +69,10 @@ for(let i=0; i<inc.length; i++){
 }
 
 function updateTotal() {
-    let total_price = 0;
+    let total_price;
     for(let i=0; i<checkbox.length; i++){
-        if(checkbox[i].checked){
+    
+       if(checkbox[i].checked){
             let qty = parseInt(value[i].innerText);
             let price = parseFloat(unit_price[i].innerText);
             total_price += qty * price;
@@ -211,7 +213,6 @@ paybtn.addEventListener("click", function(){
             // localStorage.removeItem("products");
 
         }
-
     }
 });
 }

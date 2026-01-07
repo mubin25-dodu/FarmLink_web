@@ -11,7 +11,7 @@ require('../../controllers/auth.php');
 
 
 </head>
-<body style="color: black;">
+<body">
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -26,6 +26,9 @@ require('../../controllers/auth.php');
     
     </div>
 </nav>
+
+<!-- Notification Div -->
+<div id="notif"></div>
 
 <!-- products -->
 <div class="sections">

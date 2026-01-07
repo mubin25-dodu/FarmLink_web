@@ -20,11 +20,12 @@ nav ul {
 }
 
 .page-wrap {
-    width: 75%; 
+    width: 100%; 
     margin: 40px auto;
     display: flex;
-    gap: 40px;
-    align-items: flex-start;
+    align-items: center;
+    
+    justify-content:center;
 }
 
 .left-form {
@@ -73,9 +74,11 @@ textarea {
 }
 
 .submit-wrap {
-    grid-column: 1 / -1;
+    grid-column: -1 ;
     display: flex;
     justify-content: center;
+    margin-top: 200px;
+    margin-bottom: 100px;
 }
 
 .submit-btn {

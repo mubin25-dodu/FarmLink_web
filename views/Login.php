@@ -12,29 +12,30 @@
 <script type="text/javascript">
    (function(){
       emailjs.init({
-        // publicKey: "LhdG6Wko_lHnMBJ6n",
+        publicKey: "LhdG6Wko_lHnMBJ6n",
       });
    })();
 </script>
 </head>
 <body>
+<div id="notif"></div>
     <nav >
-    <img class="logo" src="../assets/img/farmlink_logo.jpg" >
+    <a href="buyers/home.php"><img class="logo" src="../assets/img/farmlink_logo.jpg" ></a>
+    <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="buyers/home.php">Home</a></li>
-        <li><a class="nav-link" href="#Basket">Basket</a></li>
-        <li><a class="nav-link" href="#Orders">Orders</a></li>
+        <!-- <li><a class="nav-link" href="basket.php">Basket</a></li> -->
+        <!-- <li><a class="nav-link" href="order.php">Orders</a></li> -->
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
-</nav> 
+    </div>
+</nav>
 <div id="notif"></div>
-
-
 <div id="con"> <div id="reg_log"> 
     <div id="signup"> 
-        <form action="../controllers/signup.php" method="post" id="reg_form">
+        <!-- <form action="../controllers/signup.php" method="post" id="reg_form"> -->
             <!-- signup form-->
-            <h3 class="inputreg">Enter your details</h3>
+            <h3 id="enter" class="inputreg">Enter your details</h3>
             <label class="inputreg" for="name">Full name:</label> <br><input type="text" name="name" class="inputreg" id="name"><br>
             <label class="inputreg" for="number">Phone number:</label> <br><input type="number" name="num" class="inputreg" id="number"><br>
             <label class="inputreg" for="email">Email:</label> <br><input type="email"class="inputreg" name="email"id="email"><br>
@@ -43,7 +44,7 @@
             <div id="otp"> 
              Enter OTP sent to you
              <br><input type="text" id="otp_input"><br>
-            <button type="button"   id="otpbtn" class="btn1" > Done</button> 
+            <button type="button" name="submit"  id="otpbtn" class="btn1" > Done</button> 
             </div>
             <label class="inputreg" for="role">Role:</label> <select class="inputreg" name="role" id="role">
                 <option class="inputreg" value="">Select a role</option>
@@ -64,18 +65,18 @@
                 <option class="inputreg" value="Rangpur">Rangpur</option>
                 <option class="inputreg" value="Mymensingh">Mymensingh</option>
             </select>
-            <br><button type="" name="" id="sibtn" class="btn1" > Sign up</button> 
+            <br><button type="button"  id="sibtn" class="btn1" > Sign up</button> 
             
-        </form>
+        <!-- </form> -->
     </div>
             <!-- login form-->
         <div id="login"> 
-        <form action="../controllers/login.php" method="post">
+        <!-- <form action="../controllers/login.php" method="post"> -->
             <h3>Enter credentials</h3>
-            Email or Phone: <br><input type="text" name="email_or_phone"><br>
-            Password: <br><input type="password" name="password"><br>
+            Email or Phone: <br><input  id="email_or_phone" type="text" class="inputreg" name="email_or_phone"><br>
+            Password: <br><input  id="login_password" type="password" class="inputreg" name="password"><br>
             <button class="btn1" type="submit" name="submit" id="loginbtn"> Login</button>
-        </form>
+        <!-- </form> -->
     </div>
             <!-- slider-->
 
@@ -86,7 +87,6 @@
 </div>
     </div> </div>
 
-<script src="../assets/js/login.js"></script>
 </body>
 <footer>
     <div class="footer-container">
@@ -95,10 +95,10 @@
                 <h3>FarmLink</h3>
                 <p>Connecting farmers & consumers — Fresh, Fair, Fast.</p>
                 <div class="footer-socials">
-                    <a href="https://facebook.com"><img src="../../assets/img/facebook.png" alt="Facebook"></a>
-                    <a href="https://instagram.com"><img src="../../assets/img/instagram.png" alt="Instagram"></a>
-                    <a href="https://youtube.com"><img src="../../assets/img/youtube.png" alt="YouTube"></a>
-                    <a href="https://twitter.com"><img src="../../assets/img/twitter.png" alt="Twitter"></a>
+                    <a href="https://facebook.com"><img src="../assets/img/facebook.png" alt="Facebook"></a>
+                    <a href="https://instagram.com"><img src="../assets/img/instagram.png" alt="Instagram"></a>
+                    <a href="https://youtube.com"><img src="../assets/img/youtube.png" alt="YouTube"></a>
+                    <a href="https://twitter.com"><img src="../assets/img/twitter.png" alt="Twitter"></a>
                 </div>
             </div>
             <div class="footer-links">
@@ -138,4 +138,6 @@
         </div>
     </div>
 </footer>
+<script type="module" src="../assets/js/login.js"></script>
+<script  type="module" src="../assets/js/ajax.js"></script>
 </html>

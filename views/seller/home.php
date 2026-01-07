@@ -1,6 +1,6 @@
 <?php
 require_once('../../controllers/authseller.php');
-
+require('../../controllers/notifi.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,24 +11,23 @@ require_once('../../controllers/authseller.php');
     <link rel="stylesheet" href="../../assets/css/style.css">
 
 </head>
-<body style="color: black;">
+<body>
+<!-- Notification Div -->
+<div id="notif"></div>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
-        <li><a class="nav-link" href="My_Products.php">My products</a></li>
+        <li><a class="nav-link" href="Add_Products.php">Add products</a></li>
+        <li><a class="nav-link" href="My_products.php">My Products</a></li>
         <li><a class="nav-link" href="#Orders">Orders</a></li>
-        <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     
     </div>
 </nav>
-
-<script src="../../assets/js/home.js"></script>
-</body>
 <footer>
     <div class="footer-container">
         <div class="footer-top">
@@ -79,4 +78,5 @@ require_once('../../controllers/authseller.php');
         </div>
     </div>
 </footer>
+</body>
 </html>

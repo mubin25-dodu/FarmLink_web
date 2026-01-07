@@ -14,7 +14,12 @@ session_start();
 
 </head>
 <body>
+<!-- Notification Div -->
+<div id="notif"></div>
+
 <nav >
+    <!-- <?php print_r($_SESSION['user_data']) ?> -->
+
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
@@ -60,13 +65,13 @@ session_start();
     <h2 class="sec_title">Products For You</h2>
              <div id="products_container2">
    <?php  $products=[];
-       $products=read('select * from product');
-       print_r($products);
+       $products=read('select * from product where available_unit > 0');
+    //    print_r($products);
         foreach($products as $a){?> 
 
         <div id="" class ="products"> 
         <div class="p_details2">
-        <img src="<?= $a['image']?>" alt="Product img">
+        <img class="image" src="../<?= $a['image']?>" alt="Product img">
         <h3><?=   $a['name']?></h3>
         <div class="product_details"><?=$a['description']?></div>
         <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>

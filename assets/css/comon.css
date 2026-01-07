@@ -10,6 +10,9 @@
 body {
     margin: 0;
     padding: 0;
+    display:flex;
+    flex-direction: column;
+    min-height:100vh;
 }
 h2, h3, h4, h5, h6 {
     margin: 0;
@@ -34,17 +37,17 @@ h2, h3, h4, h5, h6 {
 }
 #notif{
     position: fixed;
-    top: 80px;
-    right: -150px;
+    top: 85px;
+    right: -155px;
     /* background-color: #afe9d7; */
     color: #1E2B27;
     padding: 15px 25px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.267);
     font-weight: bold;
     /* display: none; */
     transition: all 1.5s ease;
-    z-index: 1000; 
+    z-index: 100; 
 }
  
 nav {
@@ -55,7 +58,7 @@ nav {
     display: flex;
     align-items: center;
     padding: 10px 30px;
-    z-index: 1111;
+    z-index: 11;
 }
 .sec_title {
     font-size: 28px;
@@ -72,6 +75,7 @@ nav {
 
     #products_container{
      display: flex;
+     
      justify-content: center;
      flex-wrap: wrap;
      justify-items: center;
@@ -180,11 +184,13 @@ nav {
         max-height: 530px;
         padding-bottom: 20px;
         }
-        img{
-        width: 100%;
-        height: 280px;
-        margin-top: 10px;
-        border-radius: 15px;
+        .image{
+        width: 398px;
+        margin-left: -14px;
+        height: 300px;
+        margin-top: -15px;
+        border-radius: 15px 15px 0 0;
+        box-shadow: var(--lightgreen) 0px 1px 1px 1px;
         }
         .card_btn{
             position: relative;
@@ -352,13 +358,6 @@ nav ul li a:hover {
 
 }
 footer {
-    width: 100%;
-    background: var(--darkgreen);
-    color: white;
-    box-shadow: 0px -2px 10px rgba(170, 169, 169, 0.3);
-    position: relative;
-    bottom: 0;
-    left: 0;
-    margin-top: 40px;
+    margin-top: auto;
     overflow-x: hidden;
 }

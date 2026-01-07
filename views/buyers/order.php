@@ -14,7 +14,7 @@ require('../../models/db.php');
 
 
 </head>
-<body style="color: black;">
+<body>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -28,6 +28,8 @@ require('../../models/db.php');
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     </div>
 </nav>
+
+<div id="notif"></div>
 
 <div class="sections">
     <h3>My Orders</h3>

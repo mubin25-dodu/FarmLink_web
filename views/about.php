@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../assets/css/comon.css">
 </head>
 <body>
+    <!-- Notification Div -->
+    <div id="notif"></div>
     <nav >
     <a href="buyers/home.php"><img class="logo" src="../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
