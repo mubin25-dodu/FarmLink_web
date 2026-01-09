@@ -14,7 +14,7 @@ session_start();
 
 </head>
 <body>
-<!-- Notification Div -->
+
 <div id="notif"></div>
 
 <nav >

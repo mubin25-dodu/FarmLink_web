@@ -1,6 +1,10 @@
 <?php
 require_once('../../controllers/authseller.php');
+if(isset($_SESSION['msg']) && ($_SESSION['msg']==="Product with this name already exists." || $_SESSION['msg']==="Product added successfully.")){
+    echo "<script>alert('".$_SESSION['msg']."');</script>";
+unset($_SESSION['msg']);}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
