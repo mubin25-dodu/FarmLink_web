@@ -17,8 +17,11 @@ if(isset($data["status"])&& $data["status"]=="no_search"){
 if(isset($data["product_id"])){
     $product_id = $data["product_id"];
     $qury="UPDATE product set available_unit='-1' where product_id= '".$product_id."' and Seller_id= '".$_SESSION['user_data']['uid'] ."' ";
-    write($qury);
-    echo json_encode (["status" => "deleted"]);
+    if(write($qury)){
+        echo json_encode (["status" => "deleted"]);
+    }else{
+        echo json_encode (["status" => "error"]);
+    }
 }
 if(isset($data["edit_product_id"])){
     $product_id = $data["edit_product_id"];
@@ -34,8 +37,11 @@ if(isset($data["product_id_update"])){
     $stock = $data["stock"];
     $category = $data["category"];
     $qury="UPDATE product set name='$name', description='$description', unit_price='$price', available_unit='$stock', catagory='$category' where product_id= '".$product_id."' and Seller_id= '".$_SESSION['user_data']['uid'] ."' ";
-    write($qury);
-    echo json_encode (["status" => "updated"]);
+    if(write($qury)){
+        echo json_encode (["status" => "updated"]);
+    }else{
+        echo json_encode (["status" => "error"]);
+    }
 }
 
 ?>

@@ -14,7 +14,7 @@ $con = mysqli_connect($server , $username , $password,$db);
 
  function write ($a){
     global $con;
-    mysqli_query($con,$a);
+    return mysqli_query($con,$a);
 }
 
 
