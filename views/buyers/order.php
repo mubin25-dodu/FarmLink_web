@@ -83,9 +83,9 @@ require('../../models/db.php');
                     <div class="order-status-label"><?= ucfirst($a['status']) ?></div>
                     <img class="img" src="<?= $img ?>" alt="">
                     <div><h3 class="name"><?= $name?></h3> 
-                    <p class="price">Price <span> <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
+                    <p class="price">Price <span > <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
                     <div>
-                        <div class="total">Total Price: <span><?= $a['total_price'] ?></span></div>
+                        <div class="total">Total Price: <span id="total_p"><?= $a['total_price'] ?></span></div>
                     </div> 
                     <div>
                     <a class="basketbtn" href="product_details.php?id=<?= $a['product_id'] ?>">View Product</a>

@@ -21,7 +21,7 @@ require_once('../../controllers/authseller.php');
         <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="Add_Products.php">Add products</a></li>
         <li><a class="nav-link" href="My_Products.php">My products</a></li>
-        <li><a class="nav-link" href="#orders">Orders</a></li>
+        <li><a class="nav-link" href="orders.php">Orders</a></li>
     </ul>
     <!-- <input type="text" placeholder="Search..." id="searchbar" > -->
     <a class="orange_color" href="../../controllers/logout.php">Logout</a> 

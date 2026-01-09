@@ -1,33 +1,65 @@
 <?php
+// require_once('../../controllers/notifi.php');
 require_once('../../controllers/authseller.php');
-require('../../controllers/notifi.php');
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<title>FarmLink - Seller Dashboard</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" href="../../assets/css/comon.css">
-    <link rel="stylesheet" href="../../assets/css/style.css">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FarmLink - Seller Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/seller/style.css">
+    <link rel="stylesheet" href="../../assets/css/comon.css">
+    <link rel="stylesheet" href="../../assets/css/seller/myproducts.css">
 </head>
+
 <body>
-<!-- Notification Div -->
-<div id="notif"></div>
-<nav >
-    <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
+<nav>
+    <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg"></a>
     <div id="navbtn"> 
     <ul>
-        <li><a class="nav-link" href="#Home">Home</a></li>
+        <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="Add_Products.php">Add products</a></li>
-        <li><a class="nav-link" href="My_products.php">My Products</a></li>
+        <li><a class="nav-link" href="My_Products.php">My products</a></li>
         <li><a class="nav-link" href="orders.php">Orders</a></li>
     </ul>
-    <input type="text" placeholder="Search..." id="searchbar" >
-    <a class="orange_color" href="../../controllers/logout.php">Logout</a>
-    
+    <!-- <input type="text" placeholder="Search..." id="searchbar" > -->
+    <a class="orange_color" href="../../controllers/logout.php">Logout</a> 
     </div>
 </nav>
+
+<div id="notif"></div>
+
+<div class="sections">
+<h3>Track Orders</h3>
+<button id="request">Requested Orders</button>
+<button id="process">On Process Orders</button>
+<button id="delivered">Delivered Orders</button>
+<button id="history">Order History</button>
+<input type="text" name="" id="search_order" placeholder="Search Orders...">
+<div id="order_table">
+   <div class="product-list" id="product-list">
+    <h4>Total Orders: <span id="count_order"></span></h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product name</th>
+                        <th>Price (per unit)</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Order id</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table_body">
+                    <!-- //products will be loaded -->
+                </tbody>
+            </table>
+        </div>
+</div>
+</div>
+
 <footer>
     <div class="footer-container">
         <div class="footer-top">
@@ -78,5 +110,8 @@ require('../../controllers/notifi.php');
         </div>
     </div>
 </footer>
+<script type="module" src="../../assets/js/seller/addproducts.js"></script>
+<script type="module" src="../../assets/js/ajax.js"></script>
+<script type="module" src="../../assets/js/seller/orders.js"></script>
 </body>
 </html>
