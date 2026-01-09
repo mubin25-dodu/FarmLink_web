@@ -58,9 +58,13 @@ function loadtable(data){
 
         let display_buttons ="none";
         let display_status="flex";
+        let btn_name="Accept Order";
         if(data[i].status==="Pending" || data[i].status==="Accepted" || data[i].status==="Processing" ){
             display_buttons ="flex";
             display_status="none";
+        }
+        if(data[i].status==="Accepted"){
+            btn_name="Request Picked Up";
         }
         let tr= document.createElement('tr');
 
@@ -73,8 +77,8 @@ function loadtable(data){
                 <td class="status" >${data[i]['status']}</td>
                 <td style="display: ${display_status}"> You can not edit now</td>
                 <td><div style="display: ${display_buttons}" class ="buttons">
-                <button class="Accept" pid="${data[i].product_id}">Accept</button>
-                <button class="Reject" pid="${data[i].product_id}">Reject</button>
+                <button class="Accept" pid="${data[i].product_id}">${btn_name}</button>
+                <button class="Reject" pid="${data[i].product_id}">Reject order</button>
                 </div></td>
             `;
             if(data[i].status == "Accepted"){
@@ -90,7 +94,12 @@ function loadtable(data){
             tablebody.appendChild(tr);
 
             document.querySelectorAll('.Accept')[i].addEventListener('click', function(){
-                validate({order_id: data[i]['odr_id'], action: 'Accepted'}, '../../models/manage_order.php', function(res){
+                if(btn_name==="Accept Order"){
+                   msg = {order_id: data[i]['odr_id'], action: 'Accepted'}
+                }else if(btn_name==="Request Picked Up"){
+                   msg = {order_id: data[i]['odr_id'], action: 'Processing'}
+                }
+                validate(msg, '../../models/manage_order.php', function(res){
 
                     if(res == 'success'){
                         notifyUser('Order accepted successfully', 'green');
