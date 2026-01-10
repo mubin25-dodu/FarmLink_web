@@ -42,7 +42,7 @@ require('../../models/db.php');
         //    print_r($data[0]['unit_price']);
         $id=$_GET['id'];
         ?>
-     <img id="image" src="<?= $data[0]['image'] ?>" alt="Product img">
+     <img id="image" src="../<?= $data[0]['image'] ?>" alt="Product img">
      <div class="details"> 
      <h2 id="name"><?= $data[0]['name'] ?></h2>
      <b>Price: <span id="price" > <?= $data[0]['unit_price']?></span> TK / <?= $data[0]['unit'] ?></b>

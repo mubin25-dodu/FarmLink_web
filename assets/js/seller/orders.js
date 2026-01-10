@@ -94,6 +94,7 @@ function loadtable(data){
             tablebody.appendChild(tr);
 
             document.querySelectorAll('.Accept')[i].addEventListener('click', function(){
+                let msg ={};
                 if(btn_name==="Accept Order"){
                    msg = {order_id: data[i]['odr_id'], action: 'Accepted'}
                 }else if(btn_name==="Request Picked Up"){
