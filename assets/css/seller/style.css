@@ -4,7 +4,12 @@ body {
     color: black;
     background: #ffffff;
 }
-
+:root{
+ --darkgreen: #1E2B27;
+ --orange: #E57400;
+ --purple:#6952A2;
+ --lightgreen:#D0E3D5;
+}
 nav {
     display: flex;
     align-items: center;
@@ -125,3 +130,25 @@ textarea {
     align-items: center;
     gap: 6px;
 }
+#bar{
+    display: block;
+    position:relative;
+    width :0%;
+    max-width: 80%;
+    border-radius: 15px;
+    height:5px;
+    background-color:var(--lightgreen);
+    box-shadow: var(--darkgreen) 0px 0px 2px 0.1px;
+    margin-top:5px;
+
+}
+/* #bar::before{
+    content:"";
+    position:absolute;
+    width:10%;
+    height:100%;
+    border-radius:15px;
+    background-color:var(--orange);
+    margin: 1%;
+    transition: all .5s ease;
+} */

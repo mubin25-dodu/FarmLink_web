@@ -59,7 +59,7 @@ function loadtable(data){
         let display_buttons ="none";
         let display_status="flex";
         let btn_name="Accept Order";
-        if(data[i].status==="Pending" || data[i].status==="Accepted" || data[i].status==="Processing" ){
+        if(data[i].status==="Pending" || data[i].status==="Accepted" ){
             display_buttons ="flex";
             display_status="none";
         }

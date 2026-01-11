@@ -54,7 +54,7 @@ if(isset($_SESSION['user_data'])&& isset($data["status"] ))
         p.unit
     FROM orders o
     JOIN product p ON o.product_id = p.product_id
-    WHERE p.seller_id = '{$_SESSION['user_data']['uid']}' AND (o.status = 'Accepted' OR o.status = 'Processesing');";
+    WHERE p.seller_id = '{$_SESSION['user_data']['uid']}' AND (o.status = 'Accepted' OR o.status = 'Processing');";
     $result = read($q);
     echo json_encode ($result);
     }

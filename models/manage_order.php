@@ -13,8 +13,5 @@ if(isset($_SESSION['user_data'])&& isset($data["action"] )){
     } 
     echo json_encode ($result);
 }
-   
-
-
 
 ?>
