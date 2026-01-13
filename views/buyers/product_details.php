@@ -69,7 +69,7 @@ require('../../models/db.php');
        </div> -->
 
 </div>
-<img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 </body>
 <footer>
     <div class="footer-container">
@@ -122,4 +122,5 @@ require('../../models/db.php');
     </div>
 </footer>
 <script type="module" src="../../assets/js/product_details.js"></script>
+<script type="module" src="../../assets/js/search.js"></script>
 </html>

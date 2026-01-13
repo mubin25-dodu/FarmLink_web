@@ -53,7 +53,7 @@
      </div>
 
 
-<img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 <script src="../../assets/js/home.js"></script>
 <script type="module" src="../../assets/js/more_products.js"></script>
 </body>

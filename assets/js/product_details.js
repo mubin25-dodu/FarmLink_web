@@ -46,7 +46,7 @@ basket.addEventListener("click", function() {
             if(data.status === "Not loggedin"){
                 notifyUser("Please login to add products to basket",'red');
                   }
-                    if(data.status === "Product already in basket"){
+                    else if(data.status === "Product already in basket"){
                         notifyUser("Product already in basket", "red");
                     }
                     else if(data.status === "Product added to basket"){
