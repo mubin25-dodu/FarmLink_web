@@ -193,11 +193,7 @@ paybtn.addEventListener("click", function(){
 
         // if all good
         document.querySelector(".order_confirm_container").style.display="flex";
-        //    let div_to_push_to_db = document.createElement('div');
-        //     div_to_push_to_db.style.display="none";
-        //     div_to_push_to_db.innerHTML= '<form action="../../controllers/buyers/orderController.php" method="POST" id="order_form"> '+
-        //                                    '<input type="text" name="name" value="'+name+'">'+;
-
+       
         userdata = {
             name: name,
             phone: phone,

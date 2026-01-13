@@ -1,3 +1,47 @@
+import { validate } from "./ajax.js";
+import { notifyUser} from "./login.js";
+let buttons = document.querySelectorAll('[auth]');
+console.log(buttons);
+if(buttons.length > 0){
+    buttons.forEach(button => {
+        button.addEventListener('click', function(event){
+            event.preventDefault();
+            validate( {action: "check"} , "../../controllers/auth.php", function(data){
+                // console.log(data);
+                if(data.status === "Not loggedin"){
+                    notifyUser("Please login to continue",'red');
+                }
+                else{
+                    window.location.href = button.getAttribute('href');
+                }  
+            });
+        });
+    });
+}
+
+//add to basket from home page
+let bskt = document.querySelectorAll(".basket");
+if(bskt.length > 0){
+   for(let i=0; i<bskt.length; i++){
+    let btn = bskt[i];
+        btn.addEventListener('click', function(){
+            console.log(btn.getAttribute('pid'));
+            validate({id: btn.getAttribute('pid')} , "../../controllers/addtobasket.php", function(data){
+                console.log(data);
+                if(data.status === "Not loggedin"){
+                notifyUser("Please login to add products to basket",'red');
+                }
+                if(data.status === "Product already in basket"){
+                notifyUser("Product already in basket", "red");
+                }
+                else if(data.status === "Product added to basket"){
+                notifyUser("Product added to basket", "green");
+                }
+        });
+    });
+}
+}
+
 // setInterval(() => bannerChange("left"), 10000);
 // let lft_btn = document.getElementById('left_btn');
 // let rgt_btn = document.getElementById('right_btn');
