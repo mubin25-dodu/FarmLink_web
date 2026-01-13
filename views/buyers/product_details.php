@@ -1,7 +1,6 @@
 <?php
-require_once('../../controllers/auth.php');
+// require_once('../../controllers/auth.php');
 require('../../models/db.php');
-// require_once('../../controllers/notifi.php');
 
 ?>
 <!DOCTYPE html>
@@ -21,9 +20,7 @@ require('../../models/db.php');
     <ul>
         <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="basket.php">Basket</a></li>
-           <li><a class="nav-link" href="order.php">Orders</a></li>
-           <li><a class="nav-link" href="order.php">Orders</a></li>
-           <li><a class="nav-link" href="order.php">Orders</a></li>
+        <li><a class="nav-link" href="order.php">Orders</a></li>
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
@@ -42,7 +39,7 @@ require('../../models/db.php');
         //    print_r($data[0]['unit_price']);
         $id=$_GET['id'];
         ?>
-     <img id="image" src="<?= $data[0]['image'] ?>" alt="Product img">
+     <img id="image" src="../<?= $data[0]['image'] ?>" alt="Product img">
      <div class="details"> 
      <h2 id="name"><?= $data[0]['name'] ?></h2>
      <b>Price: <span id="price" > <?= $data[0]['unit_price']?></span> TK / <?= $data[0]['unit'] ?></b>
@@ -52,7 +49,7 @@ require('../../models/db.php');
         <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span id="value">0</span> <button type="button" class="decrement_btn" id="decrement_btn">-</button> </div><div > Available: <span id="available_unit"><?= $data[0]['available_unit'] ?></span></div>
         <div class="btndiv"> <a class="card_btn" id="buy_btn">Buy</a>
         <label id="pid" style="display: none;"><?= $id ?></label> 
-        <a href="" class="card_btn" id="basket"> Basket</a> </div> 
+        <button class="card_btn" id="basket"> Basket</button> </div> 
     </div>
     <?php
      }?>
@@ -72,7 +69,7 @@ require('../../models/db.php');
        </div> -->
 
 </div>
-<img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 </body>
 <footer>
     <div class="footer-container">
@@ -124,5 +121,6 @@ require('../../models/db.php');
         </div>
     </div>
 </footer>
-<script src="../../assets/js/product_details.js"></script>
+<script type="module" src="../../assets/js/product_details.js"></script>
+<script type="module" src="../../assets/js/search.js"></script>
 </html>

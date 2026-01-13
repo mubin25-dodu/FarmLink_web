@@ -14,7 +14,7 @@ session_start();
 
 </head>
 <body>
-<!-- Notification Div -->
+
 <div id="notif"></div>
 
 <nav >
@@ -24,9 +24,9 @@ session_start();
     <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
-        <li><a class="nav-link" href="basket.php">Basket</a></li>
-        <li><a class="nav-link" href="order.php">Orders</a></li>
-        <li><a class="nav-link" href="../about.php">About Us</a></li>
+        <li><a auth="" class="nav-link" href="basket.php">Basket</a></li>
+        <li><a auth="" class="nav-link" href="order.php">Orders</a></li>
+        <li><a  class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
     <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
@@ -77,18 +77,23 @@ session_start();
         <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
         <div>
         <!-- <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a>  -->
-        <a href="../../controllers/addtobasket.php?id=<?= $a['product_id']?>"><button class="card_btn" >Basket </button></a> 
+        <a pid="<?= $a['product_id']?> " class="basket"><button class="card_btn" >Basket </button></a> 
         <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a> 
          </div>
         </div>      
         </div> 
    <?php }?>
        </div>
+   <a href="more_products.php">See more..</a>
+
     </div>
 
-<img  id="basket_icon" src="../../assets/img/basket.png" alt="">
-<script src="../../assets/js/home.js"></script>
-<script src="../../assets/js/notification.js"></script>
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
+
+<script type="module" src="../../assets/js/home.js"></script>
+<script type="module" src="../../assets/js/notification.js"></script>
+<script type="module" src="../../assets/js/search.js"></script>
+
 </body>
 <footer>
     <div class="footer-container">

@@ -39,7 +39,7 @@ require('../../models/db.php');
 
     <h4 class="title">Pending & Processing Orders</h4>
     <?php  $products=[];
-       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status = 'pending' or status = 'processing')");
+       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status !='Successful' and status != 'Delivered')");
     // print_r($products);
     if($products==null){
         echo "<p>No pending or processing orders found.</p>";
@@ -47,11 +47,16 @@ require('../../models/db.php');
         foreach($products as $a){
             $img = readone("select image from product where product_id='{$a['product_id']}'");
             $name = readone("select name from product where product_id='{$a['product_id']}'");
+
+             $style="position:relative;";
+            if($a['status']=='Rejected'){
+                $style="position:relative; background-color: #ffcccc;";
+            }
         // echo $a['product_id'];
 
             ?> 
-            <div id="products_payment" class="products_payment" style="position:relative;">
-                <img class="img" src="<?= $img ?>" alt="">
+            <div id="products_payment" class="products_payment" style="<?= $style ?>">
+                <img class="img" src="../<?= $img ?>" alt="">
                 <div><h3 class="name"><?= $name?></h3> 
                 <p class="price">Price <span> <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
                 <div>
@@ -71,7 +76,7 @@ require('../../models/db.php');
     <div class="successful">
         <h4 class="title">Successful Orders</h4>
         <?php
-        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful'");
+        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful' order by order_id;");
         if($success_orders==null){
             echo "<p>No successful orders found.</p>";
         }else{
@@ -99,8 +104,10 @@ require('../../models/db.php');
     </div>
     
 </div>
-
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 </body>
+<script type="module" src="../../assets/js/search.js"></script>
+
 <footer>
     <div class="footer-container">
         <div class="footer-top">

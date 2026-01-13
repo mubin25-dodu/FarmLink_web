@@ -1,6 +1,10 @@
 <?php
 require_once('../../controllers/authseller.php');
+if(isset($_SESSION['msg']) && ($_SESSION['msg']==="Product with this name already exists." || $_SESSION['msg']==="Product added successfully.")){
+    echo "<script>alert('".$_SESSION['msg']."');</script>";
+unset($_SESSION['msg']);}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +67,8 @@ require_once('../../controllers/authseller.php');
         <div  class="field">
             <label>Description</label>
             <textarea id="description" name="description" placeholder="Enter product details"></textarea>
+            <span id="char_count"></span>
+            <span id="bar"></span>
         </div>
 
         <div class="field">
@@ -98,19 +104,7 @@ require_once('../../controllers/authseller.php');
 
 <script type="module" src="../../assets/js/seller/addproducts.js"></script>
 <script type="module" src="../../assets/js/ajax.js"></script>
-<script> 
-    var fileInput = document.getElementById('file');
-    var imgBox = document.getElementById('img-box');
-    
-    fileInput.addEventListener('change', function(event) {
-        if (event.target.files && event.target.files[0]) {
-            var imageUrl = URL.createObjectURL(event.target.files[0]);
-            imgBox.style.backgroundImage = "url('" + imageUrl + "')";
-            imgBox.style.backgroundSize = "cover";
-            imgBox.style.backgroundPosition = "center";
-        }
-    });
-</script>
+
 </body>
 <footer>
     <div class="footer-container">

@@ -106,6 +106,7 @@ require('../../controllers/auth.php');
 </div>
 </body>
 <script src="../../assets/js/basket&payment.js"></script>
+<script type="module" src="../../assets/js/search.js"></script>
 
 <footer>
     <div class="footer-container">

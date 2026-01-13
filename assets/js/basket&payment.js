@@ -13,13 +13,12 @@ let removebtn = document.querySelectorAll(".basketbtn");
 
 let products = [];
 
-let total_price = 0; 
+ total_price = 0; 
 // calculation
 for(let i=0; i<inc.length; i++){
     let av = parseInt(available[i].innerText);
     let price = parseFloat(unit_price[i].innerText);
     let val = parseInt(value[i].innerText);
-    total_price += val * price;
     updateTotal();
 
     value[i].innerText = val;
@@ -57,25 +56,24 @@ for(let i=0; i<inc.length; i++){
             id: document.querySelectorAll(".basketbtn")[i].id,
             quantity: val, 
             unit_price: price});
-            updateTotal();}
+updateTotal();  
+        }
             console.log(products);
 
      }else{
-        products = products.filter(p => p.id !== document.querySelectorAll(".basketbtn")[i].getAttribute("product_id")[i]);
+        products = products.filter(p => p.id !== document.querySelectorAll(".basketbtn")[i].id);
         updateTotal();
-        console.log(products);
      }
+
     });
 }
 
 function updateTotal() {
-    let total_price;
+    total_price = 0; 
     for(let i=0; i<checkbox.length; i++){
-    
-       if(checkbox[i].checked){
-            let qty = parseInt(value[i].innerText);
-            let price = parseFloat(unit_price[i].innerText);
-            total_price += qty * price;
+        if(checkbox[i].checked){
+            tp = parseFloat(document.querySelectorAll(".total_price")[i].innerText);
+            total_price += tp;
         }
     }
     totalDisplay.innerText = "Total Price: " + total_price + " TK";
@@ -99,6 +97,12 @@ if(window.location.href.includes("payment.php")){
 function loadpayments(){
 products = JSON.parse(localStorage.getItem("products"));
 // console.log(products[0]['id']);
+
+
+
+
+
+
 
 //okkkay now lets display products in payment page
 for(let i=0; i<products.length; i++){
@@ -189,11 +193,7 @@ paybtn.addEventListener("click", function(){
 
         // if all good
         document.querySelector(".order_confirm_container").style.display="flex";
-        //    let div_to_push_to_db = document.createElement('div');
-        //     div_to_push_to_db.style.display="none";
-        //     div_to_push_to_db.innerHTML= '<form action="../../controllers/buyers/orderController.php" method="POST" id="order_form"> '+
-        //                                    '<input type="text" name="name" value="'+name+'">'+;
-
+       
         userdata = {
             name: name,
             phone: phone,
