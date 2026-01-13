@@ -16,7 +16,6 @@ else if(isset($data['quantity']) && isset($data['id'])){
   }else { 
     write("insert into basket values(NULL,'{$_SESSION['user_data']['uid']}' , '{$data['id']}','{$data['quantity']}')");}
     echo json_encode (["status"=>"Product added to basket"] );
-  exit();
   }
 
 else if( isset($_SESSION['user_data']) && isset($data['id'])){

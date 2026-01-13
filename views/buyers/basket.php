@@ -64,9 +64,11 @@ require_once('../../controllers/notifi.php');
 <button type="button" class="checkoutbtn" id="checkoutbtn">Checkout</button>
 <!-- </form> -->
 </div>
-<img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 </body>
 <script src="../../assets/js/basket&payment.js"></script>
+<script type="module" src="../../assets/js/search.js"></script>
+
 <script> 
 </script>
 <footer>

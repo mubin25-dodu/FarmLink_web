@@ -76,7 +76,7 @@ require('../../models/db.php');
     <div class="successful">
         <h4 class="title">Successful Orders</h4>
         <?php
-        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful'");
+        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful' order by order_id;");
         if($success_orders==null){
             echo "<p>No successful orders found.</p>";
         }else{
@@ -104,8 +104,10 @@ require('../../models/db.php');
     </div>
     
 </div>
-
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 </body>
+<script type="module" src="../../assets/js/search.js"></script>
+
 <footer>
     <div class="footer-container">
         <div class="footer-top">

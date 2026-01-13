@@ -84,13 +84,16 @@ session_start();
         </div> 
    <?php }?>
        </div>
-   <a href="#">See more..</a>
+   <a href="more_products.php">See more..</a>
 
     </div>
 
-<img  id="basket_icon" src="../../assets/img/basket.png" alt="">
+<a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
+
 <script type="module" src="../../assets/js/home.js"></script>
 <script type="module" src="../../assets/js/notification.js"></script>
+<script type="module" src="../../assets/js/search.js"></script>
+
 </body>
 <footer>
     <div class="footer-container">

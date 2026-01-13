@@ -5,7 +5,17 @@ let prev = document.getElementById('previous');
 let search = document.getElementById('search');
 let cat = document.getElementById('category');
 let offset = 0;
-let load = "all";
+let load ;
+
+let searchTerm = localStorage.getItem('search');
+if(searchTerm !== null){
+    search.value = searchTerm;
+    load = searchTerm;
+    localStorage.removeItem('search');
+}
+else{
+    load = "all";
+}
 
 if(next){
     next.addEventListener('click', function(){
