@@ -1,4 +1,4 @@
-export function validate(array ,path , callback){
+export function validate(array , path , callback){
     let xhttp = new XMLHttpRequest();
     xhttp.open("post", path, true);
     xhttp.setRequestHeader("Content-type", "application/json");

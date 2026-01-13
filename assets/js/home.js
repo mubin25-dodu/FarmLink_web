@@ -1,3 +1,23 @@
+import { validate } from "./ajax.js";
+import { notifyUser} from "./login.js";
+let buttons = document.querySelectorAll('[auth]');
+console.log(buttons);
+if(buttons.length > 0){
+    buttons.forEach(button => {
+        button.addEventListener('click', function(event){
+            event.preventDefault();
+            validate( {action: "check"} , "../../controllers/auth.php", function(data){
+                // console.log(data);
+                if(data.status === "Not loggedin"){
+                    notifyUser("Please login to continue",'red');
+                }
+                else{
+                    window.location.href = button.getAttribute('href');
+                }  
+            });
+        });
+    });
+}
 // setInterval(() => bannerChange("left"), 10000);
 // let lft_btn = document.getElementById('left_btn');
 // let rgt_btn = document.getElementById('right_btn');

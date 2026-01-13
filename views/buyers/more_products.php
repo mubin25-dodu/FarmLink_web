@@ -1,16 +1,10 @@
-<?php
-// require('../../controllers/auth.php');
-require('../../models/db.php');
-require('../../controllers/notifi.php');
-session_start();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>FarmLink - Home</title>
     <link rel="stylesheet" href="../../assets/css/comon.css">
     <link rel="stylesheet" href="../../assets/css/buyer/home.css">
+    <link rel="stylesheet" href="../../assets/css/buyer/more_products.css">
 
 </head>
 <body>
@@ -18,17 +12,14 @@ session_start();
 <div id="notif"></div>
 
 <nav >
-    <!-- <?php print_r($_SESSION['user_data']) ?> -->
-
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
-        <li><a auth="" class="nav-link" href="basket.php">Basket</a></li>
-        <li><a  auth="" class="nav-link" href="order.php">Orders</a></li>
-        <li><a auth="" class="nav-link" href="../about.php">About Us</a></li>
+        <li><a class="nav-link" href="basket.php">Basket</a></li>
+        <li><a class="nav-link" href="order.php">Orders</a></li>
+        <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
-    <input type="text" placeholder="Search..." id="searchbar" >
     <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     <?php } else {  ?>
@@ -37,60 +28,34 @@ session_start();
     </div>
 </nav>
 
- <!-- <div id="notification"><input id="notification_input" type="text" value="<?php if(isset($_SESSION['notif']['msg'])) {echo $_SESSION['notif']['msg']; } ?>"></div> -->
- <!-- ad  section-->
-<div  id="ad">
-    <div id="ad_banner"> </div>
-    <button type="button" id="left_btn"><</button>
-    <button type="button" id="right_btn">></button>
-</div>
-<!-- products section-->
-<div class="sections">
-    <h2 class="sec_title">Most selled products</h2>
-    <div id="products_container">
-       <div id="products" class ="products"> 
-        <div class="p_details">
-        <img src="../../assets/img/Grow. Link. Thrive..png" alt="Product img">
-        <h3>Product 1</h3>
-        <p> Price $10.00</p>
-        <button class="card_btn"> Details</button> 
-        </div>
-        </div> 
-       </div>
-    </div>
-
     <!-- products for you section-->
-     
     <div class="sections">
-    <h2 class="sec_title">Products For You</h2>
-             <div id="products_container2">
-   <?php  $products=[];
-       $products=read('select * from product where available_unit > 0');
-    //    print_r($products);
-        foreach($products as $a){?> 
-
-        <div id="" class ="products"> 
-        <div class="p_details2">
-        <img class="image" src="../<?= $a['image']?>" alt="Product img">
-        <h3><?=   $a['name']?></h3>
-        <div class="product_details"><?=$a['description']?></div>
-        <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
-        <div>
-        <!-- <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a>  -->
-        <a auth=""  href="../../controllers/addtobasket.php?id=<?= $a['product_id']?>"><button class="card_btn" >Basket </button></a> 
-        <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a> 
-         </div>
-        </div>      
-        </div> 
-   <?php }?>
-       </div>
-   <a href="#">See more..</a>
-
+    <h2 class="sec_title"></h2>
+    <input type="text" placeholder="Search by name..." id="search"> <br>
+      Search By Category: <select name="category" id="category">
+        <option value="">-- Select --</option>
+                <option value="Vegetable">Vegetable</option>
+                <option value="Fruit">Fruit</option>
+                <option value="Fish">Fish</option>
+                <option value="Meat">Meat</option>
+                <option value="Dairy">Dairy</option>
+                <option value="Egg">Egg</option>
+                <option value="Other">Other</option>
+     </select>
+     <br><br><br>
+    <div id="products_container2">
+        <!-- Products will be loaded here dynamically -->
     </div>
+       <div id="nest_prev">
+        <button id="next"> Next </button>
+        <button id="previous"> Previous </button>
+       </div>
+     </div>
+
 
 <img  id="basket_icon" src="../../assets/img/basket.png" alt="">
-<script type="module" src="../../assets/js/home.js"></script>
-<script type="module" src="../../assets/js/notification.js"></script>
+<script src="../../assets/js/home.js"></script>
+<script type="module" src="../../assets/js/more_products.js"></script>
 </body>
 <footer>
     <div class="footer-container">

@@ -1,3 +1,5 @@
+import { validate } from "./ajax.js";
+import { notifyUser} from "./login.js";
 
 var count = 0;
 let inc = document.getElementById("increment_btn");
@@ -34,19 +36,38 @@ if (inc && dec) {
 
 basket.addEventListener("click", function() {
     if (count < 1) {
-        alert("Please select a quantity.");
+        notifyUser("Please select a quantity.", "red");
     }
-    else {
-        this.href = "../../controllers/addtobasket.php?id=" + pid + "&quantity=" + count;
-    }
-});
+    else{
+        console.log("Adding to basket");
+        validate( {id: pid, quantity: count} , "../../controllers/addtobasket.php", function(data){
+            console.log(data);
+            
+            if(data.status === "Not loggedin"){
+                notifyUser("Please login to add products to basket",'red');
+                  }
+                    if(data.status === "Product already in basket"){
+                        notifyUser("Product already in basket", "red");
+                    }
+                    else if(data.status === "Product added to basket"){
+                        notifyUser("Product added to basket", "green");
+                    }
+                });
+            }
+        });
 
 let buybtn = document.getElementById("buy_btn");
 buybtn.addEventListener("click", function() {
     if (count < 1) {
-        alert("Please select a quantity.");
+        notifyUser("Please select a quantity.", "red");
     }
-     else{
+    else{
+        validate( {action: 'check'} , "../../controllers/auth.php", function(data){
+            console.log(data);
+            if(data.status === "Not loggedin"){
+                notifyUser("Please login to buy the product",'red');
+            }
+        else{
         let products=[];
         products.push({ 
             img: document.getElementById("image").src,
@@ -57,6 +78,10 @@ buybtn.addEventListener("click", function() {
            localStorage.setItem("products", JSON.stringify(products));
            window.location.href = "payment.php";
         }
+    });
+
+    }
+    
 
 });
 updateTotalPrice();
