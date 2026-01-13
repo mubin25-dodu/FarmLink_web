@@ -25,8 +25,8 @@ session_start();
     <ul>
         <li><a class="nav-link" href="#Home">Home</a></li>
         <li><a auth="" class="nav-link" href="basket.php">Basket</a></li>
-        <li><a  auth="" class="nav-link" href="order.php">Orders</a></li>
-        <li><a auth="" class="nav-link" href="../about.php">About Us</a></li>
+        <li><a auth="" class="nav-link" href="order.php">Orders</a></li>
+        <li><a  class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
     <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
@@ -77,7 +77,7 @@ session_start();
         <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
         <div>
         <!-- <a href="payment.php?id=<?= $a['product_id']?>"><button class="card_btn" >Buy </button></a>  -->
-        <a auth=""  href="../../controllers/addtobasket.php?id=<?= $a['product_id']?>"><button class="card_btn" >Basket </button></a> 
+        <a pid="<?= $a['product_id']?> " class="basket"><button class="card_btn" >Basket </button></a> 
         <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a> 
          </div>
         </div>      
