@@ -67,6 +67,8 @@ unset($_SESSION['msg']);}
         <div  class="field">
             <label>Description</label>
             <textarea id="description" name="description" placeholder="Enter product details"></textarea>
+            <span id="char_count"></span>
+            <span id="bar"></span>
         </div>
 
         <div class="field">
@@ -102,19 +104,7 @@ unset($_SESSION['msg']);}
 
 <script type="module" src="../../assets/js/seller/addproducts.js"></script>
 <script type="module" src="../../assets/js/ajax.js"></script>
-<script> 
-    var fileInput = document.getElementById('file');
-    var imgBox = document.getElementById('img-box');
-    
-    fileInput.addEventListener('change', function(event) {
-        if (event.target.files && event.target.files[0]) {
-            var imageUrl = URL.createObjectURL(event.target.files[0]);
-            imgBox.style.backgroundImage = "url('" + imageUrl + "')";
-            imgBox.style.backgroundSize = "cover";
-            imgBox.style.backgroundPosition = "center";
-        }
-    });
-</script>
+
 </body>
 <footer>
     <div class="footer-container">

@@ -2,7 +2,40 @@
 import {validate} from '../ajax.js';
 import { notifyUser } from '../login.js';
 let submitBtn = document.getElementById('submit_btn');
+let description = document.getElementById('description');
+if(description){
+    description.addEventListener('input', function(){
+        let charCount = description.value.length;
+        let charCountDisplay = document.getElementById('char_count');
+        charCountDisplay.style.color = 'gray';
+        
+        charCountDisplay.textContent = charCount + '/300';
+        let bar = document.getElementById('bar');
+        
+        // lets do some math now
+        // ok if 300 =80% then 1 =80/300 =0.27%
 
+        bar.style.width =(charCount * 0.27) + '%';
+       if(charCount < 10){
+           charCountDisplay.style.color = '#FF5555';
+            bar.style.backgroundColor = '#FF5555';
+        }
+        if(charCount > 10){
+            bar.style.backgroundColor = 'green';
+        }
+        if(charCount >= 75 && charCount < 200){
+            bar.style.backgroundColor = 'orange';
+        }
+        if(charCount > 200){
+            bar.style.backgroundColor = '#FF937E';
+        }
+        if(charCount > 250){
+           charCountDisplay.style.color = '#FF5555';
+            bar.style.backgroundColor = '#FF5555';
+        }
+
+    });
+}
 if(submitBtn){
     submitBtn.addEventListener('click', function(){
 
@@ -10,7 +43,6 @@ if(submitBtn){
         let category = document.getElementById('type_select');
         let quantity = document.getElementById('quantity');
         let unit = document.getElementById('unit');
-        let description = document.getElementById('description');
         let price = document.getElementById('price');
         let image = document.getElementById('file');
 
@@ -77,3 +109,15 @@ if(submitBtn){
     });
 
 }
+
+ var fileInput = document.getElementById('file');
+    var imgBox = document.getElementById('img-box');
+    
+    fileInput.addEventListener('change', function(event) {
+        if (event.target.files && event.target.files[0]) {
+            var imageUrl = URL.createObjectURL(event.target.files[0]);
+            imgBox.style.backgroundImage = "url('" + imageUrl + "')";
+            imgBox.style.backgroundSize = "cover";
+            imgBox.style.backgroundPosition = "center";
+        }
+    });

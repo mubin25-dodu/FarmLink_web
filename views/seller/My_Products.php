@@ -39,7 +39,7 @@ require_once('../../controllers/authseller.php');
                 <thead>
                     <tr>
                         <th>Product name</th>
-                        <th>Description</th>
+                        <th style="max-width: 30px;">Description</th>
                         <th>Price (per unit)</th>
                         <th>Stock</th>
                         <th>Category</th>

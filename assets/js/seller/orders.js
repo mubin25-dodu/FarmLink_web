@@ -59,7 +59,7 @@ function loadtable(data){
         let display_buttons ="none";
         let display_status="flex";
         let btn_name="Accept Order";
-        if(data[i].status==="Pending" || data[i].status==="Accepted" || data[i].status==="Processing" ){
+        if(data[i].status==="Pending" || data[i].status==="Accepted" ){
             display_buttons ="flex";
             display_status="none";
         }
@@ -94,6 +94,7 @@ function loadtable(data){
             tablebody.appendChild(tr);
 
             document.querySelectorAll('.Accept')[i].addEventListener('click', function(){
+                let msg ={};
                 if(btn_name==="Accept Order"){
                    msg = {order_id: data[i]['odr_id'], action: 'Accepted'}
                 }else if(btn_name==="Request Picked Up"){
