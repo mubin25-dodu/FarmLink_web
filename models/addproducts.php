@@ -11,18 +11,22 @@ $price = $_POST['price'];
 $seller_id = $_SESSION['user_data']['uid'];
 // Handle file upload
 $path = '../assets/files/product_img/'.'PROD_'.$name.time().'.jpg';
-move_uploaded_file($_FILES['file']['tmp_name'], $path);
-// Insert product into database
-if(readone("SELECT * FROM product WHERE name='$name' AND seller_id='$seller_id'")>0){
-    // Product already exists, you can handle this case as needed
-$_SESSION['msg']="Product with this name already exists.";
+if (!move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+    $_SESSION['msg'] = "Image upload failed.";
+    header("Location: ../views/seller/Add_Products.php");
+    exit();
 }
-else{
-    $query = "INSERT INTO product (name, category, available_unit, unit, description, unit_price, seller_id, image) 
-              VALUES ('$name', '$category', '$quantity', '$unit', '$description', '$price', '$seller_id', '".substr($path,3)."')";
-    write($query);
-    $_SESSION['msg']="Product added successfully.";
+
+if (readone("SELECT COUNT(*) FROM product WHERE name='$name' AND seller_id='$seller_id'") > 0) {
+    $_SESSION['msg'] = "Product with this name already exists.";
+} else {
+    $query = "INSERT INTO product (name, description, unit_price, available_unit, image, seller_id, agent_id, unit, catagory)
+              VALUES ('$name', '$description', '$price', '$quantity', '$path', '$seller_id', NULL, '$unit', '$category')";
+    if (write($query)) {
+        $_SESSION['msg'] = "Product added successfully.";
+    } else {
+        $_SESSION['msg'] = "Error adding product: " . mysqli_error($con);
+    }
 }
-// echo $result;
 header("Location: ../views/seller/Add_Products.php");
 ?>
