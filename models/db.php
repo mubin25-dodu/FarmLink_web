@@ -12,6 +12,7 @@ $con = mysqli_connect($server , $username , $password,$db);
    //  echo "connected";
  }
 
+
  function write ($a){
     global $con;
     return mysqli_query($con,$a);

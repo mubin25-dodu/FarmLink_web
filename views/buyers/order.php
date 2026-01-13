@@ -39,7 +39,7 @@ require('../../models/db.php');
 
     <h4 class="title">Pending & Processing Orders</h4>
     <?php  $products=[];
-       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status like '%ending%' or status like '%rocessing%' or status like '%ejected%');");
+       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status !='Successful' and status != 'Delivered')");
     // print_r($products);
     if($products==null){
         echo "<p>No pending or processing orders found.</p>";
@@ -56,7 +56,7 @@ require('../../models/db.php');
 
             ?> 
             <div id="products_payment" class="products_payment" style="<?= $style ?>">
-                <img class="img" src="<?= $img ?>" alt="">
+                <img class="img" src="../<?= $img ?>" alt="">
                 <div><h3 class="name"><?= $name?></h3> 
                 <p class="price">Price <span> <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
                 <div>
