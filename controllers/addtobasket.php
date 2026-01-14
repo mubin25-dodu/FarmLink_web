@@ -14,9 +14,13 @@ else if(isset($data['quantity']) && isset($data['id'])){
   if(count(read("select * from basket where buyer_id='{$_SESSION['user_data']['uid']}' and product_id='{$data['id']}'"))>0){
       echo json_encode (["status"=>"Product already in basket"] );
   }else { 
-    write("insert into basket values(NULL,'{$_SESSION['user_data']['uid']}' , '{$data['id']}','{$data['quantity']}')");}
-    echo json_encode (["status"=>"Product added to basket"] );
+    if(write("insert into basket (buyer_id, product_id, quantity) values('{$_SESSION['user_data']['uid']}' , '{$data['id']}','{$data['quantity']}')")){
+    echo json_encode (["status"=>"Product added to basket"] );}
+    else {
+      echo json_encode (["status"=>"Failed to add product"] );
+    }
   }
+}
 
 else if( isset($_SESSION['user_data']) && isset($data['id'])){
   // print_r($_SESSION['user_data']['uid']);
@@ -24,9 +28,13 @@ else if( isset($_SESSION['user_data']) && isset($data['id'])){
   if(count(read("select * from basket where buyer_id='{$_SESSION['user_data']['uid']}' and product_id='{$data['id']}'"))>0){
   // header("Location: ../views/buyers/home.php");
       echo json_encode (["status"=>"Product already in basket"] );
-  }else { 
-    write("insert into basket values(NULL,'{$_SESSION['user_data']['uid']}' , '{$data['id']}','1')");
-    echo json_encode (["status"=>"Product added to basket"] );
+  }
+  else { 
+    if(write("insert into basket (buyer_id, product_id, quantity) values('{$_SESSION['user_data']['uid']}' , '{$data['id']}','1')")){
+    echo json_encode (["status"=>"Product added to basket"] );}
+    else {
+      echo json_encode (["status"=>"Failed to add product"] );
+    }
 }
 }
 ?>

@@ -47,8 +47,8 @@ require_once('../../controllers/notifi.php');
            
     ?>
     <div class="products">
-    <img class="product_img" src="../<?= $p['image']?>" alt="">
-    <div><h3 class="name"><?= $p['name']?></h3> 
+    <img class="product_img" src="<?= $p['image']?>" alt=""  onerror="this.src='../../assets/img/default.png'">
+    <div><h3 sid="<?= $p['seller_id'] ?>" class="name"><?= $p['name']?></h3> 
     <p>Price: <span class="unit_price"><?= $p['unit_price']?></span>TK/<?= $p['unit']?></p>
     <p>Available:<span class="available"><?= $p['available_unit']?></span></p></div>
     <div>
@@ -66,7 +66,7 @@ require_once('../../controllers/notifi.php');
 </div>
 <a href="basket.php"><img  id="basket_icon" src="../../assets/img/basket.png" alt=""></a>
 </body>
-<script src="../../assets/js/basket&payment.js"></script>
+<script type="module" src="../../assets/js/basket&payment.js"></script>
 <script type="module" src="../../assets/js/search.js"></script>
 
 <script> 

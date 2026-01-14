@@ -37,6 +37,9 @@ if(bskt.length > 0){
                 else if(data.status === "Product added to basket"){
                 notifyUser("Product added to basket", "green");
                 }
+                else{
+                notifyUser("Failed to add product", "red");
+                }
         });
     });
 }

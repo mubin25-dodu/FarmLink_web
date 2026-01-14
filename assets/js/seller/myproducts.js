@@ -56,7 +56,7 @@ function loadproducts(data){
                 <td>${data[i].description}</td>
                 <td>${data[i].unit_price}</td>
                 <td>${data[i].available_unit}${data[i].unit}</td>
-                <td>${data[i].catagory}</td>
+                <td>${data[i].category}</td>
                 <td><div class ="buttons">
                 <button class="dlt" pid="${data[i].product_id}">Delete</button>
                 <button class="edit" pid="${data[i].product_id}">Edit</button>
@@ -98,7 +98,7 @@ function loadproducts(data){
                 document.getElementById('description').value = data[0].description;
                 document.getElementById('price').value = data[0].unit_price;
                 document.getElementById('stock').value = data[0].available_unit;
-                document.getElementById('category').value = data[0].catagory;
+                document.getElementById('category').value = data[0].category;
             });
 
             loadedit(pid);
@@ -127,11 +127,11 @@ function loadproducts(data){
                 validate(datas, '../../models/fetch_seller_products.php', function(data){
                     if(data.status == 'updated'){
                         notifyUser('Product updated successfully', 'green');
-                       loadtable();
+                        loadtable();
                         // window.location.reload();
                     }else{
                         // window.location.reload();
-                       loadtable();
+                        loadtable();
                         notifyUser('Error updating product', 'red');
                     }
                 });

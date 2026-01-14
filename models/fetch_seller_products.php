@@ -36,7 +36,7 @@ if(isset($data["product_id_update"])){
     $price = $data["price"];
     $stock = $data["stock"];
     $category = $data["category"];
-    $qury="UPDATE product set name='$name', description='$description', unit_price='$price', available_unit='$stock', catagory='$category' where product_id= '".$product_id."' and Seller_id= '".$_SESSION['user_data']['uid'] ."' ";
+    $qury="UPDATE product set name='$name', description='$description', unit_price='$price', available_unit='$stock', category='$category' where product_id= '".$product_id."' and Seller_id= '".$_SESSION['user_data']['uid'] ."' ";
     if(write($qury)){
         echo json_encode (["status" => "updated"]);
     }else{

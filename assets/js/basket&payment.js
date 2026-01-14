@@ -1,4 +1,5 @@
 // import { notifyUser } from './login.js';
+import { validate } from './ajax.js';
 
 // basket
 let inc = document.querySelectorAll(".increment_btn");
@@ -12,8 +13,9 @@ let totalDisplay = document.getElementById("total");
 let removebtn = document.querySelectorAll(".basketbtn");
 
 let products = [];
+let total_price = 0; 
+let del_charges = 0;
 
- total_price = 0; 
 // calculation
 for(let i=0; i<inc.length; i++){
     let av = parseInt(available[i].innerText);
@@ -55,8 +57,9 @@ for(let i=0; i<inc.length; i++){
             name: document.querySelectorAll(".name")[i].innerText,
             id: document.querySelectorAll(".basketbtn")[i].id,
             quantity: val, 
+            sid : document.querySelectorAll(".name")[i].getAttribute("sid"),
             unit_price: price});
-updateTotal();  
+            updateTotal();  
         }
             console.log(products);
 
@@ -72,7 +75,7 @@ function updateTotal() {
     total_price = 0; 
     for(let i=0; i<checkbox.length; i++){
         if(checkbox[i].checked){
-            tp = parseFloat(document.querySelectorAll(".total_price")[i].innerText);
+           let tp = parseFloat(document.querySelectorAll(".total_price")[i].innerText);
             total_price += tp;
         }
     }
@@ -145,13 +148,75 @@ if(remove){
 
 }
 }
+
+
+
+// delivery_info
+let s=JSON.parse(localStorage.getItem("products"));
+let si=[];
+for(let i=0; i<s.length; i++){
+    si.push(s[i]['sid']);
+}
+let seller_count = [...new Set(si)].length; // finding unique seller(set removes duplicate values) 
+// console.log(sid);
+
+
+let cityval = document.getElementById("city");
+if(cityval){
+cityval.addEventListener("change", function(){
+calculateDeliveryCharges();
+});
+}
+
+calculateDeliveryCharges();
+function calculateDeliveryCharges(){
+    del_charges = 0;
+    let existingCharge = document.getElementById('del_charge_display');
+    if(existingCharge) existingCharge.remove();
+    
+    for(let i =0; i<seller_count; i++){
+        validate({sid:si[i]}, "../../models/orderController.php", function(res){
+            // console.log(res);
+                let city = res;
+                //lets just asume the price for now
+                if(city=== document.getElementById("city").value){
+                    del_charges += 100;
+                }
+                else{
+                    del_charges += 200;
+                }
+                console.log(del_charges);
+                
+                // Update or create delivery charge display
+                let chargeDisplay = document.getElementById('del_charge_display');
+                if(!chargeDisplay){
+                    chargeDisplay = document.createElement("p");
+                    chargeDisplay.id = 'del_charge_display';
+                    let card = document.querySelector(".card2");
+                    card.appendChild(chargeDisplay);
+                }
+                chargeDisplay.innerHTML = `Delivery Charges: <span id="del_charge">${del_charges}</span> TK`;
+                
+                // Update total payment after delivery charges are calculated
+                updateTotalPayment();
+    });
+    }
+}
+
 function updateTotalPayment(){
-    let total_price = 0;
+     total_price = 0;
+     let charge = 0;
     for(let i=0; i<products.length; i++){
             total_price += products[i]['unit_price'] * products[i]['quantity'];
     }
-    document.getElementById('paybtn').innerText ='Pay => ' + total_price + " TK";
+    if( document.getElementById('del_charge')){
+        charge = parseFloat(document.getElementById('del_charge').innerText);
+    }
+     console.log(charge);
+    
+    document.getElementById('paybtn').innerText ='Pay => ' + (total_price + charge) + " TK";
 }
+
 
 //payment button functions
 let paybtn = document.getElementById("paybtn");
@@ -194,22 +259,18 @@ paybtn.addEventListener("click", function(){
         // if all good
         document.querySelector(".order_confirm_container").style.display="flex";
        
-        userdata = {
+        let userdata = {
             name: name,
             phone: phone,
             address: address,
             payment_method: payment_method,
-            city: city
+            city: city,
+            del_charges: del_charges
         };
         products.push({userdata:userdata});
         console.log(products);
-         fetch("../../models/orderController.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body:JSON.stringify(products)
-            });
+        validate(products, "../../models/orderController.php", function(res){
+            console.log(res);});
             // localStorage.removeItem("products");
 
         }
