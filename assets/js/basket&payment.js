@@ -197,7 +197,6 @@ function calculateDeliveryCharges(){
                 }
                 chargeDisplay.innerHTML = `Delivery Charges: <span id="del_charge">${del_charges}</span> TK`;
                 
-                // Update total payment after delivery charges are calculated
                 updateTotalPayment();
     });
     }

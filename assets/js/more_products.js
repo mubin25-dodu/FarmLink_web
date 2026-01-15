@@ -22,7 +22,6 @@ if(next){
         offset += 24;
         loaddata({load: load, offset: offset});
         console.log(offset);
-
     });
 }
 if(prev){
@@ -80,6 +79,7 @@ function loaddata(load){
         }
     else{
         loadproducts(data);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
     });
 }

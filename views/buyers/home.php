@@ -48,14 +48,26 @@ session_start();
 <div class="sections">
     <h2 class="sec_title">Most selled products</h2>
     <div id="products_container">
+
+    <?php
+    $products=[];
+       $products=read('select * from orders Order by quantity DESC Limit 5;');
+    
+       foreach($products as $a){
+        $pro =read('SELECT * FROM product WHERE product_id='.$a['product_id']);
+        // print_r($pro);
+        ?>
        <div id="products" class ="products"> 
         <div class="p_details">
-        <img src="../../assets/img/Grow. Link. Thrive..png" alt="Product img">
-        <h3>Product 1</h3>
-        <p> Price $10.00</p>
-        <button class="card_btn"> Details</button> 
+        <img src="<?= $pro[0]['image'] ?>?>" onerror="this.src='../../assets/img/default.png' " alt="Product img">
+        <h3><?= $pro[0]['name'] ?></h3>
+        <p> Price: <?= $pro[0]['unit_price'] ?> Tk</p>
+        <a href="product_details.php?id=<?= $pro[0]['product_id']?>"><button class="card_btn" >Details </button></a>  
         </div>
+        
         </div> 
+    <?php } ?>
+
        </div>
     </div>
 
@@ -63,7 +75,7 @@ session_start();
      
     <div class="sections">
     <h2 class="sec_title">Products For You</h2>
-             <div id="products_container2">
+    <div id="products_container2">
    <?php  $products=[];
        $products=read('select * from product where available_unit > 0 Limit 20;');
     //    print_r($products);

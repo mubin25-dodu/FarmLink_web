@@ -20,7 +20,7 @@
         <li><a class="nav-link" href="order.php">Orders</a></li>
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
-    <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
+ <?php session_start(); if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     <?php } else {  ?>
     <a class="orange_color" href="../Login.php">Login</a>

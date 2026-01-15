@@ -45,6 +45,7 @@ if(bskt.length > 0){
 }
 }
 
+
 // setInterval(() => bannerChange("left"), 10000);
 // let lft_btn = document.getElementById('left_btn');
 // let rgt_btn = document.getElementById('right_btn');

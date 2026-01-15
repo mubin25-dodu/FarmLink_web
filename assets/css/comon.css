@@ -75,7 +75,6 @@ nav {
 
     #products_container{
      display: flex;
-     
      justify-content: center;
      flex-wrap: wrap;
      justify-items: center;
@@ -90,6 +89,7 @@ nav {
         img{
             margin: -5px -5px 5px -5px ;
             border-radius: 15px;
+            height: 200px;
             width: 200px;
             transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
         }
