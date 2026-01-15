@@ -77,7 +77,7 @@ session_start();
     <h2 class="sec_title">Products For You</h2>
     <div id="products_container2">
    <?php  $products=[];
-       $products=read('select * from product where available_unit > 0 Limit 20;');
+       $products=read('select * from product where available_unit > 0 Limit 21;');
     //    print_r($products);
         foreach($products as $a){?> 
 

@@ -77,8 +77,8 @@ function loadtable(data){
                 <td class="status" >${data[i]['status']}</td>
                 <td style="display: ${display_status}"> You can not edit now</td>
                 <td><div style="display: ${display_buttons}" class ="buttons">
-                <button class="Accept" data-order-id="${data[i]['odr_id']}" data-action="${btn_name}">${btn_name}</button>
-                <button class="Reject" data-order-id="${data[i]['odr_id']}">Reject order</button>
+                <button class="Accept" data-order-id="${data[i]['product_id']}" data-action="${btn_name}">${btn_name}</button>
+                <button class="Reject" data-order-id="${data[i]['product_id']}">Reject order</button>
                 </div></td>
             `;
             if(data[i].status == "Accepted"){
@@ -101,10 +101,11 @@ function loadtable(data){
                     let orderId = this.getAttribute('data-order-id');
                     let actionType = this.getAttribute('data-action');
                     let msg ={};
+                    console.log(orderId);
                     if(actionType === "Accept Order"){
-                       msg = {order_id: orderId, action: 'Accepted'}
+                       msg = {product_id: orderId, action: 'Accepted'}
                     }else if(actionType === "Request Picked Up"){
-                       msg = {order_id: orderId, action: 'Processing'}
+                       msg = {product_id: orderId, action: 'Processing'}
                     }
                     validate(msg, '../../models/manage_order.php', function(res){
 

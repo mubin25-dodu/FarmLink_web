@@ -39,18 +39,15 @@ basket.addEventListener("click", function() {
         notifyUser("Please select a quantity.", "red");
     }
     else{
-        console.log("Adding to basket");
+        // console.log("Adding to basket");
         validate( {id: pid, quantity: count} , "../../controllers/addtobasket.php", function(data){
             console.log(data);
             
-            if(data.status === "Not loggedin"){
-                notifyUser("Please login to add products to basket",'red');
-                  }
-                    else if(data.status === "Product already in basket"){
-                        notifyUser("Product already in basket", "red");
-                    }
-                    else if(data.status === "Product added to basket"){
+                    if(data.status === "Product added to basket"){
                         notifyUser("Product added to basket", "green");
+                    }
+                    else{
+                        notifyUser(data.status, "red");
                     }
                 });
             }
