@@ -74,6 +74,7 @@ buybtn.addEventListener("click", function() {
             name: document.getElementById("name").innerText,
             id: document.getElementById("pid").innerText,
             quantity: count, 
+            sid : document.getElementById("name").getAttribute("sid"),
             unit_price: price});
            localStorage.setItem("products", JSON.stringify(products));
            window.location.href = "payment.php";
