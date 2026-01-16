@@ -152,7 +152,8 @@ if(remove){
 
 
 // delivery_info
-let s=JSON.parse(localStorage.getItem("products"));
+let s =[];
+s = JSON.parse(localStorage.getItem("products"));
 let si=[];
 for(let i=0; i<s.length; i++){
     si.push(s[i]['sid']);
@@ -185,7 +186,7 @@ function calculateDeliveryCharges(){
                 else{
                     del_charges += 200;
                 }
-                console.log(del_charges);
+                // console.log(del_charges);
                 
                 // Update or create delivery charge display
                 let chargeDisplay = document.getElementById('del_charge_display');
@@ -221,7 +222,6 @@ function updateTotalPayment(){
 let paybtn = document.getElementById("paybtn");
 if(paybtn){
 paybtn.addEventListener("click", function(){
-    
     if(products.length === 0){
         alert("No products to pay for!");
     }else{
@@ -232,6 +232,8 @@ paybtn.addEventListener("click", function(){
         let city = document.getElementById("city").value; 
         if(name === "" || phone === "" || address === "" || payment_method === ""|| city === ""){
             alert("Please fill in all the payment information!");
+            console.log("paybtn clicked");
+
         }
         else if(name.length<2||phone.length<11|| address.length<5||isNaN(phone)){
             if(phone.length<11){
@@ -258,6 +260,7 @@ paybtn.addEventListener("click", function(){
         // if all good
         document.querySelector(".order_confirm_container").style.display="flex";
        
+        console.log("vhaiiiiii clickedddd");
         let userdata = {
             name: name,
             phone: phone,
@@ -276,8 +279,10 @@ paybtn.addEventListener("click", function(){
     }
 });
 }
-
-document.getElementById("continue_shopping").addEventListener("click", function(){
+let cont = document.getElementById("continue_shopping");
+if(cont){
+cont.addEventListener("click", function(){
     localStorage.removeItem("products");
     window.location.href = "home.php";
 });
+}
