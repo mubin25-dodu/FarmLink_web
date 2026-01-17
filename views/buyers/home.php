@@ -51,18 +51,17 @@ session_start();
 
     <?php
     $products=[];
-       $products=read('select * from orders Order by quantity DESC Limit 5;');
+       $products=read('select * , SUM(o.quantity) AS quantity FROM orders o JOIN product p ON o.product_id = p.product_id GROUP BY o.product_id ORDER BY o.quantity DESC LIMIT 5;');
     
        foreach($products as $a){
-        $pro =read('SELECT * FROM product WHERE product_id='.$a['product_id']);
         // print_r($pro);
         ?>
        <div id="products" class ="products"> 
         <div class="p_details">
-        <img src="<?= $pro[0]['image'] ?>?>" onerror="this.src='../../assets/img/default.png' " alt="Product img">
-        <h3><?= $pro[0]['name'] ?></h3>
-        <p> Price: <?= $pro[0]['unit_price'] ?> Tk</p>
-        <a href="product_details.php?id=<?= $pro[0]['product_id']?>"><button class="card_btn" >Details </button></a>  
+        <img src="<?= $a['image'] ?>?>" onerror="this.src='../../assets/img/default.png' " alt="Product img">
+        <h3><?= $a['name'] ?></h3>
+        <p> Price: <?= $a['unit_price'] ?> Tk</p>
+        <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a>  
         </div>
         
         </div> 
