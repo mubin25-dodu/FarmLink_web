@@ -49,7 +49,7 @@ require('../../models/db.php');
      <b>Price: <span id="price" > <?= $data[0]['unit_price']?></span> TK / <?= $data[0]['unit'] ?></b>
      <div  id="description"> <?= $data[0]['description'] ?></div>
      <div class="delivery_details"> Delivery details here  <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam earum ratione possimus veniam? Temporibus exercitationem ea nemo facilis, qui ut architecto animi magni vel quaerat sit quo eveniet, voluptas culpa.</div>
-      <span style="font-weight: bold;" id="totalprice"></span>
+     <span style="font-weight: bold;" id="totalprice"></span>
         <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span id="value">0</span> <button type="button" class="decrement_btn" id="decrement_btn">-</button> </div><div > Available: <span id="available_unit"><?= $data[0]['available_unit'] ?></span></div>
         <div class="btndiv"> <a class="card_btn" id="buy_btn">Buy</a>
         <label id="pid" style="display: none;"><?= $id ?></label> 

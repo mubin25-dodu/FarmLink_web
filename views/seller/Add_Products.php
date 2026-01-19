@@ -43,7 +43,7 @@ unset($_SESSION['msg']);}
         <div id="product_type" class="field">
             <label>Product Type / Category</label>
             <select id ="type_select" name="category">
-                <option value="">-- Select --</option>
+                <option value="no">-- Select --</option>
                 <option value="Vegetable">Vegetable</option>
                 <option value="Fruit">Fruit</option>
                 <option value="Fish">Fish</option>
@@ -62,7 +62,7 @@ unset($_SESSION['msg']);}
         <div  class="field">
             <label>Unit</label>
             <select id ="unit" name="unit">
-                <option value="">-- Select --</option>
+                <option value="no">-- Select --</option>
                 <option value="Kg">Kg</option>
                 <option value="Liter">Liter</option>
                 <option value="Dozen">Dozen</option>

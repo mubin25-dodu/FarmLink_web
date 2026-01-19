@@ -110,7 +110,7 @@ function loadproducts(data){
         let pid = this.getAttribute("pid");
         validate( {id: pid} , "../../controllers/addtobasket.php", function(data){
             console.log(data);
-            if(data.status === "Not loggedin"){
+            if(data.status === "Please login to continue"){
                 notifyUser("Please login to add products to basket",'red');
             }
             else if(data.status === "Product already in basket"){

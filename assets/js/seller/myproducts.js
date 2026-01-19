@@ -75,12 +75,13 @@ function loadproducts(data){
     let dlt = document.getElementsByClassName('dlt');
     for(let i=0; i<dlt.length; i++){
         dlt[i].addEventListener('click', function(){
-             pid = this.getAttribute('pid');
+            pid = this.getAttribute('pid');
             validate({product_id: pid}, '../../models/fetch_seller_products.php', function(data){
                 if(data.status == 'deleted'){
                     notifyUser('Product deleted successfully', 'green');
                     // window.location.reload();
                        loadtable();
+                       search.value ='';
                 }else{
                     // window.location.reload();
                     notifyUser('Error deleting product', 'red');

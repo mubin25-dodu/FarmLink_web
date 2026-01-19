@@ -57,11 +57,11 @@ if(submitBtn){
             notifyUser('Please fill all the fields','red');
             product_name.style.borderColor='red';
         }
-        if(category.value ==''){
+        if(category.value =='no'){
             notifyUser('Please fill all the fields','red');
             category.style.borderColor='red';
         }
-        if(unit.value ==''){
+        if(unit.value =='no'){
             notifyUser('Please fill all the fields','red');
             unit.style.borderColor='red';
         }
@@ -89,6 +89,22 @@ if(submitBtn){
         else if(price.value <=0 ){
                 notifyUser('Price must be greater than zero','red');
                 price.style.borderColor='red';
+        }
+        else if(isNaN(price.value)){
+            notifyUser('Price must be a number','red');
+            price.style.borderColor='red';
+        }
+        else if(isNaN(quantity.value)){
+            notifyUser('Quantity must be a number','red');
+            quantity.style.borderColor='red';
+        }
+        else if(category.value=='no'){
+            notifyUser('Please select a category','red');
+            category.style.borderColor='red';
+        }
+        else if(unit.value=='no'){
+            notifyUser('Please select a unit','red');
+            unit.style.borderColor='red';
         }
         else if(description.value.length <10 || description.value.length >300 ){
             notifyUser('Description must be at least 10 characters long and no more than 300 characters','red');
