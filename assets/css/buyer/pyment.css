@@ -110,6 +110,7 @@ display: flex;
             color: #ffffff;
             font-weight: bold;
             cursor: pointer;
+            transition: all 1.3s ease;
         }
     }
 }

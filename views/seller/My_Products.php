@@ -34,6 +34,8 @@ require_once('../../controllers/authseller.php');
     <section id="products">
         <h2>My Products</h2>
         <input type="text" name="product-search" id="product-search" placeholder="Search products...">
+        <button id="stockout_button">Stockout/Deleted Product List</button>
+
         <div class="product-list" id="product-list">
             <table>
                 <thead>

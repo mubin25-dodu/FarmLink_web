@@ -22,7 +22,7 @@ if (inc && dec) {
             value.innerText = count;
             updateTotalPrice();
         } else {
-            alert("No more available units");
+            notifyUser("No more available units", "red");
         }
     });
     dec.addEventListener("click", function () {

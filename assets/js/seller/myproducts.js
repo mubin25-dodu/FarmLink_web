@@ -49,6 +49,7 @@ function loadproducts(data){
         let tablebody = document.getElementById('table_body');
         tablebody.innerHTML ='';
 
+        
        for(let i=0; i<data.length; i++){
             let tr= document.createElement('tr');
             tr.innerHTML = `
@@ -62,8 +63,10 @@ function loadproducts(data){
                 <button class="edit" pid="${data[i].product_id}">Edit</button>
                 </div></td>
             `;
-            if(data[i].available_unit == -1){
+            if(data[i].available_unit <= 0){
                 tr.style.backgroundColor ='#f8d7da';
+                tr.querySelector(".dlt").style.display = "none";
+                tr.querySelector(".edit").innerHTML = "Restock";
             }
             tablebody.appendChild(tr);
         }
@@ -114,6 +117,7 @@ function loadproducts(data){
             });
         }
        
+        
         if(document.getElementById('update_product')){
                 document.getElementById('update_product').addEventListener('click', function(){
                 let name = document.getElementById('name').value;
@@ -128,13 +132,23 @@ function loadproducts(data){
                     if(data.status == 'updated'){
                         notifyUser('Product updated successfully', 'green');
                         loadtable();
-                        // window.location.reload();
+                        document.getElementsByClassName('edit_card')[0].style.display = 'none';
+                        search.value ='';
                     }else{
-                        // window.location.reload();
                         loadtable();
                         notifyUser('Error updating product', 'red');
                     }
                 });
             });
         }
-    }
+        
+    }if(document.getElementById('stockout_button')){
+            document.getElementById('stockout_button').addEventListener('click', function(){
+                console.log('dd');
+                search.value ='';
+                fetchSellerProducts( {status: 'stockout'} , function(data){
+                    console.log(data);
+                    loadproducts(data);
+                });
+            });
+        }

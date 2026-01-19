@@ -61,7 +61,13 @@ unset($_SESSION['msg']);}
 
         <div  class="field">
             <label>Unit</label>
-            <input id="unit" name="unit" type="text" placeholder="Example: Kg, Liter, Dozen">
+            <select id ="unit" name="unit">
+                <option value="">-- Select --</option>
+                <option value="Kg">Kg</option>
+                <option value="Liter">Liter</option>
+                <option value="Dozen">Dozen</option>
+                <option value="Piece">Piece</option>
+            </select>
         </div>
 
         <div  class="field">

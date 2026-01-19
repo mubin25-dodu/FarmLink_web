@@ -1,5 +1,6 @@
 // import { notifyUser } from './login.js';
 import { validate } from './ajax.js';
+import { notifyUser } from './login.js';
 
 // basket
 let inc = document.querySelectorAll(".increment_btn");
@@ -47,7 +48,7 @@ for(let i=0; i<inc.length; i++){
     if(this.checked){
         if(val === 0){
         //    notifyUser("Please select quantity greater than 0 to add to checkout",'red');
-          alert("Please select quantity greater than 0 to add to checkout");
+          notifyUser("Please select quantity greater than 0 to add to checkout", "red");
           this.checked = false;
         }
          else{
@@ -85,7 +86,7 @@ function updateTotal() {
 let checkoutBtn = document.getElementById("checkoutbtn");
 if(checkoutBtn)checkoutBtn.addEventListener("click", function(){
     if(products.length === 0){
-        alert("Please select at least one product to checkout");
+        notifyUser("Please select at least one product to checkout", "red");
     }else{
         window.location.href = "payment.php";   
         localStorage.setItem("products", JSON.stringify(products));
@@ -97,20 +98,29 @@ if(checkoutBtn)checkoutBtn.addEventListener("click", function(){
 if(window.location.href.includes("payment.php")){
     loadpayments();
 }
+
+
+
 function loadpayments(){
 products = JSON.parse(localStorage.getItem("products"));
 // console.log(products[0]['id']);
 
 
+let cards = document.getElementById("products_payment");
+let container = document.getElementById("card1");
 
-
-
-
+if(products===null || products.length === 0){
+    notifyUser("No products to pay for!", "red");
+    let ptag = document.createElement("p");
+    ptag.innerHTML = "<p>No products in the payment page. Please add products to the basket and select products to pay for.</p>";
+    ptag.style.color ='red';
+    ptag.style.fontSize ='18px';
+    container.appendChild(ptag);
+}
 
 //okkkay now lets display products in payment page
 for(let i=0; i<products.length; i++){
-let cards = document.getElementById("products_payment");
-let container = document.getElementById("card1");
+
 let product= cards.cloneNode(true);
 if(products[i]['img']===undefined){
     products[i]['img']="../../assets/img/basket.png";
@@ -223,7 +233,7 @@ let paybtn = document.getElementById("paybtn");
 if(paybtn){
 paybtn.addEventListener("click", function(){
     if(products.length === 0){
-        alert("No products to pay for!");
+        notifyUser("No products to pay for!");
     }else{
         let name = document.getElementById("name").value;
         let phone = document.getElementById("phone").value;
@@ -231,28 +241,28 @@ paybtn.addEventListener("click", function(){
         let payment_method = document.getElementById("payment").value;   
         let city = document.getElementById("city").value; 
         if(name === "" || phone === "" || address === "" || payment_method === ""|| city === ""){
-            alert("Please fill in all the payment information!");
+            notifyUser("Please fill in all the payment information!", "red");
             console.log("paybtn clicked");
 
         }
         else if(name.length<2||phone.length<11|| address.length<5||isNaN(phone)){
             if(phone.length<11){
-                alert("Phone number must be at least 11 digits!");
+                notifyUser("Phone number must be at least 11 digits!", "red");
             }else if(phone.length>14){
-                alert("Please provide valid Phone number!");
+                notifyUser("Please provide valid Phone number!", "red");
             }
             if(phone.length===11){
                 if(!(phone.startsWith("01"))){
-                    alert("Phone number must start with '01'!");
+                    notifyUser("Phone number must start with '01'!", "red");
                 }
             }
             else if(phone.length===14){
                 if(!(phone.startsWith("+8801"))){
-                    alert("Phone number must start with '+8801'!");
+                    notifyUser("Phone number must start with '+8801'!", "red");
                 }
             }
             else{
-            alert("Please provide valid payment information!");
+            notifyUser("Please provide valid payment information!", "red");
             }
         }
         else{

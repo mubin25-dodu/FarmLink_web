@@ -90,10 +90,6 @@ if(submitBtn){
                 notifyUser('Price must be greater than zero','red');
                 price.style.borderColor='red';
         }
-        else if(unit.value !=='Kg' && unit.value !=='Litre' && unit.value !=='Packet' && unit.value !=='Piece' ){
-            notifyUser('Enter a valid unit(Kg, Litre, Packet, Piece)','red');
-            unit.style.borderColor='red';
-        }
         else if(description.value.length <10 || description.value.length >300 ){
             notifyUser('Description must be at least 10 characters long and no more than 300 characters','red');
             description.style.borderColor='red';

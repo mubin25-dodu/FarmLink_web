@@ -77,8 +77,8 @@ nav {
     margin: 5% 10%;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 4px 4px 0px 0px  rgba(0, 0, 0, 0.534);
-    border: var(--darkgreen) 1px solid;
+    box-shadow: 0px 0px 15px 10px  rgb(237 234 234 / 53%);
+    /* border: var(--darkgreen) 1px solid; */
     #products_container{
      display: flex;
      justify-content: center;
@@ -90,21 +90,24 @@ nav {
         margin: 20px;
         padding: 15px;
         border-radius: 15px;
-        box-shadow: 4px 4px 0px 0px  rgba(0, 0, 0, 0.534);
+         box-shadow: 6px 6px 0px 0px  rgb(208 203 203 / 15%);
         overflow: hidden;
         }
         .products:hover{
            transition: all 0.5s ease;
            transform: translate3d(5px, 5px, 0);
-           box-shadow: 1px 1px 0px 0px  rgba(0, 0, 0, 0.534);
-
+           box-shadow: 2px 2px 0px 0px  rgba(0 0 0 / 15%);
+           /* img{
+            transform: scale(1.1);
+            z-index: 1;
+            } */
         }
         img{
             margin: -5px -5px 5px -5px ;
             border-radius: 15px;
             height: 200px;
             width: 200px;
-            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+            transition: all 0.5s ease-in-out;
         }
         /* img:hover {
             transform: scale(1.1);
@@ -141,11 +144,11 @@ nav {
                 cursor: pointer;
             }
         }
-        .card_btn{
+          .card_btn{
             position: relative;
             width: 80px;
             margin-left: 60%;
-           
+            box-shadow: #5151513b 0px 0px 10px 0.1px;
             border:none;
             padding: 3px;
             border-radius: 15px;
@@ -153,6 +156,7 @@ nav {
             cursor: pointer;
             font-weight: bold;
             color: var(--darkgreen);
+              
         }
         
         .card_btn::before{
@@ -175,6 +179,7 @@ nav {
           transition: all .3s ease;
           color: #ffffff;
         }
+         
          }
 
 }
@@ -196,27 +201,28 @@ nav {
         gap: 10px;
         width: 400px;
         padding-bottom: 20px;
-        box-shadow: 4px 4px 0px 0px  rgba(0, 0, 0, 0.534);
+        box-shadow: 6px 6px 0px 0px  rgb(208 203 203 / 15%);
         overflow: hidden;
         }
         .p_details2:hover{
            transition: all 0.5s ease;
            transform: translate3d(5px, 5px, 0);
-           box-shadow: 1px 1px 0px 0px  rgba(0, 0, 0, 0.534);
+           box-shadow: 2px 2px 0px 0px  rgb(0 0 0 / 15%);
            .image{
             transform: scale(1.1);
             z-index: 1;
+            
            }
 
         }
         .image{
-        width: 398px;
-        margin-left: -14px;
+        width: 400px;
+        margin-left: -15px;
         height: 250px;
         margin-top: -15px;
-        border-radius: 15px 15px 0 0;
+        /* border-radius: 15px 15px 0 0; */
         object-fit: cover;
-        transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+        transition: all 0.5s ease-in-out;
         }
         /* .image:hover {
             transform: scale(1.1);
@@ -231,6 +237,7 @@ nav {
             font-size: 15px;
             cursor: pointer;
             font-weight: bold;
+            box-shadow:  #5151513b 0px 0px 10px 1px;
             color: var(--darkgreen);
         }
         
@@ -242,7 +249,7 @@ nav {
             width: 0%;
             height: 100%;
             background-color: var(--darkgreen);
-            border-radius: 15px;
+            border-radius: 30px;
             transition: all .3s ease;
             z-index: -1;
         }
@@ -253,6 +260,8 @@ nav {
           z-index: 1111;
           transition: all .3s ease;
           color: #ffffff;
+          box-shadow:  var(--orange) 0px 0px 10px 1px;
+             
         }
        
     
@@ -362,7 +371,7 @@ nav ul li a:hover::after {
     background-color: var(--darkgreen);
     gap: 20px;
     color: white;
-    box-shadow: 0px -2px 10px rgba(170, 169, 169, 0.3);
+    border-top: 1px solid rgba(208, 227, 213, 0.2);
         .footer-top{
         display: flex;
         flex-direction: row;
@@ -406,7 +415,7 @@ nav ul li a:hover::after {
             justify-content: space-evenly;
             padding: 10px 0 10px 0;
             background-color: #15462b;
-    overflow-x: hidden;
+            overflow-x: hidden;
 
         }
 
