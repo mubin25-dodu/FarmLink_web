@@ -49,6 +49,7 @@ function loadproducts(data){
         let tablebody = document.getElementById('table_body');
         tablebody.innerHTML ='';
 
+        
        for(let i=0; i<data.length; i++){
             let tr= document.createElement('tr');
             tr.innerHTML = `
@@ -56,14 +57,16 @@ function loadproducts(data){
                 <td>${data[i].description}</td>
                 <td>${data[i].unit_price}</td>
                 <td>${data[i].available_unit}${data[i].unit}</td>
-                <td>${data[i].catagory}</td>
+                <td>${data[i].category}</td>
                 <td><div class ="buttons">
                 <button class="dlt" pid="${data[i].product_id}">Delete</button>
                 <button class="edit" pid="${data[i].product_id}">Edit</button>
                 </div></td>
             `;
-            if(data[i].available_unit == -1){
+            if(data[i].available_unit <= 0){
                 tr.style.backgroundColor ='#f8d7da';
+                tr.querySelector(".dlt").style.display = "none";
+                tr.querySelector(".edit").innerHTML = "Restock";
             }
             tablebody.appendChild(tr);
         }
@@ -72,12 +75,13 @@ function loadproducts(data){
     let dlt = document.getElementsByClassName('dlt');
     for(let i=0; i<dlt.length; i++){
         dlt[i].addEventListener('click', function(){
-             pid = this.getAttribute('pid');
+            pid = this.getAttribute('pid');
             validate({product_id: pid}, '../../models/fetch_seller_products.php', function(data){
                 if(data.status == 'deleted'){
                     notifyUser('Product deleted successfully', 'green');
                     // window.location.reload();
                        loadtable();
+                       search.value ='';
                 }else{
                     // window.location.reload();
                     notifyUser('Error deleting product', 'red');
@@ -98,7 +102,7 @@ function loadproducts(data){
                 document.getElementById('description').value = data[0].description;
                 document.getElementById('price').value = data[0].unit_price;
                 document.getElementById('stock').value = data[0].available_unit;
-                document.getElementById('category').value = data[0].catagory;
+                document.getElementById('category').value = data[0].category;
             });
 
             loadedit(pid);
@@ -114,6 +118,7 @@ function loadproducts(data){
             });
         }
        
+        
         if(document.getElementById('update_product')){
                 document.getElementById('update_product').addEventListener('click', function(){
                 let name = document.getElementById('name').value;
@@ -127,14 +132,24 @@ function loadproducts(data){
                 validate(datas, '../../models/fetch_seller_products.php', function(data){
                     if(data.status == 'updated'){
                         notifyUser('Product updated successfully', 'green');
-                       loadtable();
-                        // window.location.reload();
+                        loadtable();
+                        document.getElementsByClassName('edit_card')[0].style.display = 'none';
+                        search.value ='';
                     }else{
-                        // window.location.reload();
-                       loadtable();
+                        loadtable();
                         notifyUser('Error updating product', 'red');
                     }
                 });
             });
         }
-    }
+        
+    }if(document.getElementById('stockout_button')){
+            document.getElementById('stockout_button').addEventListener('click', function(){
+                console.log('dd');
+                search.value ='';
+                fetchSellerProducts( {status: 'stockout'} , function(data){
+                    console.log(data);
+                    loadproducts(data);
+                });
+            });
+        }

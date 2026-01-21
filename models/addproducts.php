@@ -18,12 +18,12 @@ if (!move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
 }
 
 if (readone("SELECT COUNT(*) FROM product WHERE name='$name' AND seller_id='$seller_id'") > 0) {
-    $_SESSION['msg'] = "Product with this name already exists.";
+    // $_SESSION['msg'] = "Product with this name already exists.";
 } else {
-    $query = "INSERT INTO product (name, description, unit_price, available_unit, image, seller_id, agent_id, unit, catagory)
-              VALUES ('$name', '$description', '$price', '$quantity', '$path', '$seller_id', NULL, '$unit', '$category')";
+    $query = "INSERT INTO product (name, description, unit_price, available_unit, image, seller_id, agent_id, unit, category)
+              VALUES ('$name', '$description', '$price', '$quantity', '../".$path."', '$seller_id', NULL, '$unit', '$category')";
     if (write($query)) {
-        $_SESSION['msg'] = "Product added successfully.";
+        // $_SESSION['msg'] = "Product added successfully.";
     } else {
         $_SESSION['msg'] = "Error adding product: " . mysqli_error($con);
     }

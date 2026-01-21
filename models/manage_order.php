@@ -5,7 +5,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 // echo json_encode("dsadas sads");
 
 if(isset($_SESSION['user_data'])&& isset($data["action"] )){
-    $q="update orders set status='{$data['action']}' where odr_id='{$data['order_id']}'";
+    $q="update orders set status='{$data['action']}' where product_id='{$data['product_id']}'";
     if(write($q)){
         $result =  "success";
     }else{

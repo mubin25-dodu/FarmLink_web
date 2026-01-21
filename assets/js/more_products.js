@@ -19,15 +19,14 @@ else{
 
 if(next){
     next.addEventListener('click', function(){
-        offset += 20;
+        offset += 24;
         loaddata({load: load, offset: offset});
         console.log(offset);
-
     });
 }
 if(prev){
     prev.addEventListener('click', function(){
-       if(offset > 0){ offset -= 20;
+       if(offset > 0){ offset -= 24;
         loaddata({load: load, offset: offset});
        }
     else{
@@ -61,7 +60,7 @@ if(cat){
             load =cat.value;
         }
         offset = 0;
-        loaddata({load: load , offset: offset});
+        loaddata({category: load , offset: offset});
 
     });
 }
@@ -73,13 +72,14 @@ function loaddata(load){
         console.log(data);
         if(data.length === 0 && search.value.trim()==""){
         notifyUser("No more products to show",'red');
-        offset -= 20;
+        offset -= 24;
         }
         else if(data.length === 0 && search.value.trim()!==""){
             notifyUser("No products found for the search term",'red');
         }
     else{
         loadproducts(data);
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
     });
 }
@@ -95,7 +95,7 @@ function loadproducts(data){
          card.className = "product";
          card.innerHTML = `
          <div class="p_details2">
-         <img class="image" src="${data[i].image}" alt="Product img">
+         <img class="image" src="${data[i].image}" alt="Product img"  onerror="this.src='../../assets/img/default.png'">
          <h3>${data[i].name}</h3>
          <div class="product_details">${data[i].description}</div>
          <p>Price: ${data[i].unit_price}Tk/kg</p>
@@ -110,7 +110,7 @@ function loadproducts(data){
         let pid = this.getAttribute("pid");
         validate( {id: pid} , "../../controllers/addtobasket.php", function(data){
             console.log(data);
-            if(data.status === "Not loggedin"){
+            if(data.status === "Please login to continue"){
                 notifyUser("Please login to add products to basket",'red');
             }
             else if(data.status === "Product already in basket"){

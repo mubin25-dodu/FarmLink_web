@@ -28,19 +28,17 @@ if(bskt.length > 0){
             console.log(btn.getAttribute('pid'));
             validate({id: btn.getAttribute('pid')} , "../../controllers/addtobasket.php", function(data){
                 console.log(data);
-                if(data.status === "Not loggedin"){
-                notifyUser("Please login to add products to basket",'red');
+                if(data.status === "Product added to basket"){
+                notifyUser(data.status, "green");
                 }
-                if(data.status === "Product already in basket"){
-                notifyUser("Product already in basket", "red");
-                }
-                else if(data.status === "Product added to basket"){
-                notifyUser("Product added to basket", "green");
+                else{
+                notifyUser(data.status, "red");
                 }
         });
     });
 }
 }
+
 
 // setInterval(() => bannerChange("left"), 10000);
 // let lft_btn = document.getElementById('left_btn');

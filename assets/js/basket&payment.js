@@ -1,4 +1,6 @@
 // import { notifyUser } from './login.js';
+import { validate } from './ajax.js';
+import { notifyUser } from './login.js';
 
 // basket
 let inc = document.querySelectorAll(".increment_btn");
@@ -12,8 +14,9 @@ let totalDisplay = document.getElementById("total");
 let removebtn = document.querySelectorAll(".basketbtn");
 
 let products = [];
+let total_price = 0; 
+let del_charges = 0;
 
- total_price = 0; 
 // calculation
 for(let i=0; i<inc.length; i++){
     let av = parseInt(available[i].innerText);
@@ -45,7 +48,7 @@ for(let i=0; i<inc.length; i++){
     if(this.checked){
         if(val === 0){
         //    notifyUser("Please select quantity greater than 0 to add to checkout",'red');
-          alert("Please select quantity greater than 0 to add to checkout");
+          notifyUser("Please select quantity greater than 0 to add to checkout", "red");
           this.checked = false;
         }
          else{
@@ -55,8 +58,9 @@ for(let i=0; i<inc.length; i++){
             name: document.querySelectorAll(".name")[i].innerText,
             id: document.querySelectorAll(".basketbtn")[i].id,
             quantity: val, 
+            sid : document.querySelectorAll(".name")[i].getAttribute("sid"),
             unit_price: price});
-updateTotal();  
+            updateTotal();  
         }
             console.log(products);
 
@@ -72,7 +76,7 @@ function updateTotal() {
     total_price = 0; 
     for(let i=0; i<checkbox.length; i++){
         if(checkbox[i].checked){
-            tp = parseFloat(document.querySelectorAll(".total_price")[i].innerText);
+           let tp = parseFloat(document.querySelectorAll(".total_price")[i].innerText);
             total_price += tp;
         }
     }
@@ -82,7 +86,7 @@ function updateTotal() {
 let checkoutBtn = document.getElementById("checkoutbtn");
 if(checkoutBtn)checkoutBtn.addEventListener("click", function(){
     if(products.length === 0){
-        alert("Please select at least one product to checkout");
+        notifyUser("Please select at least one product to checkout", "red");
     }else{
         window.location.href = "payment.php";   
         localStorage.setItem("products", JSON.stringify(products));
@@ -94,20 +98,29 @@ if(checkoutBtn)checkoutBtn.addEventListener("click", function(){
 if(window.location.href.includes("payment.php")){
     loadpayments();
 }
+
+
+
 function loadpayments(){
 products = JSON.parse(localStorage.getItem("products"));
 // console.log(products[0]['id']);
 
 
+let cards = document.getElementById("products_payment");
+let container = document.getElementById("card1");
 
-
-
-
+if(products===null || products.length === 0){
+    notifyUser("No products to pay for!", "red");
+    let ptag = document.createElement("p");
+    ptag.innerHTML = "<p>No products in the payment page. Please add products to the basket and select products to pay for.</p>";
+    ptag.style.color ='red';
+    ptag.style.fontSize ='18px';
+    container.appendChild(ptag);
+}
 
 //okkkay now lets display products in payment page
 for(let i=0; i<products.length; i++){
-let cards = document.getElementById("products_payment");
-let container = document.getElementById("card1");
+
 let product= cards.cloneNode(true);
 if(products[i]['img']===undefined){
     products[i]['img']="../../assets/img/basket.png";
@@ -145,21 +158,82 @@ if(remove){
 
 }
 }
+
+
+
+// delivery_info
+let s =[];
+s = JSON.parse(localStorage.getItem("products"));
+let si=[];
+for(let i=0; i<s.length; i++){
+    si.push(s[i]['sid']);
+}
+let seller_count = [...new Set(si)].length; // finding unique seller(set removes duplicate values) 
+// console.log(sid);
+
+
+let cityval = document.getElementById("city");
+if(cityval){
+cityval.addEventListener("change", function(){
+calculateDeliveryCharges();
+});
+}
+
+calculateDeliveryCharges();
+function calculateDeliveryCharges(){
+    del_charges = 0;
+    let existingCharge = document.getElementById('del_charge_display');
+    if(existingCharge) existingCharge.remove();
+    
+    for(let i =0; i<seller_count; i++){
+        validate({sid:si[i]}, "../../models/orderController.php", function(res){
+            // console.log(res);
+                let city = res;
+                //lets just asume the price for now
+                if(city=== document.getElementById("city").value){
+                    del_charges += 100;
+                }
+                else{
+                    del_charges += 200;
+                }
+                // console.log(del_charges);
+                
+                // Update or create delivery charge display
+                let chargeDisplay = document.getElementById('del_charge_display');
+                if(!chargeDisplay){
+                    chargeDisplay = document.createElement("p");
+                    chargeDisplay.id = 'del_charge_display';
+                    let card = document.querySelector(".card2");
+                    card.appendChild(chargeDisplay);
+                }
+                chargeDisplay.innerHTML = `Delivery Charges: <span id="del_charge">${del_charges}</span> TK`;
+                
+                updateTotalPayment();
+    });
+    }
+}
+
 function updateTotalPayment(){
-    let total_price = 0;
+     total_price = 0;
+     let charge = 0;
     for(let i=0; i<products.length; i++){
             total_price += products[i]['unit_price'] * products[i]['quantity'];
     }
-    document.getElementById('paybtn').innerText ='Pay => ' + total_price + " TK";
+    if( document.getElementById('del_charge')){
+        charge = parseFloat(document.getElementById('del_charge').innerText);
+    }
+     console.log(charge);
+    
+    document.getElementById('paybtn').innerText ='Pay => ' + (total_price + charge) + " TK";
 }
+
 
 //payment button functions
 let paybtn = document.getElementById("paybtn");
 if(paybtn){
 paybtn.addEventListener("click", function(){
-    
     if(products.length === 0){
-        alert("No products to pay for!");
+        notifyUser("No products to pay for!");
     }else{
         let name = document.getElementById("name").value;
         let phone = document.getElementById("phone").value;
@@ -167,26 +241,28 @@ paybtn.addEventListener("click", function(){
         let payment_method = document.getElementById("payment").value;   
         let city = document.getElementById("city").value; 
         if(name === "" || phone === "" || address === "" || payment_method === ""|| city === ""){
-            alert("Please fill in all the payment information!");
+            notifyUser("Please fill in all the payment information!", "red");
+            console.log("paybtn clicked");
+
         }
         else if(name.length<2||phone.length<11|| address.length<5||isNaN(phone)){
             if(phone.length<11){
-                alert("Phone number must be at least 11 digits!");
+                notifyUser("Phone number must be at least 11 digits!", "red");
             }else if(phone.length>14){
-                alert("Please provide valid Phone number!");
+                notifyUser("Please provide valid Phone number!", "red");
             }
             if(phone.length===11){
                 if(!(phone.startsWith("01"))){
-                    alert("Phone number must start with '01'!");
+                    notifyUser("Phone number must start with '01'!", "red");
                 }
             }
             else if(phone.length===14){
                 if(!(phone.startsWith("+8801"))){
-                    alert("Phone number must start with '+8801'!");
+                    notifyUser("Phone number must start with '+8801'!", "red");
                 }
             }
             else{
-            alert("Please provide valid payment information!");
+            notifyUser("Please provide valid payment information!", "red");
             }
         }
         else{
@@ -194,30 +270,29 @@ paybtn.addEventListener("click", function(){
         // if all good
         document.querySelector(".order_confirm_container").style.display="flex";
        
-        userdata = {
+        console.log("vhaiiiiii clickedddd");
+        let userdata = {
             name: name,
             phone: phone,
             address: address,
             payment_method: payment_method,
-            city: city
+            city: city,
+            del_charges: del_charges
         };
         products.push({userdata:userdata});
         console.log(products);
-         fetch("../../models/orderController.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body:JSON.stringify(products)
-            });
+        validate(products, "../../models/orderController.php", function(res){
+            console.log(res);});
             // localStorage.removeItem("products");
 
         }
     }
 });
 }
-
-document.getElementById("continue_shopping").addEventListener("click", function(){
+let cont = document.getElementById("continue_shopping");
+if(cont){
+cont.addEventListener("click", function(){
     localStorage.removeItem("products");
     window.location.href = "home.php";
 });
+}

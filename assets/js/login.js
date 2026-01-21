@@ -275,17 +275,10 @@ function otp(){
 // }
 
     export function notifyUser(message,color){   
-        if(color==='red'){
         document.getElementById('notif').innerHTML=message;
         document.getElementById('notif').style.transform='translateX(-155px)';
-        document.getElementById('notif').style.backgroundColor='rgba(255, 0, 0, 0.25)';
-        }
-        else{
-        document.getElementById('notif').innerHTML=message;
-        document.getElementById('notif').style.backgroundColor='#fdfdfd23';
-        document.getElementById('notif').style.transform='translateX(-155px)';
-        }
-        setTimeout(stopNotify,10000);
+        document.getElementById('notif').style.color=color;
+        setTimeout(stopNotify,5000);
 }
     function stopNotify(){
         document.getElementById('notif').style.transform='translateX(110%)';

@@ -5,7 +5,6 @@
     /* background-color: #ccc900; */
     height: calc(100vh - 79px);
     width: 100%;
-    
 }
 #reg_log{
     display: flex;
@@ -15,6 +14,7 @@
     overflow: hidden; 
     box-shadow:  5px 5px 10px rgba(30, 43, 39, 0.397);
     transition: all 1.5s ease;
+    transform: scale(1.1);
 }
 #signup{
     padding: 70px 100px;

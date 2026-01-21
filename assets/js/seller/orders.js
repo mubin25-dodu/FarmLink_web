@@ -77,8 +77,8 @@ function loadtable(data){
                 <td class="status" >${data[i]['status']}</td>
                 <td style="display: ${display_status}"> You can not edit now</td>
                 <td><div style="display: ${display_buttons}" class ="buttons">
-                <button class="Accept" pid="${data[i].product_id}">${btn_name}</button>
-                <button class="Reject" pid="${data[i].product_id}">Reject order</button>
+                <button class="Accept" data-order-id="${data[i]['product_id']}" data-action="${btn_name}">${btn_name}</button>
+                <button class="Reject" data-order-id="${data[i]['product_id']}">Reject order</button>
                 </div></td>
             `;
             if(data[i].status == "Accepted"){
@@ -93,37 +93,49 @@ function loadtable(data){
 
             tablebody.appendChild(tr);
 
-            document.querySelectorAll('.Accept')[i].addEventListener('click', function(){
-                let msg ={};
-                if(btn_name==="Accept Order"){
-                   msg = {order_id: data[i]['odr_id'], action: 'Accepted'}
-                }else if(btn_name==="Request Picked Up"){
-                   msg = {order_id: data[i]['odr_id'], action: 'Processing'}
-                }
-                validate(msg, '../../models/manage_order.php', function(res){
+            let acceptBtn = tr.querySelector('.Accept');
+            let rejectBtn = tr.querySelector('.Reject');
 
-                    if(res == 'success'){
-                        notifyUser('Order accepted successfully', 'green');
-                        loaddata('no');
-                    }else if(res == 'error'){
-                        notifyUser('Error accepting order', 'red');
+            if(acceptBtn){
+                acceptBtn.addEventListener('click', function(){
+                    let orderId = this.getAttribute('data-order-id');
+                    let actionType = this.getAttribute('data-action');
+                    let msg ={};
+                    console.log(orderId);
+                    if(actionType === "Accept Order"){
+                       msg = {product_id: orderId, action: 'Accepted'}
+                    }else if(actionType === "Request Picked Up"){
+                       msg = {product_id: orderId, action: 'Processing'}
                     }
-                    console.log(res);
+                    validate(msg, '../../models/manage_order.php', function(res){
 
-                });
-            });
-            document.querySelectorAll('.Reject')[i].addEventListener('click', function(){
-                 validate({order_id: data[i]['odr_id'], action: 'Rejected'}, '../../models/manage_order.php', function(res){
+                        if(res == 'success'){
+                            notifyUser('Order accepted successfully', 'green');
+                            loaddata('no');
+                        }else if(res == 'error'){
+                            notifyUser('Error accepting order', 'red');
+                        }
+                        console.log(res);
 
-                    if(res == 'success'){
-                        notifyUser('Order Rejected successfully', 'green');
-                        loaddata('no');
-                    }else if(res == 'error'){
-                        notifyUser('Error rejecting order', 'red');
-                    }
-                    console.log(res);
+                    });
                 });
-            });
+            }
+
+            if(rejectBtn){
+                rejectBtn.addEventListener('click', function(){
+                    let orderId = this.getAttribute('data-order-id');
+                    validate({order_id: orderId, action: 'Rejected'}, '../../models/manage_order.php', function(res){
+
+                        if(res == 'success'){
+                            notifyUser('Order Rejected successfully', 'green');
+                            loaddata('no');
+                        }else if(res == 'error'){
+                            notifyUser('Error rejecting order', 'red');
+                        }
+                        console.log(res);
+                    });
+                });
+            }
         }
     }
 

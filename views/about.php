@@ -20,7 +20,11 @@
         <li><a class="nav-link" href="about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
+     <?php  session_start();  if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
+    <a class="orange_color" href="../controllers/logout.php">Logout</a>
+    <?php } else {  ?>
     <a class="orange_color" href="Login.php">Login</a>
+    <?php } ?>
     
     </div>
 </nav> 
@@ -94,6 +98,14 @@
     </div>
 </footer>
 </body>
-
-
+<script>
+let search = document.getElementById('searchbar');
+search.addEventListener('keypress', function(e){
+    console.log(search.value);
+    if(e.key === 'Enter'){
+        localStorage.setItem('search', search.value);
+        window.location.href = "buyers/more_products.php";
+    }
+});
+</script>
 </html>

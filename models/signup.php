@@ -24,8 +24,12 @@ if(isset($data)){
         $id="ag-".$count;
         } 
         
-        write("INSERT INTO user_data VALUES('$uname' , '$email', '$num' , '$pass' , '$role' , '$address' ,'$city' ,'active' ,'$id')");   
+        if(write("INSERT INTO user_data (`name`, `email`, `phone`, `password`, `role`, `address`, `city`, `status`, `UID`)VALUES('$uname' , '$email', '$num' , '$pass' , '$role' , '$address' ,'$city' ,'active' ,'$id')")){  
         echo json_encode(['status' => 'success']);     
         }
+        else{
+            echo json_encode(['status' =>'Registration failed.']);
+        }
+}
 
 ?>

@@ -39,7 +39,7 @@ require('../../models/db.php');
 
     <h4 class="title">Pending & Processing Orders</h4>
     <?php  $products=[];
-       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status !='Successful' and status != 'Delivered')");
+       $products = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and (status !='Successful' and status != 'Delivered')  order by date desc;");
     // print_r($products);
     if($products==null){
         echo "<p>No pending or processing orders found.</p>";
@@ -56,7 +56,7 @@ require('../../models/db.php');
 
             ?> 
             <div id="products_payment" class="products_payment" style="<?= $style ?>">
-                <img class="img" src="../<?= $img ?>" alt="">
+                <img class="img" src="<?= $img ?>" alt=""  onerror="this.src='../../assets/img/default.png'">
                 <div><h3 class="name"><?= $name?></h3> 
                 <p class="price">Price <span> <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
                 <div>
@@ -76,7 +76,7 @@ require('../../models/db.php');
     <div class="successful">
         <h4 class="title">Successful Orders</h4>
         <?php
-        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful' order by order_id;");
+        $success_orders = read("select * from orders where user_id='{$_SESSION['user_data']['uid']}' and status = 'successful' order by date;");
         if($success_orders==null){
             echo "<p>No successful orders found.</p>";
         }else{
@@ -86,7 +86,7 @@ require('../../models/db.php');
             // echo $a['product_id'];?>
             <div id="products_payment" class="products_payment">
                     <div class="order-status-label"><?= ucfirst($a['status']) ?></div>
-                    <img class="img" src="<?= $img ?>" alt="">
+                    <img class="img" src="<?= $img ?>" alt=""  onerror="this.src='../../assets/img/default.png'">
                     <div><h3 class="name"><?= $name?></h3> 
                     <p class="price">Price <span > <?= ($a['total_price']/$a['quantity']) ?> x <span><?= $a['quantity'] ?></span></span></p></div>
                     <div>

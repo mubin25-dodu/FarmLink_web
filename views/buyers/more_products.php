@@ -15,12 +15,12 @@
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
-        <li><a class="nav-link" href="#Home">Home</a></li>
+        <li><a class="nav-link" href="home.php">Home</a></li>
         <li><a class="nav-link" href="basket.php">Basket</a></li>
         <li><a class="nav-link" href="order.php">Orders</a></li>
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
-    <?php if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
+ <?php session_start(); if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
     <?php } else {  ?>
     <a class="orange_color" href="../Login.php">Login</a>

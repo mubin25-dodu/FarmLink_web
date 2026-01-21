@@ -24,7 +24,11 @@ require('../../models/db.php');
         <li><a class="nav-link" href="../about.php">About Us</a></li>
     </ul>
     <input type="text" placeholder="Search..." id="searchbar" >
+    <?php session_start(); if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == 'Buyer'){ ?>
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
+    <?php } else {  ?>
+    <a class="orange_color" href="../Login.php">Login</a>
+    <?php } ?>
     
     </div>
 </nav>
@@ -36,16 +40,16 @@ require('../../models/db.php');
         if(isset($_GET['id'])){
            $data =[];
            $data = read("Select * from product where product_id='{$_GET['id']}'");
-        //    print_r($data[0]['unit_price']);
+        //    print_r($data);
         $id=$_GET['id'];
         ?>
-     <img id="image" src="../<?= $data[0]['image'] ?>" alt="Product img">
+     <img id="image" src="<?= $data[0]['image'] ?>" alt="Product img"  onerror="this.src='../../assets/img/default.png'">
      <div class="details"> 
-     <h2 id="name"><?= $data[0]['name'] ?></h2>
+     <h2 sid="<?= $data[0]['seller_id'] ?>" id="name"><?= $data[0]['name'] ?></h2>
      <b>Price: <span id="price" > <?= $data[0]['unit_price']?></span> TK / <?= $data[0]['unit'] ?></b>
      <div  id="description"> <?= $data[0]['description'] ?></div>
      <div class="delivery_details"> Delivery details here  <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam earum ratione possimus veniam? Temporibus exercitationem ea nemo facilis, qui ut architecto animi magni vel quaerat sit quo eveniet, voluptas culpa.</div>
-      <span style="font-weight: bold;" id="totalprice"></span>
+     <span style="font-weight: bold;" id="totalprice"></span>
         <div id="counter_btn"> <button type="button" class="increment_btn" id="increment_btn">+</button> <span id="value">0</span> <button type="button" class="decrement_btn" id="decrement_btn">-</button> </div><div > Available: <span id="available_unit"><?= $data[0]['available_unit'] ?></span></div>
         <div class="btndiv"> <a class="card_btn" id="buy_btn">Buy</a>
         <label id="pid" style="display: none;"><?= $id ?></label> 

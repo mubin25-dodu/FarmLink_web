@@ -9,6 +9,7 @@ if(isset($_SESSION['user_data'])&& isset($data["status"] ))
     $q="SELECT 
         o.odr_id,
         o.quantity,
+        o.product_id,
         o.total_price,
         o.name AS customer_name,
         o.status,
@@ -27,6 +28,7 @@ if(isset($_SESSION['user_data'])&& isset($data["status"] ))
     $q="SELECT 
         o.odr_id,
         o.quantity,
+        o.product_id,
         o.total_price,
         o.name AS customer_name,
         o.status,
@@ -45,6 +47,7 @@ if(isset($_SESSION['user_data'])&& isset($data["status"] ))
     $q="SELECT 
         o.odr_id,
         o.quantity,
+        o.product_id,
         o.total_price,
         o.name AS customer_name,
         o.status,
@@ -64,6 +67,7 @@ if(isset($_SESSION['user_data'])&& isset($data["status"] ))
         o.odr_id,
         o.quantity,
         o.total_price,
+        o.product_id,
         o.name AS customer_name,
         o.status,
         p.name AS product_name,

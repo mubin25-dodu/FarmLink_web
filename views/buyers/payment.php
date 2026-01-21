@@ -42,7 +42,7 @@ require('../../controllers/auth.php');
             <div id="card1" class="card1"> 
                 <h4>Order Information</h4>
                   <div style="display:none" id="products_payment" class="products_payment">
-                    <img class="img" src="../../assets/img/basket.png" alt="">
+                    <img class="img" src="../../assets/img/basket.png" alt=""  onerror="this.src='../../assets/img/default.png'">
                     <div><h3 class="name">Product Name</h3> 
                     <p class="price">Price</p></div>
                     <div>
@@ -81,13 +81,13 @@ require('../../controllers/auth.php');
                     <br>
                     City: <br>
                     <select name="city" id="city">
-                        <option value="dhaka">Dhaka</option>
-                        <option value="chattogram">Chattogram</option>
-                        <option value="sylhet">Sylhet</option>
-                        <option value="khulna">Khulna</option>
-                        <option value="barishal">Barishal</option>
-                        <option value="rajshahi">Rajshahi</option>
-                        <option value="rangpur">Rangpur</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chattogram">Chattogram</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Barishal">Barishal</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Rangpur">Rangpur</option>
                         <option value="mymensingh">Mymensingh</option>
                     </select>
                     <button id="paybtn" class="paybtn">Pay</button>
@@ -105,7 +105,8 @@ require('../../controllers/auth.php');
     </div>
 </div>
 </body>
-<script src="../../assets/js/basket&payment.js"></script>
+<script  type="module" src="../../assets/js/basket&payment.js"></script>
+<script  type="module" src="../../assets/js/login.js"></script>
 <script type="module" src="../../assets/js/search.js"></script>
 
 <footer>

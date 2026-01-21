@@ -48,14 +48,25 @@ session_start();
 <div class="sections">
     <h2 class="sec_title">Most selled products</h2>
     <div id="products_container">
+
+    <?php
+    $products=[];
+       $products=read('select * , SUM(o.quantity) AS quantity FROM orders o JOIN product p ON o.product_id = p.product_id GROUP BY o.product_id ORDER BY o.quantity DESC LIMIT 5;');
+    
+       foreach($products as $a){
+        // print_r($pro);
+        ?>
        <div id="products" class ="products"> 
         <div class="p_details">
-        <img src="../../assets/img/Grow. Link. Thrive..png" alt="Product img">
-        <h3>Product 1</h3>
-        <p> Price $10.00</p>
-        <button class="card_btn"> Details</button> 
+        <img src="<?= $a['image'] ?>?>" onerror="this.src='../../assets/img/default.png' " alt="Product img">
+        <h3><?= $a['name'] ?></h3>
+        <p> Price: <?= $a['unit_price'] ?> Tk</p>
+        <a href="product_details.php?id=<?= $a['product_id']?>"><button class="card_btn" >Details </button></a>  
         </div>
+        
         </div> 
+    <?php } ?>
+
        </div>
     </div>
 
@@ -63,15 +74,15 @@ session_start();
      
     <div class="sections">
     <h2 class="sec_title">Products For You</h2>
-             <div id="products_container2">
+    <div id="products_container2">
    <?php  $products=[];
-       $products=read('select * from product where available_unit > 0');
+       $products=read('select * from product where available_unit > 0 Limit 21;');
     //    print_r($products);
         foreach($products as $a){?> 
 
         <div id="" class ="products"> 
         <div class="p_details2">
-        <img class="image" src="../<?= $a['image']?>" alt="Product img">
+        <img class="image" src="<?= $a['image']?>" alt="Product image" onerror="this.src='../../assets/img/default.png'">
         <h3><?=   $a['name']?></h3>
         <div class="product_details"><?=$a['description']?></div>
         <p>Price: <?= $a['unit_price']?>Tk/<?= $a['unit']?></p>
