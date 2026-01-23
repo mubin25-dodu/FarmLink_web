@@ -10,7 +10,7 @@ require_once('../../controllers/authseller.php');
     <title>FarmLink - Seller Dashboard</title>
     <link rel="stylesheet" href="../../assets/css/seller/style.css">
     <link rel="stylesheet" href="../../assets/css/comon.css">
-    <link rel="stylesheet" href="../../assets/css/seller/myproducts.css">
+    <link rel="stylesheet" href="../../assets/css/table.css">
 </head>
 
 <body>
@@ -33,6 +33,7 @@ require_once('../../controllers/authseller.php');
 <div class="sections">
 <h3>Track Orders</h3>
 <button id="request">Requested Orders</button>
+<button id="accepted">Accepted Orders</button>
 <button id="process">On Process Orders</button>
 <button id="delivered">Delivered Orders</button>
 <button id="history">Order History</button>

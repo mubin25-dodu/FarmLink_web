@@ -1,32 +1,55 @@
-<?php
-require_once('../../controllers/authseller.php');
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>FarmLink - Seller Dashboard</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<title>FarmLink - Home</title>
     <link rel="stylesheet" href="../../assets/css/comon.css">
-    <link rel="stylesheet" href="../../assets/css/style.css">
-
+    <link rel="stylesheet" href="../../assets/css/table.css">
+       
 </head>
 <body>
-<!-- Notification Div -->
-<div id="notif_container"><div id="notif"></div></div>
+<div id="notif"></div>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
-        <li><a class="nav-link" href="#Home">Home</a></li>
-        <li><a class="nav-link" href="Add_Products.php">Add products</a></li>
-        <li><a class="nav-link" href="My_products.php">My Products</a></li>
-        <li><a class="nav-link" href="orders.php">Orders</a></li>
     </ul>
-    <input type="text" placeholder="Search..." id="searchbar" >
     <a class="orange_color" href="../../controllers/logout.php">Logout</a>
-    
     </div>
 </nav>
+<div class="sections">
+    <h2>Assign roles to the staff</h2>
+    <input id="product-search" type="text" placeholder="Search staff(Name/ID)...">
+    search by roles:
+    <select id="role-filter">
+        <option value="">All</option>
+        <option value="Admin">Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="Support">Support</option>
+        <option value="Delivery">Delivery</option>
+    </select>
+    <div class="" id="product-list">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Current role/s</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <!-- Dynamic content will be inserted here -->
+    </table>
+    </div>
+</div>
+
+<!-- profile edit card -->
+ <div class="sections">
+    <img src="https://img.freepik.com/free-photo/young-handsome-man-wearing-casual-tshirt-blue-background-happy-face-smiling-with-crossed-arms-looking-camera-positive-person_839833-12963.jpg?semt=ais_user_personalization&w=740&q=80" alt="">
+ </div>
+</body>
 <footer>
     <div class="footer-container">
         <div class="footer-top">
@@ -77,5 +100,4 @@ require_once('../../controllers/authseller.php');
         </div>
     </div>
 </footer>
-</body>
 </html>

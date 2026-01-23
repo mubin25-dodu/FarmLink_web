@@ -17,7 +17,7 @@ thead th {
 }
 tbody td {
     padding: 14px 12px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #a81414;
     font-size: 15px;
     color: #070707;
     max-width:250px;
@@ -29,16 +29,15 @@ tr:hover td {
     transition: all 0.2s;
 }
 }
-#product-search{
-    padding: 10px;
-    margin-bottom: 20px;
+#product-search , #role-filter{
+    margin:10px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-    position: inherit;
-    width: 30%;
-    margin-bottom: -10px;
-    margin-left: 70%;
+    width: 170px;
+    position:relative;
+    right:0px;
 }
 .edit_card{
     display: none;

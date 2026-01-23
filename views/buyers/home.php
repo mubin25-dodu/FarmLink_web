@@ -1,7 +1,6 @@
 <?php
 // require('../../controllers/auth.php');
 require('../../models/db.php');
-require('../../controllers/notifi.php');
 session_start();
 ?>
 
@@ -15,10 +14,9 @@ session_start();
 </head>
 <body>
 
-<div id="notif"></div>
+<div id="notif_container"><div id="notif"></div></div>
 
 <nav >
-    <!-- <?php print_r($_SESSION['user_data']) ?> -->
 
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -51,7 +49,7 @@ session_start();
 
     <?php
     $products=[];
-       $products=read('select * , SUM(o.quantity) AS quantity FROM orders o JOIN product p ON o.product_id = p.product_id GROUP BY o.product_id ORDER BY o.quantity DESC LIMIT 5;');
+       $products=read('select * , SUM(o.quantity) AS quantity FROM orders o JOIN product p ON o.product_id = p.product_id WHERE p.available_unit > 0 GROUP BY o.product_id ORDER BY o.quantity DESC LIMIT 5;');
     
        foreach($products as $a){
         // print_r($pro);

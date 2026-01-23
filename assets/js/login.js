@@ -266,13 +266,7 @@ function otp(){
     }
     
 }
-// function reg(){
-//   let btn = document.getElementById('otpbtn');
-//   btn.addEventListener('click' , () =>{
-//     console.log("submited");
-//     btn.type="submit";
-//   } );
-// }
+
 
     export function notifyUser(message,color){   
         document.getElementById('notif').innerHTML=message;

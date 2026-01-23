@@ -10,7 +10,7 @@ require_once('../../controllers/authseller.php');
     <title>FarmLink - Seller Dashboard</title>
     <link rel="stylesheet" href="../../assets/css/seller/style.css">
     <link rel="stylesheet" href="../../assets/css/comon.css">
-    <link rel="stylesheet" href="../../assets/css/seller/myproducts.css">
+    <link rel="stylesheet" href="../../assets/css/table.css">
 </head>
 
 <body>
