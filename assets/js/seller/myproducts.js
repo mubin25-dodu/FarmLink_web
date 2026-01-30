@@ -59,8 +59,8 @@ function loadproducts(data){
                 <td>${data[i].available_unit}${data[i].unit}</td>
                 <td>${data[i].category}</td>
                 <td><div class ="buttons">
-                <button class="dlt" pid="${data[i].product_id}">Delete</button>
-                <button class="edit" pid="${data[i].product_id}">Edit</button>
+                <button class="dlt action_btn" pid="${data[i].product_id}">Delete</button>
+                <button class="edit action_btn" pid="${data[i].product_id}">Edit</button>
                 </div></td>
             `;
             if(data[i].available_unit <= 0){

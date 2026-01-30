@@ -34,7 +34,7 @@ require_once('../../controllers/authseller.php');
     <section id="products">
         <h2>My Products</h2>
         <input type="text" name="product-search" id="product-search" placeholder="Search products...">
-        <button id="stockout_button">Stockout/Deleted Product List</button>
+        <button class="action_btn" id="stockout_button">Stockout/Deleted Product List</button>
 
         <div class="product-list" id="product-list">
             <table>
@@ -59,11 +59,11 @@ require_once('../../controllers/authseller.php');
 <div  class="sections" id="sections">
    <h3>Edit Product <span id="pid"></span> </h3>
     <div class="edit_form">
-        <input type="text" name="" id="name"> 
-        <input type="text" name="" id="description">
-        <input type="number" name="" id="price">
-        <input type="number" name="" id="stock">
-        <select name="category" id="category">
+        Product name:<input type="text" name="" id="name"> 
+        Description:<input type="text" name="" id="description">
+        Price:<input type="number" name="" id="price">
+        Stock:<input type="number" name="" id="stock">
+        Category:<select name="category" id="category">
                 <option value="">-- Select --</option>
                 <option value="Vegetable">Vegetable</option>
                 <option value="Fruit">Fruit</option>
@@ -73,8 +73,9 @@ require_once('../../controllers/authseller.php');
                 <option value="Egg">Egg</option>
                 <option value="Other">Other</option>
         </select>
-        <button id="update_product">Update Product</button>
-     <button  type="button" id="cancel_edit">Cancel</button>
+        <div> <button id="update_product" class="action_btn">Update Product</button>
+        <button  class="action_btn" type="button" id="cancel_edit">Cancel</button>
+        </div>
 
        
     </div>

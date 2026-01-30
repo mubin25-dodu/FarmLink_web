@@ -1,7 +1,5 @@
 <?php
-// require_once('../../controllers/auth.php');
 require('../../models/db.php');
-
 ?>
 <!DOCTYPE html>
 <html>

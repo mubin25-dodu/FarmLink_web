@@ -40,24 +40,34 @@ tr:hover td {
     right:0px;
 }
 .edit_card{
-    display: none;
+   display: flex; 
+   display: none;
     top: 80px;
     width: 100%;
     height: calc(100% - 80px);
-    /* background-color: rgb(192, 182, 182); */
+    background-color: rgba(0, 0, 0, 0.342);
     position: fixed;
-    /* display: flex; */
     justify-content: center;
     align-items: center;
     z-index: 111;
+    .sections{
+       box-shadow: #070707 0px 0px 5px;
+    }
+    h3{
+        margin-bottom:-20px;
+        margin-top:10px;
+    }
 }
 .edit_form{
     /* display: none; */
-    padding: 20px;
+    width:500px;
+    padding: 40px;
+    margin-right: -70px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction:column;
+    justify-content:center;
     gap: 15px;
-   
-} #sections{
-        background-color: beige;
+} 
+#sections{
+        background-color:rgb(255, 253, 253);
     }

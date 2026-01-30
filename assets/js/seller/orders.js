@@ -106,8 +106,8 @@ function loadtable(data){
                 <td>
                     <span style="display: ${display_status}">You can not edit now</span>
                     <div style="display: ${display_buttons}" class="buttons">
-                        <button class="Accept" data-order-id="${data[i]['product_id']}" pid="${data[i]['odr_id']}" data-action="${btn_name}">${btn_name}</button>
-                        <button class="Reject" data-order-id="${data[i]['product_id']}">Reject order</button>
+                        <button class="Accept action_btn" data-order-id="${data[i]['product_id']}" pid="${data[i]['odr_id']}" data-action="${btn_name}">${btn_name}</button>
+                        <button class="Reject action_btn" data-order-id="${data[i]['product_id']}">Reject order</button>
                     </div>
                 </td>
             `;
