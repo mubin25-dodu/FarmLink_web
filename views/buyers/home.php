@@ -93,7 +93,7 @@ session_start();
         </div> 
    <?php }?>
        </div>
-   <a href="more_products.php">See more..</a>
+    <div class="middle"><a class="action_btn" href="more_products.php">See more..</a> </div>
 
     </div>
 

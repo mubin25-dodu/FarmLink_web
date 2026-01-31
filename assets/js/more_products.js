@@ -73,7 +73,7 @@ function loaddata(load){
     validate( load , "../../controllers/loadmoreproducts.php", function(data){
         console.log(data);
         if(data === "No Data"){
-        notifyUser("No more products to show",'red');
+        notifyUser("No Products Found",'red');
         offset -= 24;
         }
         else if(data.length === 0 && search.value.trim()!==""){
@@ -114,7 +114,7 @@ function loadproducts(data){
         validate( {id: pid} , "../../controllers/addtobasket.php", function(data){
             console.log(data);
             if(data.status === "Please login to continue"){
-                notifyUser("Please login to add products to basket",'red');
+                notifyUser("Please login to continue",'red');
             }
             else if(data.status === "Product already in basket"){
                 notifyUser("Product already in basket",'red');

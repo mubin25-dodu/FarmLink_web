@@ -26,7 +26,7 @@ if(isset($_SESSION['user_data']) && isset($data["status"])) {
     switch($data["status"]) {
         case "no":
         case "requested":
-            $query = $baseQuery . " AND o.status = 'pending';";
+            $query = $baseQuery . " AND o.status = 'Pickup Requested';";
             break;
         case "accepted":
             $query = $baseQuery . " AND o.status = 'Accepted';";
