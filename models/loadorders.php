@@ -25,6 +25,8 @@ if(isset($_SESSION['user_data']) && isset($data["status"])) {
     // Add status filter based on request
     switch($data["status"]) {
         case "no":
+            $query = $baseQuery . " AND o.status = 'Pending';";
+            break;
         case "requested":
             $query = $baseQuery . " AND o.status = 'Pickup Requested';";
             break;
