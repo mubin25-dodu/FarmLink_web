@@ -1,0 +1,76 @@
+.profile_pic{
+    height: 350px;
+    width: 500px;
+    padding: 5px;
+    border-radius: 15px;
+}
+.profile{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+    background-color: rgb(255, 255, 255);
+    width: 510px;
+    height: fit-content;
+    border-radius: 15px;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.1);
+    z-index: 111;
+}
+#role_div{
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px dashed rgb(146, 167, 236);
+    div{
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: rgb(50, 50, 50);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+        
+}
+}
+.details{
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* background-color: rgb(185, 12, 12); */
+    #name{
+        font-size: 25px;
+        font-weight: 600;
+        .status{
+            font-size: 15px;
+            color: green;
+            font-weight: 500;
+            margin-left: 10px;
+            
+        }
+    }
+    .data{
+        font-size: 16px;
+        font-weight: 500;
+        color: rgb(100, 100, 100);
+        margin-top: -5px;
+        /* background-color: rgb(185, 169, 169); */
+        width: fit-content;
+        
+    }
+    button{
+        margin-top: 15px;
+        padding: 10px 15px;
+        border: none;
+        background-color: rgb(21, 101, 192);
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: rgb(12, 78, 148);
+    }
+}

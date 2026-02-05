@@ -363,6 +363,9 @@ nav ul li a:hover {
 nav ul li a:hover::after {
     width: 60%;
 }
+nav ul li a:focus {
+    color: var(--orange);
+}
 .orange_color{
     color: white;
     font-size: 16px;

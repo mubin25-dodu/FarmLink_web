@@ -39,8 +39,10 @@ session_start();
  <!-- ad  section-->
 <div  id="ad">
     <div id="ad_banner"> </div>
-    <button type="button" id="left_btn"><</button>
-    <button type="button" id="right_btn">></button>
+    <div class="ad_btns">
+    <img src="../../assets/img/arrow.png" id="left_btn" alt="">
+    <img src="../../assets/img/arrow.png" id="right_btn" alt="">
+    </div>
 </div>
 <!-- products section-->
 <div class="sections">

@@ -29,13 +29,13 @@ tr:hover td {
     transition: all 0.2s;
 }
 }
-#product-search , #role-filter{
+#product-search , #role-filter , #search{
     margin:10px;
-    padding: 5px;
+    padding: 3px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-    width: 170px;
+    width: 190px;
     position:relative;
     right:0px;
 }
