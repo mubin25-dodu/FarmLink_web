@@ -1,11 +1,14 @@
-    import {fetch} from '../ajax.js';
+import {fetch} from '../ajax.js';
+
 
     let action='all';
+    let param = new URLSearchParams(window.location.search);
+    let role = param.get('role');
     let userdata=[];
 
 loadproducts();
 function loadproducts(){
-  fetch( action , '../../controllers/admin/fetchusers.php', function(response){
+  fetch( {action , role} , '../../controllers/admin/fetchusers.php', function(response){
     console.log(response); 
     userdata =response;
     loadtable();
