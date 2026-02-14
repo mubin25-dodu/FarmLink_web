@@ -58,3 +58,19 @@
     }
 }
 }
+button{
+    padding: 10px 20px;
+    background-color: white;
+    color: var(--darkgreen);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: var(--btnshadow) 0px 0px 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.button-container{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}

@@ -1,6 +1,5 @@
 import {fetch} from '../ajax.js';
 
-
     let action='all';
     let param = new URLSearchParams(window.location.search);
     let role = param.get('role');
@@ -41,7 +40,7 @@ if(view){
 }
 }
 }
-
+loadprofile(0);
 function loadprofile(index){
     document.getElementById('profile-img').src='https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D';
     document.getElementById('name').textContent=userdata[index].name;
@@ -52,6 +51,4 @@ function loadprofile(index){
     document.getElementById('status').textContent=userdata[index].status;
     let profileCard = document.getElementById('profile');
     profileCard.style.display='block';
-
-
 }
