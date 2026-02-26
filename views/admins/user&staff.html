@@ -26,8 +26,8 @@
 <p>View, edit, and manage all members on FarmLink</p> 
 <div class="container">
     <div class="table_container">
-    <div><input type="text" name="" id="search" placeholder="Search by Name/ID/Role...">
-    search by roles:
+    <div class="table_filters"><input type="text" name="" id="search" placeholder="Search by Name/ID/Role...">
+    <span class="filter_label">Search by roles:</span>
     <select id="role-filter">
         <option value="">All</option>
         <option value="Admin">Admin</option>
@@ -37,6 +37,7 @@
         <option value="User">User</option>
     </select>
     </div>
+    <div class="table-scroll">
     <table>
         <thead>
             <tr>
@@ -47,26 +48,63 @@
             </tr>
         </thead>
         <tbody id="table-body">
-            
+        </tbody>
     </table>
+    </div>
 </div>
 <!-- profile edit card -->
  <div class="profile" id="profile">
     <img id="profile-img" src="" alt="">
     <div class="details">
-        <span id="name">Abdullah Al Mubin</span><br>
-        <span class="status data">Active</span><br>
-        <span class="data" id="ID"> ID: <span>23-50139-1</span></span><br>
-        <span class="data" id="roles">Role: Manager,etc</span><br>
-        <span class="data" id="phone">Phone: <span class="data" id="PhoneNum">+880123456789 </span>📞</span><br>
-        <span class="data" id="email">Email: <span class="data" id="Email">example@example.com</span></span><br>
+        <span id="name"></span><br>
+        <span class="status data" id="status"></span><br>
+        <span class="data" id="ID"> ID: <span></span></span><br>
+        <span class="data" id="roles"></span><br>
+        <span class="data" id="phone">Phone: <span class="data" id="PhoneNum"></span>📞</span><br>
+        <span class="data" id="email">Email: <span class="data" id="Email"></span></span><br>
         <div class="button-container"><button id="edit-profile-btn">Edit Profile</button>
-        <button id="delete-profile-btn " style="background-color: aqua;">Contact Now</button> </div>
+        <button id="delete-profile-btn" class="contact-btn">Contact Now</button> </div>
         <!-- <button>Edit Profile    </button>  -->
     </div>
     </div>
 </div>
 </div>
+</div>
+
+<div class="edit-modal" id="edit-modal">
+    <div class="edit-card">
+        <h3>Edit User Profile</h3>
+        <div class="edit-grid">
+            <label for="edit-name">Name</label>
+            <input type="text" id="edit-name" disabled/>
+
+            <label for="edit-email">Email</label>
+            <input type="email" id="edit-email" disabled />
+
+            <label for="edit-phone">Phone</label>
+            <input type="text" id="edit-phone" disabled/>
+
+            <label for="edit-address">Address</label>
+            <input type="text" id="edit-address" disabled />
+
+            <label for="edit-city">City</label>
+            <input type="text" id="edit-city" disabled />
+
+            <label for="edit-status">Status</label>
+            <select id="edit-status">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="banned">Ban</option>
+                <option value="temp_ban">Temporary Ban</option>
+            </select>
+            <label class="edit-date" for="edit-date">Ban Duration</label>
+            <input class="edit-date" type="datetime-local" id="edit-date">
+        </div>
+        <div class="edit-actions">
+            <button id="save-profile-btn">Save Changes</button>
+            <button id="cancel-edit-btn" class="contact-btn">Cancel</button>
+        </div>
+    </div>
 </div>
 <script type="module" src="../../assets/js/ajax.js"></script>
 <script type="module" src="../../assets/js/admin/user&staff.js"></script>
