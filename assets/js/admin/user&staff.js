@@ -44,10 +44,10 @@ loadprofile(0);
 function loadprofile(index){
     document.getElementById('profile-img').src='https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D';
     document.getElementById('name').textContent=userdata[index].name;
-    document.getElementById('role').textContent=userdata[index].role;
-    document.getElementById('email').textContent=userdata[index].email;
-    document.getElementById('phone').textContent=userdata[index].phone;
-    document.getElementById('address').textContent=userdata[index].address;
+    document.getElementById('role').textContent="Role: "+userdata[index].role;
+    document.getElementById('email').textContent="Email: "+userdata[index].email;
+    document.getElementById('phone').textContent="Phone: "+userdata[index].phone;
+    document.getElementById('address').textContent="Address: "+userdata[index].address;
     document.getElementById('status').textContent=userdata[index].status;
     let profileCard = document.getElementById('profile');
     profileCard.style.display='block';
