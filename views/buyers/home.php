@@ -1,7 +1,6 @@
 <?php
 // require('../../controllers/auth.php');
 require('../../models/db.php');
-require('../../controllers/notifi.php');
 session_start();
 ?>
 
@@ -15,10 +14,9 @@ session_start();
 </head>
 <body>
 
-<div id="notif"></div>
+<div id="notif_container"><div id="notif"></div></div>
 
 <nav >
-    <!-- <?php print_r($_SESSION['user_data']) ?> -->
 
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
@@ -41,8 +39,10 @@ session_start();
  <!-- ad  section-->
 <div  id="ad">
     <div id="ad_banner"> </div>
-    <button type="button" id="left_btn"><</button>
-    <button type="button" id="right_btn">></button>
+    <div class="ad_btns">
+    <img src="../../assets/img/arrow.png" id="left_btn" alt="">
+    <img src="../../assets/img/arrow.png" id="right_btn" alt="">
+    </div>
 </div>
 <!-- products section-->
 <div class="sections">
@@ -51,7 +51,7 @@ session_start();
 
     <?php
     $products=[];
-       $products=read('select * , SUM(o.quantity) AS quantity FROM orders o JOIN product p ON o.product_id = p.product_id GROUP BY o.product_id ORDER BY o.quantity DESC LIMIT 5;');
+       $products=read('select * , SUM(o.quantity) AS quantity FROM orders o JOIN product p ON o.product_id = p.product_id WHERE p.available_unit > 0 GROUP BY o.product_id ORDER BY o.quantity DESC LIMIT 5;');
     
        foreach($products as $a){
         // print_r($pro);
@@ -95,7 +95,7 @@ session_start();
         </div> 
    <?php }?>
        </div>
-   <a href="more_products.php">See more..</a>
+    <div class="middle"><a class="action_btn" href="more_products.php">See more..</a> </div>
 
     </div>
 

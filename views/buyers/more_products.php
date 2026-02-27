@@ -31,8 +31,8 @@
     <!-- products for you section-->
     <div class="sections">
     <h2 class="sec_title"></h2>
-    <input type="text" placeholder="Search by name..." id="search"> <br>
-      Search By Category: <select name="category" id="category">
+    <div class="filter_products"> <div><input type="text" placeholder="Search by name..." id="search"> <br></div>
+      <div>Search By Category: <select name="category" id="category">
         <option value="">-- Select --</option>
                 <option value="Vegetable">Vegetable</option>
                 <option value="Fruit">Fruit</option>
@@ -41,14 +41,14 @@
                 <option value="Dairy">Dairy</option>
                 <option value="Egg">Egg</option>
                 <option value="Other">Other</option>
-     </select>
+     </select></div> </div>
      <br><br><br>
     <div id="products_container2">
         <!-- Products will be loaded here dynamically -->
     </div>
-       <div id="nest_prev">
-        <button id="next"> Next </button>
-        <button id="previous"> Previous </button>
+       <div id="nest_prev" class="middle">
+        <button id="previous" class="action_btn"> Previous </button>
+        <button id="next" class="action_btn"> Next </button>
        </div>
      </div>
 

@@ -1,0 +1,34 @@
+{
+	// Place your FarmLink_web workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	
+	"FarmLink Navbar": {
+		"scope": "html, php",
+		"prefix": "navbar",
+		"body": [
+			"<nav>",
+			"\t<a href=\"${1:home.php}\"><img class=\"logo\" src=\"${2:../../assets/img/farmlink_logo.jpg}\"></a>",
+			"\t<div id=\"navbtn\">",
+			"\t\t<ul>",
+			"\t\t\t<li><a class=\"nav-link\" href=\"#Home\">Home</a></li>",
+			"\t\t\t<li><a class=\"nav-link\" href=\"basket.php\">Basket</a></li>",
+			"\t\t\t<li><a class=\"nav-link\" href=\"order.php\">Orders</a></li>",
+			"\t\t\t<li><a class=\"nav-link\" href=\"../about.php\">About Us</a></li>",
+			"\t\t</ul>",
+			"\t\t<input type=\"text\" placeholder=\"Search...\" id=\"searchbar\">",
+			"\t\t<?php if(isset(\\$_SESSION['user_data']) && \\$_SESSION['user_data']['role'] == 'Buyer'){ ?>",
+			"\t\t<a class=\"orange_color\" href=\"../../controllers/logout.php\">Logout</a>",
+			"\t\t<?php } else { ?>",
+			"\t\t<a class=\"orange_color\" href=\"../Login.php\">Login</a>",
+			"\t\t<?php } ?>",
+			"\t</div>",
+			"</nav>",
+			"$0"
+		],
+		"description": "FarmLink navigation bar with authentication"
+	}
+}

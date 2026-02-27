@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FarmLink - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/comon.css">
+    <link rel="stylesheet" href="../../assets/css/table.css">
+    <link rel="stylesheet" href="../../assets/css/admin/user&staff.css">
+</head>
+<body>
+
+<div id="notif"></div>
+
+<nav>
+    <a href="dashboard.html"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
+    <div id="navbtn"> 
+    <ul>
+    </ul>
+    <a class="orange_color" href="../../controllers/logout.php">Logout</a>
+    </div>
+</nav>
+
+<div class="sections">
+<h2>Manage Your <span id="role"> Users & Staff</span> ⚙️</h2>
+<p>View, edit, and manage all members on FarmLink</p> 
+<div class="container">
+    <div class="table_container">
+    <div class="table_filters"><input type="text" name="" id="search" placeholder="Search by Name/ID/Role...">
+    <span style="display: none;"  class="filter_label">Search by roles:</span>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="btnradio" id="All" autocomplete="off" checked>
+  <label class="btn btn-outline-primary" for="All">All</label>
+
+  <input type="radio" class="btn-check" name="btnradio" id="Active" autocomplete="off">
+  <label class="btn btn-outline-primary" for="Active">Active</label>
+  
+  <input type="radio" class="btn-check" name="btnradio" id="Inactive" autocomplete="off">
+  <label class="btn btn-outline-primary" for="Inactive">Inactive</label>
+
+    <input type="radio" class="btn-check" name="btnradio" id="Banned" autocomplete="off">
+  <label class="btn btn-outline-primary" for="Banned">Banned</label>
+</div>
+    <select style="display: none;" id="role-filter">
+        <option value="">All</option>
+        <option value="Admin">Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="Support">Support</option>
+        <option value="Delivery">Delivery</option>
+        <option value="User">User</option>
+    </select>
+    </div>
+    <div class="table-scroll">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+    </div>
+    <nav class="admin-pagination-wrap" aria-label="User list pagination">
+      <ul class="pagination admin-pagination">
+    <li class="page-item"  style="cursor: pointer;" id="prev-btn"> 
+      <a class="page-link" id="">Previous</a>
+    </li>
+    <li class="page-item  " ><a class="page-link" href="#" id="btn1">1</a></li>
+    <li class="page-item  " ><a class="page-link" href="#" id="btn2">2</a></li>
+    <li class="page-item"><a class="page-link" href="#" id="btn3">5</a></li>
+    <li class="page-item " id="next-btn">
+      <a class="page-link" style="cursor: pointer;">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+<!-- profile edit card -->
+ <div class="profile" id="profile">
+    <img id="profile-img" src="" alt="">
+    <div class="details">
+        <span id="name"></span>
+        <span class="status data" id="status"></span>
+        <span class="data" id="ID">ID:</span>
+        <span class="data" id="roles">Role:</span>
+        <span class="data" id="phone">Phone:</span>
+        <span class="data" id="email">Email:</span>
+        <span class="data" id="address">Address:</span>
+        <span class="data" id="city">City:</span>
+        <div class="button-container"><button id="edit-profile-btn">Edit Profile</button>
+        <button id="delete-profile-btn" class="contact-btn">Contact Now</button> </div>
+        <!-- <button>Edit Profile    </button>  -->
+    </div>
+    </div>
+</div>
+<!-- User Card Popup -->
+<div class="user-popup-overlay" id="userPopup" style="display: none;">
+  <div class="user-popup-card">
+    <div class="user-popup-img">
+      <img src="img/sample-user.jpg" alt="User Image" />
+    </div>
+    <div class="user-popup-info">
+      <h2>Abdullah Al Mubin <span class="status-active">Active</span></h2>
+      <p><strong>ID:</strong> 23-50139-1</p>
+      <p><strong>Manager, etc</strong></p>
+      <p><strong>Phone:</strong> +880123456789 ðŸ˜ž</p>
+      <p><strong>Email:</strong> email@example.com ðŸ˜§</p>
+      <div class="user-popup-actions">
+        <button class="btn-primary">Access Role</button>
+        <button class="btn-secondary">Close</button>
+      </div>
+      <div class="user-popup-roles">
+        <label>Select Roles:</label>
+        <div class="roles-list">
+          <label><input type="checkbox"> admin</label>
+          <label><input type="checkbox"> manager</label>
+          <label><input type="checkbox"> support</label>
+          <label><input type="checkbox"> delivery</label>
+          <label><input type="checkbox"> delivery</label>
+          <label><input type="checkbox"> delivery</label>
+          <label><input type="checkbox"> delivery</label>
+        </div>
+        <div class="user-popup-actions">
+          <button class="btn-primary">Save</button>
+          <button class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="edit-modal" id="edit-modal">
+    <div class="edit-card">
+        <h3>Edit User Profile</h3>
+        <p class="edit-subtitle">Review account details and update status settings.</p>
+        <div class="edit-grid">
+            <label for="edit-name">Name</label>
+            <input type="text" id="edit-name" disabled/>
+
+            <label for="edit-email">Email</label>
+            <input type="email" id="edit-email" disabled />
+
+            <label for="edit-phone">Phone</label>
+            <input type="text" id="edit-phone" disabled/>
+
+            <label for="edit-address">Address</label>
+            <input type="text" id="edit-address" disabled />
+
+            <label for="edit-city">City</label>
+            <input type="text" id="edit-city" disabled />
+
+            <label for="edit-status">Status</label>
+            <select id="edit-status">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="banned">Ban</option>
+                <option value="temp_ban">Temporary Ban</option>
+            </select>
+            <label class="edit-date" for="edit-date">Ban Duration</label>
+            <input class="edit-date" type="datetime-local" id="edit-date">
+        </div>
+        <div class="edit-actions">
+            <button id="cancel-edit-btn" class="contact-btn edit-btn-cancel">Cancel</button>
+            <button id="save-profile-btn" class="edit-btn-primary">Save Changes</button>
+        </div>
+    </div>
+</div>
+<script type="module" src="../../assets/js/ajax.js"></script>
+<script type="module" src="../../assets/js/admin/user&staff.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>FarmLink</h3>
+                <p>Connecting farmers & consumers — Fresh, Fair, Fast.</p>
+                <div class="footer-socials">
+                    <a href="https://facebook.com"><img src="../../assets/img/facebook.png" alt="Facebook"></a>
+                    <a href="https://instagram.com"><img src="../../assets/img/instagram.png" alt="Instagram"></a>
+                    <a href="https://youtube.com"><img src="../../assets/img/youtube.png" alt="YouTube"></a>
+                    <a href="https://twitter.com"><img src="../../assets/img/twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Become a Seller</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-support">
+                <h4>Customer Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay in the Loop</h4>
+                <p>Get the latest farm-fresh updates & exclusive offers.</p>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                <div class="footer-badges">
+                    <button>Fresh & Local</button>
+                    <button>Secure Payments</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 FarmLink. All rights reserved.</span>
+            <span class="footer-made">Made with <span style="color: red;">♥</span> in Bangladesh</span>
+        </div>
+    </div>
+</footer>
+</html>

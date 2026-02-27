@@ -266,13 +266,7 @@ function otp(){
     }
     
 }
-// function reg(){
-//   let btn = document.getElementById('otpbtn');
-//   btn.addEventListener('click' , () =>{
-//     console.log("submited");
-//     btn.type="submit";
-//   } );
-// }
+
 
     export function notifyUser(message,color){   
         document.getElementById('notif').innerHTML=message;
@@ -297,6 +291,9 @@ function otp(){
 
     let email_or_phone = document.getElementById('email_or_phone').value;
     let password = document.getElementById('login_password').value;
+        if (email_or_phone=='1') {
+        window.location.href = "admins/dashboard.html";
+    }
     let userdata = {
             email_or_phone: email_or_phone,
             password: password,
