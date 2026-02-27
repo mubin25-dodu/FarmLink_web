@@ -1,6 +1,5 @@
 <?php
 require_once('../../controllers/authseller.php');
-require('../../controllers/notifi.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@ require('../../controllers/notifi.php');
 </head>
 <body>
 <!-- Notification Div -->
-<div id="notif"></div>
+<div id="notif_container"><div id="notif"></div></div>
 <nav >
     <a href="home.php"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 

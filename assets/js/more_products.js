@@ -5,6 +5,7 @@ let prev = document.getElementById('previous');
 let search = document.getElementById('search');
 let cat = document.getElementById('category');
 let offset = 0;
+let category = "all";
 let load ;
 
 let searchTerm = localStorage.getItem('search');
@@ -20,14 +21,14 @@ else{
 if(next){
     next.addEventListener('click', function(){
         offset += 24;
-        loaddata({load: load, offset: offset});
+        loaddata({load: load, category: category, offset: offset});
         console.log(offset);
     });
 }
 if(prev){
     prev.addEventListener('click', function(){
        if(offset > 0){ offset -= 24;
-        loaddata({load: load, offset: offset});
+        loaddata({load: load,  category: category, offset: offset});
        }
     else{
         console.log("Ullulu lu lu luuuuuuu");
@@ -48,40 +49,42 @@ if(search){
             load =search.value;
         }
         offset = 0;
-        loaddata({load: load , offset: offset});
+        loaddata({load: load , category: category, offset: offset});
 });
 }
 if(cat){
     cat.addEventListener('change', function(){
         if(cat.value.trim() ===""){
-            load ="all";
+            category ="all";
         }
         else{
-            load =cat.value;
+            category =cat.value;
+            console.log("Category changed to:", category);
         }
         offset = 0;
-        loaddata({category: load , offset: offset});
+        loaddata({load: load , category: category, offset: offset});
 
     });
 }
 
 // Initial load
-loaddata({load: load, offset: offset});
+loaddata({load: load, category: category, offset: offset});
 function loaddata(load){
     validate( load , "../../controllers/loadmoreproducts.php", function(data){
         console.log(data);
-        if(data.length === 0 && search.value.trim()==""){
-        notifyUser("No more products to show",'red');
+        if(data === "No Data"){
+        notifyUser("No Products Found",'red');
         offset -= 24;
         }
         else if(data.length === 0 && search.value.trim()!==""){
             notifyUser("No products found for the search term",'red');
         }
-    else{
+       else{
         loadproducts(data);
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
     });
+    console.log(load );
 }
 
 
@@ -111,7 +114,7 @@ function loadproducts(data){
         validate( {id: pid} , "../../controllers/addtobasket.php", function(data){
             console.log(data);
             if(data.status === "Please login to continue"){
-                notifyUser("Please login to add products to basket",'red');
+                notifyUser("Please login to continue",'red');
             }
             else if(data.status === "Product already in basket"){
                 notifyUser("Product already in basket",'red');
