@@ -1,12 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>FarmLink - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../../assets/css/comon.css">
     <link rel="stylesheet" href="../../assets/css/table.css">
     <link rel="stylesheet" href="../../assets/css/admin/user&staff.css">
-
 </head>
 <body>
 
@@ -27,8 +27,21 @@
 <div class="container">
     <div class="table_container">
     <div class="table_filters"><input type="text" name="" id="search" placeholder="Search by Name/ID/Role...">
-    <span class="filter_label">Search by roles:</span>
-    <select id="role-filter">
+    <span style="display: none;"  class="filter_label">Search by roles:</span>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="btnradio" id="All" autocomplete="off" checked>
+  <label class="btn btn-outline-primary" for="All">All</label>
+
+  <input type="radio" class="btn-check" name="btnradio" id="Active" autocomplete="off">
+  <label class="btn btn-outline-primary" for="Active">Active</label>
+  
+  <input type="radio" class="btn-check" name="btnradio" id="Inactive" autocomplete="off">
+  <label class="btn btn-outline-primary" for="Inactive">Inactive</label>
+
+    <input type="radio" class="btn-check" name="btnradio" id="Banned" autocomplete="off">
+  <label class="btn btn-outline-primary" for="Banned">Banned</label>
+</div>
+    <select style="display: none;" id="role-filter">
         <option value="">All</option>
         <option value="Admin">Admin</option>
         <option value="Manager">Manager</option>
@@ -51,17 +64,32 @@
         </tbody>
     </table>
     </div>
+          <nav class="admin-pagination-wrap" aria-label="User list pagination">
+      <ul class="pagination admin-pagination">
+    <li class="page-item"  style="cursor: pointer;" id="prev-btn"> 
+      <a class="page-link" id="">Previous</a>
+    </li>
+    <li class="page-item  " ><a class="page-link" href="#" id="btn1">1</a></li>
+    <li class="page-item  " ><a class="page-link" href="#" id="btn2">2</a></li>
+    <li class="page-item"><a class="page-link" href="#" id="btn3">5</a></li>
+    <li class="page-item " id="next-btn">
+      <a class="page-link" style="cursor: pointer;">Next</a>
+    </li>
+  </ul>
+</nav>
 </div>
 <!-- profile edit card -->
  <div class="profile" id="profile">
     <img id="profile-img" src="" alt="">
     <div class="details">
-        <span id="name"></span><br>
-        <span class="status data" id="status"></span><br>
-        <span class="data" id="ID"> ID: <span></span></span><br>
-        <span class="data" id="roles"></span><br>
-        <span class="data" id="phone">Phone: <span class="data" id="PhoneNum"></span>📞</span><br>
-        <span class="data" id="email">Email: <span class="data" id="Email"></span></span><br>
+        <span id="name"></span>
+        <span class="status data" id="status"></span>
+        <span class="data" id="ID">ID:</span>
+        <span class="data" id="roles">Role:</span>
+        <span class="data" id="phone">Phone:</span>
+        <span class="data" id="email">Email:</span>
+        <span class="data" id="address">Address:</span>
+        <span class="data" id="city">City:</span>
         <div class="button-container"><button id="edit-profile-btn">Edit Profile</button>
         <button id="delete-profile-btn" class="contact-btn">Contact Now</button> </div>
         <!-- <button>Edit Profile    </button>  -->
@@ -108,6 +136,7 @@
 </div>
 <script type="module" src="../../assets/js/ajax.js"></script>
 <script type="module" src="../../assets/js/admin/user&staff.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 <footer>
     <div class="footer-container">

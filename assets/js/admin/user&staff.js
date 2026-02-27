@@ -5,20 +5,89 @@ let action = "all";
 let param = new URLSearchParams(window.location.search);
 let role = param.get("role");
 let userdata = [];
-let profileLoaded=0;
+let profileLoaded = 0;
 let searchInput = document.getElementById("search");
+let offset = 0;
+let limit = 10;
+let currentPage = 1;
+let lastFetchedCount = 0;
+let filter;
 
-
-    searchInput.addEventListener("input", function(){   
-    action = searchInput.value.trim() === "" ? "all" : searchInput.value.trim();
-    Load_user_data();
-    console.log("Search input:", searchInput.value);
+// reading input feald
+searchInput.addEventListener("input", function () {
+  action = searchInput.value.trim() === "" ? "all" : searchInput.value.trim();
+  Load_user_data();
+  // console.log("Search input:", searchInput.value);
 });
 
 function normalizeStatus(status) {
   return String(status || "inactive")
     .toLowerCase()
     .trim();
+}
+
+// pagination logic here
+let prevBtn = document.getElementById("prev-btn");
+let nextBtn = document.getElementById("next-btn");
+let btn1 = document.getElementById("btn1");
+let btn2 = document.getElementById("btn2");
+let btn3 = document.getElementById("btn3");
+
+function goToPage(targetPage) {
+  if (targetPage < 1) return;
+  currentPage = targetPage;
+  offset = (currentPage - 1) * limit;
+  profileLoaded = 0;
+  Load_user_data();
+}
+
+function updatePaginationUI() {
+  if (!(prevBtn && nextBtn && btn1 && btn2 && btn3)) return;
+
+  const startPage = Math.max(1, currentPage - 1);
+  const pageNumbers = [startPage, startPage + 1, startPage + 2];
+  const numberButtons = [btn1, btn2, btn3];
+
+  numberButtons.forEach((button, index) => {
+    const pageNumber = pageNumbers[index];
+    button.textContent = pageNumber;
+    button.parentElement.classList.toggle("active", pageNumber === currentPage);
+  });
+
+  prevBtn.style.display = currentPage === 1 ? "none" : "block";
+
+  const hasNextPage = lastFetchedCount === limit;
+  nextBtn.classList.toggle("disabled", !hasNextPage);
+  nextBtn.style.pointerEvents = hasNextPage ? "auto" : "none";
+  nextBtn.style.opacity = hasNextPage ? "1" : "0.55";
+}
+
+if (prevBtn && nextBtn && btn1 && btn2 && btn3) {
+  prevBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (currentPage > 1) {
+      goToPage(currentPage - 1);
+    }
+  });
+
+  [btn1, btn2, btn3].forEach((button) => {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      const targetPage = Number(button.textContent);
+      if (!Number.isNaN(targetPage)) {
+        goToPage(targetPage);
+      }
+    });
+  });
+
+  nextBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (lastFetchedCount === limit) {
+      goToPage(currentPage + 1);
+    }
+  });
+
+  updatePaginationUI();
 }
 
 function getStatusMeta(status) {
@@ -48,29 +117,57 @@ function renderStatusBadge(status) {
 Load_user_data();
 function Load_user_data() {
   fetch(
-    { action, role },
+    { action: action, role: role, offset: offset, limit: limit },
     "../../controllers/admin/fetchusers.php",
     function (response) {
-      console.log(response);
-      userdata = response;
-      loadtable();
-      loadprofile(profileLoaded);
+      userdata = Array.isArray(response) ? response : [];
+      lastFetchedCount = userdata.length;
+
+      if (userdata.length === 0 && currentPage > 1) {
+        goToPage(currentPage - 1);
+        return;
+      }
+
+      updatePaginationUI();
+
+      if (userdata.length === 0) {
+        loadtable([]);
+        document.getElementById("profile").style.display = "none";
+        notifyUser("No users found", "orange");
+      } else {
+        loadtable(userdata);
+        loadprofile(Math.min(profileLoaded, userdata.length - 1));
+      }
     },
   );
 }
 
-function loadtable() {
+function loadtable(data) {
   let tablebody = document.getElementById("table-body");
   tablebody.innerHTML = "";
-  for (let i = 0; i < userdata.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     tablebody.innerHTML += `
             <tr>
-                <td>${userdata[i].name}</td>
-                <td>${userdata[i].UID}</td>
-                <td>${renderStatusBadge(userdata[i].status)}</td>
+                <td>${data[i].name}</td>
+                <td>${data[i].UID}</td>
+                <td>${renderStatusBadge(data[i].status)}</td>
                 <td><button  class="view-profile-btn">View Profile</button></td>
             </tr>
 `;
+  }
+
+  //  filter buttons logic
+  let active = document.getElementById("Active");
+  let inactive = document.getElementById("Inactive");
+  let banned = document.getElementById("Banned");
+  let all = document.getElementById("All");
+  if (active || inactive || banned || all) {
+    active.addEventListener("change", function () {
+      Load_user_data();
+    });
+    inactive.addEventListener("change", function () {});
+    banned.addEventListener("change", function () {});
+    all.addEventListener("change", function () {});
   }
 
   let view = document.querySelectorAll(".view-profile-btn");
@@ -86,27 +183,33 @@ function loadtable() {
 }
 function loadprofile(index) {
   profileLoaded = index;
+  const selectedUser = userdata[index];
+  if (!selectedUser) {
+    document.getElementById("profile").style.display = "none";
+    return;
+  }
   document.getElementById("profile-img").src =
     "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D";
   document.getElementById("name").textContent =
-    userdata[index].name.charAt(0).toUpperCase() +
-    userdata[index].name.slice(1);
-  document.getElementById("ID").textContent = "ID: " + userdata[index].UID;
+    selectedUser.name.charAt(0).toUpperCase() + selectedUser.name.slice(1);
+  document.getElementById("ID").textContent = "ID: " + selectedUser.UID;
   document.getElementById("roles").textContent =
     "Role: " +
-    userdata[index].role.charAt(0).toUpperCase() +
-    userdata[index].role.slice(1);
+    selectedUser.role.charAt(0).toUpperCase() +
+    selectedUser.role.slice(1);
   document.getElementById("email").textContent =
     "Email: " +
-    userdata[index].email.charAt(0).toUpperCase() +
-    userdata[index].email.slice(1);
-  document.getElementById("phone").textContent =
-    "Phone: " + userdata[index].phone;
-  // document.getElementById('address').textContent="Address: "+userdata[index].address;
+    selectedUser.email.charAt(0).toUpperCase() +
+    selectedUser.email.slice(1);
+  document.getElementById("phone").textContent = "Phone: " + selectedUser.phone;
+  document.getElementById("address").textContent =
+    "Address: " + (selectedUser.address || "N/A");
+  document.getElementById("city").textContent =
+    "City: " + (selectedUser.city || "N/A");
   const profileStatus = document.getElementById("status");
-  const statusMeta = getStatusMeta(userdata[index].status);
+  const statusMeta = getStatusMeta(selectedUser.status);
   profileStatus.className = `status-badge ${statusMeta.className}`;
-  profileStatus.innerHTML = `<span class="status-dot"></span>${statusMeta.label} ${userdata[index].status === "temp_ban" ? ` until ${userdata[index].temp_ban}` : ""}`;
+  profileStatus.innerHTML = `<span class="status-dot"></span>${statusMeta.label} ${selectedUser.status === "temp_ban" ? ` until ${selectedUser.temp_ban}` : ""}`;
   let profileCard = document.getElementById("profile");
   profileCard.style.display = "block";
 }
@@ -170,9 +273,8 @@ if (button) {
 
               loadprofile(profileLoaded);
               notifyUser("Profile updated successfully", "success");
-            }
-            else{
-                notifyUser("Failed to update profile", "error");
+            } else {
+              notifyUser("Failed to update profile", "error");
             }
           },
         );
