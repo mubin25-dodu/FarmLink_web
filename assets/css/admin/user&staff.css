@@ -381,20 +381,20 @@ button:hover{
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(16, 34, 28, 0.45);
+    background: rgba(16, 34, 28, 0.58);
     align-items: center;
     justify-content: center;
     z-index: 999;
-    padding: 12px;
+    padding: 18px;
 }
 
 .edit-card{
-    width: min(560px, 92vw);
+    width: min(640px, 96vw);
     background: #ffffff;
-    border-radius: 16px;
-    border: 1px solid rgba(155, 207, 174, 0.4);
-    box-shadow: 0 20px 40px rgba(16, 34, 28, 0.2);
-    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(155, 207, 174, 0.5);
+    box-shadow: 0 26px 54px rgba(16, 34, 28, 0.28);
+    padding: 20px;
 }
 
 .edit-date{
@@ -403,36 +403,76 @@ button:hover{
 
 .edit-card h3{
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     color: var(--darkgreen);
+    font-size: 38px;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+}
+
+.edit-subtitle{
+    margin: 0 0 16px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
 .edit-grid{
     display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 8px 10px;
-    align-items: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
 }
 
 .edit-grid label{
     font-weight: 600;
     color: var(--darkgreen);
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
 }
 
 .edit-grid input,
 .edit-grid select{
     border: 1px solid rgba(155, 207, 174, 0.8);
-    border-radius: 10px;
-    padding: 8px 10px;
+    border-radius: 12px;
+    padding: 10px 12px;
     font-size: 14px;
-    background: var(--surface);
+    background: #f8fcfa;
+    width: 100%;
+}
+
+.edit-grid input:disabled{
+    color: #566a62;
+    background: #f0f7f3;
+    cursor: not-allowed;
+}
+
+.edit-grid label[for="edit-status"],
+.edit-grid #edit-status,
+.edit-grid .edit-date{
+    grid-column: 1 / -1;
 }
 
 .edit-actions{
-    margin-top: 10px;
+    margin-top: 18px;
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+.edit-actions button{
+    min-width: 130px;
+    padding: 10px 14px;
+}
+
+.edit-btn-primary{
+    background: linear-gradient(180deg, #173a2f 0%, #1f4d3f 100%);
+    color: #ffffff;
+    border-color: #173a2f;
+}
+
+.edit-btn-cancel{
+    background: #ffffff;
+    color: var(--darkgreen);
 }
 
 footer{
@@ -508,7 +548,15 @@ footer{
 
     .edit-grid{
         grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 10px;
+    }
+
+    .edit-card{
+        padding: 16px;
+    }
+
+    .edit-card h3{
+        font-size: 28px;
     }
 
     .edit-actions{
@@ -519,4 +567,101 @@ footer{
     .edit-actions button{
         width: 100%;
     }
+}
+
+.user-popup-overlay {
+  position: fixed;
+  display: none;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.user-popup-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  width: 480px;
+  max-width: 95vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.user-popup-img img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.user-popup-info {
+  padding: 24px;
+}
+
+.user-popup-info h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-active {
+  color: #1ca21c;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.user-popup-info p {
+  margin: 4px 0;
+  color: #444;
+}
+
+.user-popup-actions {
+  margin: 16px 0 0 0;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #222;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.user-popup-roles {
+  margin-top: 18px;
+  border: 1px dashed #2563eb;
+  border-radius: 8px;
+  padding: 14px 12px;
+}
+
+.roles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin: 10px 0 0 0;
+}
+.roles-list label {
+  font-size: 1em;
+  color: #333;
 }

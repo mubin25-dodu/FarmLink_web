@@ -89,6 +89,35 @@ if (prevBtn && nextBtn && btn1 && btn2 && btn3) {
 
   updatePaginationUI();
 }
+// filter buttons logic here
+let active = document.getElementById("Active");
+let inactive = document.getElementById("Inactive");
+let banned = document.getElementById("Banned");
+let all = document.getElementById("All");
+if (all) {
+  all.addEventListener("change", function () {
+    filter = "";
+    Load_user_data();
+  });
+}
+if (inactive) {
+  inactive.addEventListener("change", function () {
+    filter = "inactive";
+    Load_user_data();
+  });
+}
+if (active) {
+  active.addEventListener("change", function () {
+    filter = "active";
+    Load_user_data();
+  });
+}
+if (banned) {
+  banned.addEventListener("change", function () {
+    filter = "banned";
+    Load_user_data();
+  });
+}
 
 function getStatusMeta(status) {
   const normalized = normalizeStatus(status);
@@ -117,12 +146,12 @@ function renderStatusBadge(status) {
 Load_user_data();
 function Load_user_data() {
   fetch(
-    { action: action, role: role, offset: offset, limit: limit },
+    { action: action,filter: filter, role: role, offset: offset, limit: limit },
     "../../controllers/admin/fetchusers.php",
     function (response) {
       userdata = Array.isArray(response) ? response : [];
       lastFetchedCount = userdata.length;
-
+      console.log("Fetched users:", response);
       if (userdata.length === 0 && currentPage > 1) {
         goToPage(currentPage - 1);
         return;

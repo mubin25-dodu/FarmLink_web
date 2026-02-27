@@ -3,7 +3,6 @@
 <head>
 <title>FarmLink - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
     <link rel="stylesheet" href="../../assets/css/comon.css">
     <link rel="stylesheet" href="../../assets/css/table.css">
     <link rel="stylesheet" href="../../assets/css/admin/user&staff.css">
@@ -12,7 +11,7 @@
 
 <div id="notif"></div>
 
-<nav >
+<nav>
     <a href="dashboard.html"><img class="logo" src="../../assets/img/farmlink_logo.jpg" ></a>
     <div id="navbtn"> 
     <ul>
@@ -64,7 +63,7 @@
         </tbody>
     </table>
     </div>
-          <nav class="admin-pagination-wrap" aria-label="User list pagination">
+    <nav class="admin-pagination-wrap" aria-label="User list pagination">
       <ul class="pagination admin-pagination">
     <li class="page-item"  style="cursor: pointer;" id="prev-btn"> 
       <a class="page-link" id="">Previous</a>
@@ -96,12 +95,48 @@
     </div>
     </div>
 </div>
+<!-- User Card Popup -->
+<div class="user-popup-overlay" id="userPopup" style="display: none;">
+  <div class="user-popup-card">
+    <div class="user-popup-img">
+      <img src="img/sample-user.jpg" alt="User Image" />
+    </div>
+    <div class="user-popup-info">
+      <h2>Abdullah Al Mubin <span class="status-active">Active</span></h2>
+      <p><strong>ID:</strong> 23-50139-1</p>
+      <p><strong>Manager, etc</strong></p>
+      <p><strong>Phone:</strong> +880123456789 ðŸ˜ž</p>
+      <p><strong>Email:</strong> email@example.com ðŸ˜§</p>
+      <div class="user-popup-actions">
+        <button class="btn-primary">Access Role</button>
+        <button class="btn-secondary">Close</button>
+      </div>
+      <div class="user-popup-roles">
+        <label>Select Roles:</label>
+        <div class="roles-list">
+          <label><input type="checkbox"> admin</label>
+          <label><input type="checkbox"> manager</label>
+          <label><input type="checkbox"> support</label>
+          <label><input type="checkbox"> delivery</label>
+          <label><input type="checkbox"> delivery</label>
+          <label><input type="checkbox"> delivery</label>
+          <label><input type="checkbox"> delivery</label>
+        </div>
+        <div class="user-popup-actions">
+          <button class="btn-primary">Save</button>
+          <button class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 
 <div class="edit-modal" id="edit-modal">
     <div class="edit-card">
         <h3>Edit User Profile</h3>
+        <p class="edit-subtitle">Review account details and update status settings.</p>
         <div class="edit-grid">
             <label for="edit-name">Name</label>
             <input type="text" id="edit-name" disabled/>
@@ -129,8 +164,8 @@
             <input class="edit-date" type="datetime-local" id="edit-date">
         </div>
         <div class="edit-actions">
-            <button id="save-profile-btn">Save Changes</button>
-            <button id="cancel-edit-btn" class="contact-btn">Cancel</button>
+            <button id="cancel-edit-btn" class="contact-btn edit-btn-cancel">Cancel</button>
+            <button id="save-profile-btn" class="edit-btn-primary">Save Changes</button>
         </div>
     </div>
 </div>
